@@ -8,10 +8,9 @@ albedo_color = Color(0, 0.7058824, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ui86w"]
 
 [node name="Enemy" unique_id=1689016585 instance=ExtResource("1_w70j1")]
-loop = false
 element = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0" unique_id=589538896]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" parent_id_path=PackedInt32Array(1397218761) index="0" unique_id=589538896]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_gok1s")
 mesh = SubResource("BoxMesh_ui86w")

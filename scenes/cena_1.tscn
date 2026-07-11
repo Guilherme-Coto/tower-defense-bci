@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="1_8p7vy"]
 [ext_resource type="Script" uid="uid://duvtd8asfba6x" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
 [ext_resource type="PackedScene" uid="uid://dyh410ftmt6jx" path="res://assets/models/island/ground/ground_pathEnd.glb" id="2_11fdg"]
+[ext_resource type="Script" uid="uid://gpgdq3x8p87k" path="res://scripts/tower.gd" id="2_l256h"]
 [ext_resource type="PackedScene" uid="uid://c4o8uay4f37xu" path="res://assets/models/island/ground/ground_pathStraight.glb" id="3_7f3w5"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="4_c13s3"]
 [ext_resource type="PackedScene" uid="uid://d3s86hv5ndp5" path="res://assets/models/island/trees/tree_default.glb" id="5_inr4k"]
@@ -29,6 +30,8 @@ reflected_light_source = 2
 
 [sub_resource type="Compositor" id="Compositor_c13s3"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gok1s"]
+
 [sub_resource type="Curve3D" id="Curve3D_t2hj8"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.006, 0.1, -0.026, 0, 0, 0, 0, 0, 0, -0.006, 0.1, -6.906),
@@ -45,15 +48,29 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.38
 environment = SubResource("Environment_j5k5y")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
-transform = Transform3D(0.6135179, 0, 0.7896809, 0, 1, 0, -0.7896809, 0, 0.6135179, 2.9007673, 1.4803908, 0.2728408)
+transform = Transform3D(-1, -3.5527137e-15, -8.742278e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
 environment = SubResource("Environment_11fdg")
 attributes = SubResource("CameraAttributesPractical_7f3w5")
 compositor = SubResource("Compositor_c13s3")
+current = true
+size = 6.291
 
 [node name="Ilha" type="Node3D" parent="." unique_id=2076354987]
 
 [node name="Tower" parent="Ilha" unique_id=1170968770 instance=ExtResource("4_c13s3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99999994, 0, -9)
+script = ExtResource("2_l256h")
+
+[node name="Range" type="Area3D" parent="Ilha/Tower" unique_id=1680673522]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ilha/Tower/Range" unique_id=136593304]
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 1)
+shape = SubResource("BoxShape3D_gok1s")
+
+[node name="ShootPoint" type="Marker3D" parent="Ilha/Tower" unique_id=380901935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
+
+[node name="TimerAttack" type="Timer" parent="Ilha/Tower" unique_id=573846650]
 
 [node name="Spawner" type="Node3D" parent="Ilha" unique_id=2094228835]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
@@ -162,6 +179,141 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=1898975401 instance=ExtResource("1_8p7vy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass3" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=1645674647 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3" unique_id=384083711 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass2" unique_id=821242424 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass2/ground_grass2" unique_id=354342291 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass3" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3" unique_id=189827456 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3" unique_id=365783048 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2" unique_id=1543425867 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2/ground_grass2" unique_id=1968682194 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2/ground_grass2/ground_grass2" unique_id=627591432 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Left Side" parent="Ilha/Left Side" unique_id=1296638524 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side" unique_id=1058136224 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2" unique_id=562447295 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2" unique_id=310000838 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2" unique_id=1512950741 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=2060509698 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=222583165 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=497118994 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=413043862 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass3" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=1000918771 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3" unique_id=759274556 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass2" unique_id=1012110786 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass2/ground_grass2" unique_id=1933573613 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass3" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3" unique_id=216649896 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3" unique_id=972587305 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2" unique_id=8545584 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2/ground_grass2" unique_id=1479801575 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2/ground_grass2/ground_grass2" unique_id=822888353 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Left Side" parent="Ilha/Left Side/Left Side" unique_id=1197962506 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side" unique_id=750685555 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2" unique_id=1464182727 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2" unique_id=1700052170 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2" unique_id=184096397 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=1044533434 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=231634772 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=576635765 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=1078643147 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass3" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2" unique_id=383006736 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3" unique_id=1505696749 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass2" unique_id=94567282 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass2/ground_grass2" unique_id=101800297 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass3" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3" unique_id=1725954744 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3" unique_id=1408250689 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2" unique_id=1664270063 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2/ground_grass2" unique_id=383069457 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="ground_grass2" parent="Ilha/Left Side/Left Side/Left Side/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass2/ground_grass3/ground_grass3/ground_grass2/ground_grass2/ground_grass2" unique_id=234759014 instance=ExtResource("1_8p7vy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="EnemyPath" type="Path3D" parent="Ilha" unique_id=1560135437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)

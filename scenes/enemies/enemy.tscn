@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dmthp6ubfpluw" path="res://scripts/enemys/enemy.gd" id="1_6nto2"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui86w"]
+
 [node name="Enemy" type="PathFollow3D" unique_id=1689016585]
 loop = false
 script = ExtResource("1_6nto2")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1397218761 groups=["enemies"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=751730294 groups=["enemies"]]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_ui86w")

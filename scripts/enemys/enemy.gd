@@ -1,6 +1,6 @@
 extends PathFollow3D
 
-@export var speed = 4.0
+@export var speed = 3.0
 @export var element : Weak_System.ELEMENT
 
 # Called when the node enters the scene tree for the first time.

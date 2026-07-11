@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_spawn += delta
-	if time_spawn >= 3:
+	if time_spawn >= 5:
 		spawn_enemy()
 		time_spawn = 0
 		
