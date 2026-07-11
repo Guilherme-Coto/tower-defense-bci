@@ -8,6 +8,7 @@ albedo_color = Color(0.32941177, 0.7490196, 0.3137255, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_ui86w"]
 
 [node name="Enemy" unique_id=1689016585 instance=ExtResource("1_001ok")]
+loop = false
 element = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0" unique_id=1331042573]

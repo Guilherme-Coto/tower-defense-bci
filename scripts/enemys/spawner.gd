@@ -1,25 +1,35 @@
 extends Node3D
 
-#inimigo para spawnar
-const ENEMY = preload("res://scenes/enemies/enemy.tscn")
+#inimigos para spawnar
+const enemy_fire = preload("res://scenes/enemies/enemy_fire.tscn")
+const enemy_water = preload("res://scenes/enemies/enemy_water.tscn")
+const enemy_wind = preload("res://scenes/enemies/enemy_wind.tscn")
+const enemy_earth = preload("res://scenes/enemies/enemy_earth.tscn")
 
 @onready var spawner: Path3D = $"../EnemyPath"
-
 @export var time_spawn = 0.0
+
+const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_earth]
+var index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#mensagem só para saber se isto funciona
-	print("Spawner ativo")
 	spawn_enemy()
 
 func _process(delta: float) -> void:
 	time_spawn += delta
-	if time_spawn >= 4:
+	if time_spawn >= 3:
 		spawn_enemy()
 		time_spawn = 0
 		
 
 func spawn_enemy():
-	var new_enemy = ENEMY.instantiate()
+	var new_enemy = enemies[index].instantiate()
 	spawner.add_child(	new_enemy)
+	
+	if index == enemies.size() - 1:
+		index = 0
+	else:
+		index+=1 #aumenta o index
+	
