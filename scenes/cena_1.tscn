@@ -12,6 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://dp1qe0455xaft" path="res://assets/models/island/trees/tree_oak.glb" id="8_l256h"]
 [ext_resource type="PackedScene" uid="uid://b32s01ofafoq" path="res://assets/models/island/trees/tree_detailed.glb" id="9_hhokd"]
 [ext_resource type="PackedScene" uid="uid://desuofmffs4k" path="res://assets/models/island/trees/tree_cone.glb" id="9_kfyrf"]
+[ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="13_kfyrf"]
+[ext_resource type="Script" uid="uid://bh6107hretlxl" path="res://scripts/UIManager.gd" id="13_kkaqo"]
+[ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="14_mcbik"]
+[ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="15_kkaqo"]
+[ext_resource type="Texture2D" uid="uid://x7rxn2puf34a" path="res://assets/icons/earth-spit.png" id="16_ie5fn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2hj8"]
 
@@ -57,7 +62,7 @@ size = 6.291
 
 [node name="Ilha" type="Node3D" parent="." unique_id=2076354987]
 
-[node name="Tower" parent="Ilha" unique_id=1170968770 instance=ExtResource("4_c13s3")]
+[node name="Tower" parent="Ilha" unique_id=1170968770 groups=["tower"] instance=ExtResource("4_c13s3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99999994, 0, -9)
 script = ExtResource("2_l256h")
 
@@ -135,23 +140,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 [node name="tree_cone2" parent="Ilha/Trees" unique_id=80416879 instance=ExtResource("9_kfyrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
+[node name="tree_cone2" parent="Ilha/Trees/tree_cone2" unique_id=1656026332 instance=ExtResource("9_kfyrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
 [node name="tree_oak2" parent="Ilha/Trees" unique_id=779533057 instance=ExtResource("8_l256h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
 
 [node name="tree_oak2" parent="Ilha/Trees/tree_oak2" unique_id=654946924 instance=ExtResource("8_l256h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
 
+[node name="tree_oak2" parent="Ilha/Trees/tree_oak2/tree_oak2" unique_id=182825724 instance=ExtResource("8_l256h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
 [node name="tree_detailed_dark2" parent="Ilha/Trees" unique_id=2004397438 instance=ExtResource("6_hhokd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
+[node name="tree_detailed_dark2" parent="Ilha/Trees/tree_detailed_dark2" unique_id=521293296 instance=ExtResource("6_hhokd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
 [node name="tree_default2" parent="Ilha/Trees" unique_id=461880743 instance=ExtResource("5_inr4k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="tree_default2" parent="Ilha/Trees/tree_default2" unique_id=680319701 instance=ExtResource("5_inr4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
 [node name="tree_fat2" parent="Ilha/Trees" unique_id=1997806616 instance=ExtResource("7_t2hj8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="tree_detailed2" parent="Ilha/Trees" unique_id=131327728 instance=ExtResource("9_hhokd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
+
+[node name="tree_detailed2" parent="Ilha/Trees/tree_detailed2" unique_id=338582778 instance=ExtResource("9_hhokd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
 
 [node name="Left Side" parent="Ilha" unique_id=214513066 instance=ExtResource("1_8p7vy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -318,3 +338,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 [node name="EnemyPath" type="Path3D" parent="Ilha" unique_id=1560135437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 curve = SubResource("Curve3D_t2hj8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1803210829]
+script = ExtResource("13_kkaqo")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=96816421]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=2027341584]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=848368200]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+mouse_filter = 2
+
+[node name="btn_fire" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1294608681]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("13_kfyrf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="btn_water" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1602837804]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("14_mcbik")
+icon_alignment = 1
+expand_icon = true
+
+[node name="btn_wind" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1664283071]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("15_kkaqo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="btn_earth" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1697505813]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("16_ie5fn")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer" method="_on_btn_fire_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer" method="_on_btn_water_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_wind" to="CanvasLayer" method="_on_btn_wind_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_earth" to="CanvasLayer" method="_on_btn_earth_pressed"]

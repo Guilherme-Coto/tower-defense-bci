@@ -13,3 +13,6 @@ script = ExtResource("1_6nto2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=751730294 groups=["enemies"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("BoxShape3D_ui86w")
+
+[node name="ShootPoint" type="Marker3D" parent="." unique_id=1164889274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12923624)

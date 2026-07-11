@@ -5,8 +5,11 @@ const bullet = preload("res://scenes/bullet.tscn") # Cria esta cena no Passo 3!
 @onready var shoot_point = $ShootPoint
 @onready var timer_attack = $TimerAttack
 
+var health = 1000.0
+
 var enemies_in_range : Array[Node3D]
 var actual_enemy: Node3D = null #inimigo a focar
+var current_element = Weak_System.ELEMENT.Fire 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +23,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_target() #vai atualizando o alvo
 	
-
 func update_target() -> void:
 	#filtra os inimigos pelos que existem
 	enemies_in_range = enemies_in_range.filter(func(e): return is_instance_valid(e))
@@ -49,7 +51,14 @@ func _on_timer_attack_timeout() -> void:
 func shoot():
 	var new_shoot = bullet.instantiate()
 	get_tree().root.add_child(new_shoot) 
+	new_shoot.change_element(current_element)
+	new_shoot.global_position = shoot_point.global_position	
+	new_shoot.set_target(actual_enemy)
 	
-	new_shoot.global_position = shoot_point.global_position
+func receive_damage(damage: float):
+	#retira vida do inimigo
+	health -= damage 
+	print("Vida deste inimigo: ", health)
 	
-	new_shoot.configurar_tiro(actual_enemy)
+func change_element(new_element: Weak_System.ELEMENT):
+	current_element = new_element

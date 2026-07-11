@@ -6,7 +6,7 @@ class_name Weak_System
 enum ELEMENT { Fire, Water, Wind, Earth}
 
 #lista das fraquezas
-var elements = {
+static var elements = {
 	ELEMENT.Fire : {
 		ELEMENT.Fire : "null",
 		ELEMENT.Water : "weak",
@@ -34,7 +34,7 @@ var elements = {
 }
 
 #função que retorna o dano a dar por multiplicação
-func get_damage_mult(attack_element, defense_element):
+static func get_damage_mult(attack_element, defense_element):
 	#caso o elemento não esteja listado
 	if not elements.has(defense_element):
 		return 1

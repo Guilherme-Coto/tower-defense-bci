@@ -7,7 +7,9 @@ const enemy_wind = preload("res://scenes/enemies/enemy_wind.tscn")
 const enemy_earth = preload("res://scenes/enemies/enemy_earth.tscn")
 
 @onready var spawner: Path3D = $"../EnemyPath"
-@export var time_spawn = 0.0
+@export var time_between_enemies = 8.0
+
+var time_spawn = 0.0
 
 const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_earth]
 var index = 0
@@ -19,7 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_spawn += delta
-	if time_spawn >= 5:
+	if time_spawn >= time_between_enemies:
 		spawn_enemy()
 		time_spawn = 0
 		
@@ -32,4 +34,3 @@ func spawn_enemy():
 		index = 0
 	else:
 		index+=1 #aumenta o index
-	
