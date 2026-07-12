@@ -340,27 +340,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 curve = SubResource("Curve3D_t2hj8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1803210829]
-script = ExtResource("13_kkaqo")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=96816421]
+[node name="UI" type="MarginContainer" parent="CanvasLayer" unique_id=96816421]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("13_kkaqo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=2027341584]
+[node name="VBox_element" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=546561961]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="lbl_element" type="Label" parent="CanvasLayer/UI/VBox_element" unique_id=556492951]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Fogo"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=2027341584]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=848368200]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer" unique_id=848368200]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 mouse_filter = 2
 
-[node name="btn_fire" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1294608681]
+[node name="btn_fire" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer" unique_id=1294608681]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -369,7 +380,7 @@ icon = ExtResource("13_kfyrf")
 icon_alignment = 1
 expand_icon = true
 
-[node name="btn_water" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1602837804]
+[node name="btn_water" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer" unique_id=1602837804]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -378,7 +389,7 @@ icon = ExtResource("14_mcbik")
 icon_alignment = 1
 expand_icon = true
 
-[node name="btn_wind" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1664283071]
+[node name="btn_wind" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer" unique_id=1664283071]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -387,7 +398,7 @@ icon = ExtResource("15_kkaqo")
 icon_alignment = 1
 expand_icon = true
 
-[node name="btn_earth" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1697505813]
+[node name="btn_earth" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer" unique_id=1697505813]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -396,7 +407,7 @@ icon = ExtResource("16_ie5fn")
 icon_alignment = 1
 expand_icon = true
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer" method="_on_btn_fire_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer" method="_on_btn_water_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_wind" to="CanvasLayer" method="_on_btn_wind_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/btn_earth" to="CanvasLayer" method="_on_btn_earth_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer/UI" method="_on_btn_fire_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer/UI" method="_on_btn_water_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_wind" to="CanvasLayer/UI" method="_on_btn_wind_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_earth" to="CanvasLayer/UI" method="_on_btn_earth_pressed"]

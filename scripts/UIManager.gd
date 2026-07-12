@@ -1,17 +1,19 @@
-extends CanvasLayer
+extends MarginContainer
 
 @onready var tower = get_tree().get_first_node_in_group("tower")
+@onready var lbl_element = $VBox_element/lbl_element
+
 
 func on_button_power_clicket(element : Weak_System.ELEMENT):
 	if element == Weak_System.ELEMENT.Fire:
-		print("Selecionou Fogo")
+		lbl_element.text = "Fogo"
 	elif element == Weak_System.ELEMENT.Water:
-		print("Selecionou Àgua")
+		lbl_element.text = "Água"
 	elif element == Weak_System.ELEMENT.Wind:
-		print("Selecionou Vento")		
+		lbl_element.text = "Vento"
 	elif element == Weak_System.ELEMENT.Earth:
-		print("Selecionou Terra")
-		
+		lbl_element.text = "Terra"
+
 	tower.change_element(element)
 
 func _on_btn_fire_pressed() -> void:
