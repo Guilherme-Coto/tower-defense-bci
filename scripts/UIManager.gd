@@ -16,12 +16,16 @@ func _input(event: InputEvent) -> void:
 		
 func on_button_power_clicket(element : Weak_System.ELEMENT):
 	if element == Weak_System.ELEMENT.Fire:
+		lbl_element.text = "Fogo"
 		add_text_to_log("O jogador selecionou Fogo")
 	elif element == Weak_System.ELEMENT.Water:
+		lbl_element.text = "Água"
 		add_text_to_log("O jogador selecionou Água")
 	elif element == Weak_System.ELEMENT.Wind:
+		lbl_element.text = "Vento"
 		add_text_to_log("O jogador selecionou Vento")
 	elif element == Weak_System.ELEMENT.Earth:
+		lbl_element.text = "Terra"
 		add_text_to_log("O jogador selecionouTerra")
 
 	tower.change_element(element)
