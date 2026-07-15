@@ -4,6 +4,7 @@ const bullet = preload("res://scenes/bullet.tscn") # Cria esta cena no Passo 3!
 
 @onready var shoot_point = $ShootPoint
 @onready var tower = get_tree().get_first_node_in_group("tower")
+@onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 @export var speed = 1.0
 @export var element : Weak_System.ELEMENT
@@ -12,7 +13,7 @@ var health = 100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Inimigo spawnado")
+	UIManager.add_text_to_log("Inimigo Spawnado")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 func receive_damage(damage: float, attack_element: Weak_System.ELEMENT):
 	#retira vida do inimigo
 	health -= damage * Weak_System.get_damage_mult(attack_element, element)
-	print("Vida deste inimigo: ", health)
+	UIManager.add_text_to_log(str("Vida do inimigo: ",health))
 
 #função de disparar
 func shoot():
@@ -35,4 +36,5 @@ func shoot():
 	new_shoot.set_target(tower)
 
 func end():
+	UIManager.add_text_to_log("Inimigo morto")
 	queue_free()

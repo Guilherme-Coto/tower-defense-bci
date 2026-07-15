@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c1j6qf0dvr413"]
+
+[node name="lbl_text_log" type="Label" unique_id=462796673]
+custom_minimum_size = Vector2(400, 0)
+theme_override_colors/font_color = Color(0.8132577, 0.8132577, 0.81325775, 0.8)
+autowrap_mode = 2

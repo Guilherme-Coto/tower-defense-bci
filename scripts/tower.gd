@@ -1,9 +1,10 @@
 extends Node3D
 
-const bullet = preload("res://scenes/bullet.tscn") # Cria esta cena no Passo 3!
+const bullet = preload("res://scenes/bullet.tscn") 
 
 @onready var shoot_point = $ShootPoint
 @onready var timer_attack = $TimerAttack
+@onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 var health = 1000.0
 
@@ -35,7 +36,7 @@ func update_target() -> void:
 #função que lida com o contacto de um inimigo com a área
 func _on_enemy_entered(body: Node3D) -> void:
 	if body.is_in_group("enemies"):
-		print("inimigo detetado")
+		UIManager.add_text_to_log("Torre detetou um inimigo")
 		enemies_in_range.append(body)
 
 #função que lida com a saída de um inimigo da área
