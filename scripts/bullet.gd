@@ -14,6 +14,7 @@ func change_element(new_element: Weak_System.ELEMENT):
 func set_target(enemy: Node3D):
 	target = enemy
 
+
 func _process(delta: float) -> void:
 	if not is_instance_valid(target):
 		queue_free()

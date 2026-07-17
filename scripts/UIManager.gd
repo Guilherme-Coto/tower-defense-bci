@@ -3,6 +3,8 @@ extends MarginContainer
 const label_prefab = preload("res://scenes/lbl_text_log.tscn") 
 
 @onready var tower = get_tree().get_first_node_in_group("tower")
+@onready var LSLManager = get_tree().get_first_node_in_group("LSLManager")
+
 @onready var lbl_element = $VBox_element/lbl_element
 @onready var log_container = $PanelContainer/LogScrollBar/VBCLogs
 @onready var log_scrollbar = $PanelContainer/LogScrollBar
@@ -14,10 +16,10 @@ const label_prefab = preload("res://scenes/lbl_text_log.tscn")
 @onready var btn_earth = $VBoxContainer/HBoxContainer/btn_earth
 
 var blink_times = {
-	"fire" : 5,
-	"water" : 4,
-	"earth" : 3,
-	"wind" : 2.5
+	"fire" : 0.2,
+	"water" : 0.250,
+	"earth" : 0.333,
+	"wind" : 0.500
 }
 
 #diferentes timers
@@ -25,6 +27,12 @@ var timer_fire : Timer
 var timer_water : Timer
 var timer_earth : Timer
 var timer_wind : Timer
+
+var buttons_blink = false
+
+var timers_list : Array[Timer] = []
+var actual_index : int = 0
+var timer_alter : Timer
 
 func _ready() -> void:
 	add_text_to_log("Sistema de Log/UI iniciado")
@@ -53,47 +61,112 @@ func _ready() -> void:
 	add_child(timer_wind)
 	add_child(timer_earth)
 	
-	timer_fire.start()
-	timer_water.start()
-	timer_wind.start()
-	timer_earth.start()
-
-func _on_timer_fire_timeout():
-	if btn_fire.disabled: #mostra o botão
-		btn_fire.modulate.a = 1.0  
-		btn_fire.disabled = false
-	else: #esconde o botão
-		btn_fire.modulate.a = 0.0 
-		btn_fire.disabled = true
-
-func _on_timer_water_timeout():
-	if btn_water.disabled: #mostra o botão
-		btn_water.modulate.a = 1.0  
-		btn_water.disabled = false
-	else: #esconde o botão
-		btn_water.modulate.a = 0.0 
-		btn_water.disabled = true
+	#coloca os timers na lista
+	timers_list = [timer_fire, timer_water, timer_wind, timer_earth]
 	
-func _on_timer_wind_timeout():
-	if btn_wind.disabled: #mostra o botão
-		btn_wind.modulate.a = 1.0  
-		btn_wind.disabled = false
-	else: #esconde o botão
-		btn_wind.modulate.a = 0.0 
-		btn_wind.disabled = true
+	#inicializa o timer que altera de 3 em 3 segundos
+	timer_alter = Timer.new()
+	timer_alter.wait_time = 3.0
+	timer_alter.timeout.connect(_on_timer_alter_timeout)
+	add_child(timer_alter)
 
-func _on_timer_earth_timeout():
-	if btn_earth.disabled: #mostra o botão
-		btn_earth.modulate.a = 1.0  
-		btn_earth.disabled = false
-	else: #esconde o botão
-		btn_earth.modulate.a = 0.0 
-		btn_earth.disabled = true
-	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log"):
 		log_scrollbar.visible = not log_scrollbar.visible
-		
+	
+	if event.is_action_pressed("blink_button"):
+		if buttons_blink:
+			timer_alter.stop()
+			timers_list[actual_index].stop()
+			
+			#ativa os botões
+			btn_fire_enable()
+			btn_water_enable()
+			btn_wind_enable()
+			btn_earth_enable()
+			
+			buttons_blink = false
+		else:
+			#renicia o ciclo
+			actual_index = 0
+			timer_alter.start()
+			timers_list[actual_index].start()
+
+			buttons_blink = true
+	
+func _on_timer_alter_timeout() -> void:
+	timers_list[actual_index].stop()
+	_check_btn_active(actual_index)
+
+	actual_index = (actual_index + 1) % timers_list.size()
+	
+	timers_list[actual_index].start()
+
+func _check_btn_active(indice: int) -> void:
+	match indice:
+		0: btn_fire_enable()
+		1: btn_water_enable()
+		2: btn_wind_enable()
+		3: btn_earth_enable()
+
+func _on_timer_fire_timeout():
+	if btn_fire.disabled: #mostra o botão
+		btn_fire_enable()
+	else: #esconde o botão
+		btn_fire_disable()
+
+func _on_timer_water_timeout():
+	if btn_water.disabled: #mostra o botão
+		btn_water_enable()
+	else: #esconde o botão
+		btn_water_disable()
+	
+func _on_timer_wind_timeout():
+	if btn_wind.disabled: #mostra o botão
+		btn_wind_enable()
+	else: #esconde o botão
+		btn_wind_disable()
+
+func _on_timer_earth_timeout():
+	if btn_earth.disabled: #mostra o botão
+		btn_earth_enable()
+	else: #esconde o botão
+		btn_earth_disbale()
+
+#funções de ativação e desativação dos botões
+func btn_fire_enable():
+	btn_fire.modulate.a = 1.0  
+	btn_fire.disabled = false	
+	LSLManager.send_marker("FIRE_MARKER")
+func btn_fire_disable():
+	btn_fire.modulate.a = 0.0 
+	btn_fire.disabled = true
+	
+func btn_water_enable():
+	btn_water.modulate.a = 1.0  
+	btn_water.disabled = false
+	LSLManager.send_marker("WATER_MARKER")
+func btn_water_disable():
+	btn_water.modulate.a = 0.0 
+	btn_water.disabled = true
+	
+func btn_wind_enable():
+	btn_wind.modulate.a = 1.0  
+	btn_wind.disabled = false
+	LSLManager.send_marker("WIND_MARKER")
+func btn_wind_disable():
+	btn_wind.modulate.a = 0.0 
+	btn_wind.disabled = true
+
+func btn_earth_enable():
+	btn_earth.modulate.a = 1.0  
+	btn_earth.disabled = false
+	LSLManager.send_marker("EARTH_MARKER")
+func btn_earth_disbale():
+	btn_earth.modulate.a = 0.0 
+	btn_earth.disabled = true
+
+#função de clique em um botão de elemento
 func on_button_power_clicket(element : Weak_System.ELEMENT):
 	if element == Weak_System.ELEMENT.Fire:
 		lbl_element.text = "Fogo"

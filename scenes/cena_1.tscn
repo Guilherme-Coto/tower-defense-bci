@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://blgra26u6bp4l"]
 
 [ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="1_8p7vy"]
-[ext_resource type="Script" uid="uid://duvtd8asfba6x" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
+[ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
 [ext_resource type="PackedScene" uid="uid://dyh410ftmt6jx" path="res://assets/models/island/ground/ground_pathEnd.glb" id="2_11fdg"]
-[ext_resource type="Script" uid="uid://gpgdq3x8p87k" path="res://scripts/tower.gd" id="2_l256h"]
+[ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="2_l256h"]
 [ext_resource type="PackedScene" uid="uid://c4o8uay4f37xu" path="res://assets/models/island/ground/ground_pathStraight.glb" id="3_7f3w5"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="4_c13s3"]
 [ext_resource type="PackedScene" uid="uid://d3s86hv5ndp5" path="res://assets/models/island/trees/tree_default.glb" id="5_inr4k"]
@@ -13,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://b32s01ofafoq" path="res://assets/models/island/trees/tree_detailed.glb" id="9_hhokd"]
 [ext_resource type="PackedScene" uid="uid://desuofmffs4k" path="res://assets/models/island/trees/tree_cone.glb" id="9_kfyrf"]
 [ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="13_kfyrf"]
-[ext_resource type="Script" uid="uid://bh6107hretlxl" path="res://scripts/UIManager.gd" id="13_kkaqo"]
+[ext_resource type="Script" uid="uid://cbywb1ldj2e4i" path="res://scripts/UIManager.gd" id="13_kkaqo"]
 [ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="14_mcbik"]
 [ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="15_kkaqo"]
 [ext_resource type="Texture2D" uid="uid://x7rxn2puf34a" path="res://assets/icons/earth-spit.png" id="16_ie5fn"]
+[ext_resource type="Script" uid="uid://bme37qjfpd6e8" path="res://scripts/LSLManager.gd" id="18_ie5fn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2hj8"]
 
@@ -373,10 +374,13 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer" unique_id=848368200]
+custom_minimum_size = Vector2(1100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 mouse_filter = 2
+theme_override_constants/separation = 280
+alignment = 1
 
 [node name="btn_fire" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer" unique_id=1294608681]
 custom_minimum_size = Vector2(64, 64)
@@ -428,6 +432,9 @@ size_flags_vertical = 4
 
 [node name="VBCLogs" type="VBoxContainer" parent="CanvasLayer/UI/PanelContainer/LogScrollBar" unique_id=1552454658]
 layout_mode = 2
+
+[node name="LSLManager" type="Node3D" parent="." unique_id=1277703950 groups=["LSLManager"]]
+script = ExtResource("18_ie5fn")
 
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer/UI" method="_on_btn_fire_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer/UI" method="_on_btn_water_pressed"]
