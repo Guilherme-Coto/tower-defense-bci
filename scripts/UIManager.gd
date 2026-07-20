@@ -8,12 +8,14 @@ const label_prefab = preload("res://scenes/lbl_text_log.tscn")
 @onready var lbl_element = $VBox_element/lbl_element
 @onready var log_container = $PanelContainer/LogScrollBar/VBCLogs
 @onready var log_scrollbar = $PanelContainer/LogScrollBar
+@onready var box_blink = $VBoxBlinkContainer/BoxBlink
 
 #botões
 @onready var btn_fire = $VBoxContainer/HBoxContainer/btn_fire
 @onready var btn_water = $VBoxContainer/HBoxContainer/btn_water
 @onready var btn_wind = $VBoxContainer/HBoxContainer/btn_wind
 @onready var btn_earth = $VBoxContainer/HBoxContainer/btn_earth
+
 
 var blink_times = {
 	"fire" : 0.2,
@@ -22,17 +24,24 @@ var blink_times = {
 	"wind" : 0.500
 }
 
+var box_blink_time = 0.250
+
 #diferentes timers
 var timer_fire : Timer
 var timer_water : Timer
 var timer_earth : Timer
 var timer_wind : Timer
 
+var timer_box_blink : Timer
+
 var buttons_blink = false
+var box_isblinking = false
+
 
 var timers_list : Array[Timer] = []
 var actual_index : int = 0
 var timer_alter : Timer
+
 
 func _ready() -> void:
 	add_text_to_log("Sistema de Log/UI iniciado")
@@ -70,11 +79,17 @@ func _ready() -> void:
 	timer_alter.timeout.connect(_on_timer_alter_timeout)
 	add_child(timer_alter)
 
+	#configura o timer do quadrado
+	timer_box_blink = Timer.new()
+	timer_box_blink.wait_time = box_blink_time
+	timer_box_blink.timeout.connect(_on_timer_box_blink_timeout)
+	add_child(timer_box_blink)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log"):
 		log_scrollbar.visible = not log_scrollbar.visible
 	
-	if event.is_action_pressed("blink_button"):
+	if event.is_action_pressed("blink_buttons"):
 		if buttons_blink:
 			timer_alter.stop()
 			timers_list[actual_index].stop()
@@ -93,6 +108,14 @@ func _input(event: InputEvent) -> void:
 			timers_list[actual_index].start()
 
 			buttons_blink = true
+	elif event.is_action_pressed("box_blink"):
+		if box_isblinking:
+			timer_box_blink.stop()
+			box_isblinking = false
+		else:
+			timer_box_blink.start()
+			box_isblinking = true
+			
 	
 func _on_timer_alter_timeout() -> void:
 	timers_list[actual_index].stop()
@@ -132,6 +155,10 @@ func _on_timer_earth_timeout():
 		btn_earth_enable()
 	else: #esconde o botão
 		btn_earth_disbale()
+
+#função para o timer piscar
+func _on_timer_box_blink_timeout():
+	box_blink.visible = not box_blink.visible
 
 #funções de ativação e desativação dos botões
 func btn_fire_enable():

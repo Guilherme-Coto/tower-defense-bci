@@ -433,6 +433,15 @@ size_flags_vertical = 4
 [node name="VBCLogs" type="VBoxContainer" parent="CanvasLayer/UI/PanelContainer/LogScrollBar" unique_id=1552454658]
 layout_mode = 2
 
+[node name="VBoxBlinkContainer" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=2068541649]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="BoxBlink" type="Panel" parent="CanvasLayer/UI/VBoxBlinkContainer" unique_id=1838908911]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
 [node name="LSLManager" type="Node3D" parent="." unique_id=1277703950 groups=["LSLManager"]]
 script = ExtResource("18_ie5fn")
 

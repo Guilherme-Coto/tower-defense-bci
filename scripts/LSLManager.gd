@@ -37,7 +37,4 @@ func send_marker(nome_do_evento: String):
 func _process(_delta):
 	if socket_receive.get_available_packet_count() > 0:
 		var response = socket_receive.get_packet().get_string_from_utf8()
-		if response in responses.keys():
-			UIManager.on_button_power_clicket(responses[response])
-		else: 
-			print("Elemento não encontrado.")
+		print(response)
