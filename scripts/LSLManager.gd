@@ -12,10 +12,10 @@ var socket_receive = PacketPeerUDP.new()
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 var responses = {
-	"FIRE_MARKER" : Weak_System.ELEMENT.Fire,
-	"WATER_MARKER" : Weak_System.ELEMENT.Water,
-	"WIND_MARKER" : Weak_System.ELEMENT.Wind,
-	"EARTH_MARKER" : Weak_System.ELEMENT.Earth
+	"TRIGGER_FIRE" : Weak_System.ELEMENT.Fire,
+	"TRIGGER_WATER" : Weak_System.ELEMENT.Water,
+	"TRIGGER_WIND" : Weak_System.ELEMENT.Wind,
+	"TRIGGER_EARTH" : Weak_System.ELEMENT.Earth
 }
 
 func _ready():
@@ -27,7 +27,6 @@ func _ready():
 	else:
 		print("Erro ao abrir a porta:", python_port_receive)
 		
-		
 #função que envia dados
 func send_marker(nome_do_evento: String):
 	var pacote = nome_do_evento.to_utf8_buffer()
@@ -37,4 +36,6 @@ func send_marker(nome_do_evento: String):
 func _process(_delta):
 	if socket_receive.get_available_packet_count() > 0:
 		var response = socket_receive.get_packet().get_string_from_utf8()
-		print(response)
+		print("Elemento:",response)
+		if response in responses.keys():
+			UIManager.on_button_power_clicket(responses[response])
