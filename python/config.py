@@ -15,3 +15,5 @@ ELEMENTS = {
     2: "WIND",
     3: "EARTH"
 }
+
+MODE = "bandpower"

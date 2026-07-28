@@ -6,14 +6,20 @@ Liga todas as componentes do sistema.
 
 from preprocessing.window import SlidingWindow
 from features.bandpower import BandPowerExtractor
+from features.rhythm_extractor import RhythmExtractor
+
 from classifier.predictor import RhythmPredictor
 
+import config 
 
 class BCIPipeline:
 
     def __init__(self):
         self.window = SlidingWindow()
-        self.extractor = BandPowerExtractor()
+        if config.MODE == "bandpower":
+            extractor = BandPowerExtractor()
+        elif config.MODE == "rhythm":
+            extractor = RhythmExtractor()
         self.predictor = RhythmPredictor()
 
     def process(self, eeg_chunk):

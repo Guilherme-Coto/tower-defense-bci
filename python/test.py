@@ -1,20 +1,13 @@
 from scipy.io import loadmat
 
-data = loadmat("datasets/stanford/song21_Imputed.mat")
+mat = loadmat("datasets/stanford/song21_Imputed.mat")
 
-print(type(data["data21"]))
-print(data["data21"].shape)
+print(mat.keys())
 
-print(type(data["fs"]))
-print(data["fs"])
-
-print(type(data["subs21"]))
-print(data["subs21"].shape)
-
-import numpy as np
-
-eeg = data["data21"]
-
-print(eeg.dtype)
-
-print(eeg[0])
+for k, v in mat.items():
+    if not k.startswith("__"):
+        print(k, type(v))
+        try:
+            print(v.shape)
+        except:
+            pass
