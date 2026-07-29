@@ -1,7 +1,7 @@
-import socket
+import socket, config
 
 class UDPSender:
-    def __init__(self,host="127.0.0.1",port=5005):
+    def __init__(self,host=config.IP,port=config.PORT):
         self.host = host
         self.port = port
         self.socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)

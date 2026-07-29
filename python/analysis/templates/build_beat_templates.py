@@ -20,11 +20,7 @@ for file in sorted(os.listdir(MUSIC_FOLDER)):
     y, sr = librosa.load(path, sr=None)
 
     # Beat tracking
-    onset_env = librosa.onset.onset_strength(
-        y=y,
-        sr=sr
-    )
-
+    onset_env = librosa.onset.onset_strength(y=y,sr=sr)
     peaks = librosa.util.peak_pick(
         onset_env,
         pre_max=3,
@@ -34,11 +30,7 @@ for file in sorted(os.listdir(MUSIC_FOLDER)):
         delta=0.5,
         wait=10
     )
-
-    beat_times = librosa.frames_to_time(
-        peaks,
-        sr=sr
-    )
+    beat_times = librosa.frames_to_time(peaks, sr=sr)
 
     print("Detected peaks:", len(beat_times))
     print(beat_times[:10])
@@ -47,15 +39,12 @@ for file in sorted(os.listdir(MUSIC_FOLDER)):
     template = np.zeros(n_samples)
 
     for t in beat_times:
-
         idx = int(round(t * TARGET_FS))
-
         if 0 <= idx < n_samples:
             template[idx] = 1
+            
     print("Template samples:", len(template))
     print("Detected beats:", int(np.sum(template)))
+
     np.save(os.path.join(OUTPUT_FOLDER,file.replace(".mp3","_beats.npy")),template)
-
     print("Detected peaks:", len(beat_times))
-
-print("\nDone.")

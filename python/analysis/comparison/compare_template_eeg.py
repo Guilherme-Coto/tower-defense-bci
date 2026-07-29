@@ -2,11 +2,8 @@ import numpy as np
 import scipy.io
 import matplotlib.pyplot as plt
 
-# ==========================================
-# CONFIG
-# ==========================================
 
-PARTICIPANT = 0
+PARTICIPANT = 2
 
 CHANNELS = {
     "Motor Left (36)": 35,
