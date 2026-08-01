@@ -1,0 +1,22 @@
+>>> A TESTAR COM JANELA DE: 40.0 segundos
+A extrair features de EARTH (data_imputed/song23_Imputed.mat)...
+A extrair features de FIRE (data_imputed/song24_Imputed.mat)...
+A extrair features de WATER (data_imputed/song26_Imputed.mat)...
+A extrair features de WIND (data_imputed/song29_Imputed.mat)...
+
+Dataset construído: 3960 amostras, 80 features cada.
+
+=== Validação leave-one-subject-out ===
+
+Taxa de acerto global (leave-one-subject-out): 33.9%
+(acaso puro com 4 classes seria 25.0%)
+
+Matriz de confusão (linhas = real, colunas = previsto):
+           EARTH    FIRE   WATER    WIND
+   EARTH     311     217     226     206
+    FIRE     194     469     167     190
+   WATER     234     206     297     223
+    WIND     228     268     257     267
+
+A treinar o modelo final com todos os sujeitos...
+Modelo guardado em model.pkl
