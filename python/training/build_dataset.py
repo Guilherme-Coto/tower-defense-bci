@@ -1,48 +1,52 @@
 from pathlib import Path
-import numpy as np
+import re
+
 import mne
+import numpy as np
+import pandas as pd
 from scipy.signal import welch
 
 # ==========================
 # CONFIGURAÇÃO
 # ==========================
 
-DATASET_ROOT = Path("datasets")
+DATASET = Path("datasets")
 
 LOWCUT = 1
 HIGHCUT = 40
-NOTCH = 50
 
-TMIN = 3.0      # início da imaginação
-TMAX = 8.0      # fim da imaginação
-
-TARGET_CLASS = 1        # Für Elise
-
+# Música que queremos reconhecer (binário)
+TARGET_TRACK = 1
 
 # ==========================
 # FEATURE EXTRACTION
 # ==========================
 
-def extract_features(epoch, sfreq):
-    features = []
+def extract_features(epoch, fs):
+    """
+    epoch -> (n_channels, n_samples)
+    """
+
     freqs, psd = welch(
         epoch,
-        fs=sfreq,
-        nperseg=min(512, epoch.shape[-1]),
-        axis=-1
+        fs=fs,
+        axis=1,
+        nperseg=min(512, epoch.shape[1])
     )
 
-    bands = {
-        "delta": (1,4),
-        "theta": (4,8),
-        "alpha": (8,13),
-        "beta": (13,30),
-        "gamma": (30,40)
-    }
+    bands = [
+        (1, 4),    # Delta
+        (4, 8),    # Theta
+        (8, 13),   # Alpha
+        (13, 30),  # Beta
+        (30, 40),  # Gamma
+    ]
 
-    for low, high in bands.values():
+    features = []
+
+    for low, high in bands:
         idx = (freqs >= low) & (freqs <= high)
-        band_power = np.mean(psd[:, idx], axis=1)
+        band_power = psd[:, idx].mean(axis=1)
         features.extend(band_power)
 
     return np.array(features)
@@ -55,55 +59,98 @@ def extract_features(epoch, sfreq):
 X = []
 y = []
 
-vhdr_files = sorted(DATASET_ROOT.rglob("*.vhdr"))
+vhdr_files = sorted(DATASET.rglob("*.vhdr"))
+print(f"\nEncontrados {len(vhdr_files)} ficheiros EEG.\n")
 
-print(f"{len(vhdr_files)} ficheiros encontrados")
+for vhdr in vhdr_files:
+    print(f"A processar: {vhdr}")
 
-for file in vhdr_files:
-    print(file.name)
-
-    raw = mne.io.read_raw_brainvision(file,preload=True,verbose=False)
-    raw.filter(LOWCUT,HIGHCUT,verbose=False)
-    raw.notch_filter(NOTCH,verbose=False)
-    
-    events, event_dict = mne.events_from_annotations(raw)
-
-    print("Primeiros 30 eventos:")
-    for e in events[:30]:
-        print(e)
-    sfreq = raw.info["sfreq"]
-    epochs = mne.Epochs(
-        raw,
-        events,
-        event_id=event_dict,
-        tmin=TMIN,
-        tmax=TMAX,
-        baseline=None,
+    raw = mne.io.read_raw_brainvision(
+        vhdr,
         preload=True,
         verbose=False
     )
 
-    labels = epochs.events[:,2]
-    data = epochs.get_data()
+    raw.filter(LOWCUT, HIGHCUT, verbose=False)
+    raw.notch_filter(50, verbose=False)
 
-    for eeg, label in zip(data, labels):
-        feat = extract_features(eeg,sfreq)
+    fs = raw.info["sfreq"]
+
+    events_file = vhdr.with_name(
+        vhdr.name.replace("_eeg.vhdr", "_events.tsv")
+    )
+
+    if not events_file.exists():
+        print("events.tsv não encontrado.")
+        continue
+
+    events = pd.read_csv(events_file, sep="\t")
+
+    recalls = events[
+        events["trial_type"].str.contains(
+            "Task_Recall",
+            na=False
+        )
+    ]
+
+    print(f"  {len(recalls)} eventos Task_Recall encontrados.")
+
+    for _, row in recalls.iterrows():
+        trial = row["trial_type"]
+        match = re.search(r"Track_(\d+)", trial)
+
+        if match is None:
+            continue
+
+        track = int(match.group(1))
+        start = int(row["sample"])
+        duration = int(row["duration"] * fs)
+
+        if duration <= 0:
+            continue
+
+        stop = start + duration
+        eeg = raw.get_data(
+            start=start,
+            stop=stop
+        )
+
+        # Normalização por canal
+        eeg = eeg - eeg.mean(axis=1, keepdims=True)
+        eeg = eeg / (eeg.std(axis=1, keepdims=True) + 1e-8)
+
+        feat = extract_features(eeg, fs)
+
         X.append(feat)
 
-        if label == TARGET_CLASS:
+        if track == TARGET_TRACK:
             y.append(1)
         else:
             y.append(0)
 
+
 X = np.array(X)
 y = np.array(y)
 
-print()
-print("Dataset criado")
+print("\n==========================")
+print("DATASET CRIADO")
+print("==========================")
+
 print("X:", X.shape)
 print("y:", y.shape)
+
+unique, counts = np.unique(y, return_counts=True)
+
+print("\nDistribuição:")
+
+for cls, cnt in zip(unique, counts):
+
+    print(f"Classe {cls}: {cnt}")
+
+Path("training").mkdir(exist_ok=True)
 
 np.save("training/X.npy", X)
 np.save("training/y.npy", y)
 
-print("Guardado.")
+print("\nGuardado em training/X.npy")
+print("Guardado em training/y.npy")

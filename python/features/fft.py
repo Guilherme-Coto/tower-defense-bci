@@ -26,9 +26,3 @@ class FFTExtractor:
         frequencies = np.fft.rfftfreq(n, d=1/self.fs)
 
         return frequencies, magnitude
-
-    def fft_power(self, eeg):
-        freqs = np.fft.rfftfreq(len(eeg),d=1/self.fs)
-        fft = np.abs(np.fft.rfft(eeg))**2
-
-        return freqs, fft

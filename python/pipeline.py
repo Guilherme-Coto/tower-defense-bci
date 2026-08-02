@@ -6,8 +6,7 @@ Liga todas as componentes do sistema.
 
 from preprocessing.window import SlidingWindow
 from features.bandpower import BandPowerExtractor
-from features.rhythm_extractor import RhythmExtractor
-
+from features.rhythm_features import RhythmExtractor
 from classifier.predictor import RhythmPredictor
 
 import config 

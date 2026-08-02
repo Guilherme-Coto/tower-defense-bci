@@ -17,7 +17,7 @@ os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 # PROCESS ALL SONGS
 # ------------------------------------------
 
-for file in sorted(os.listdir(MUSIC_FOLDER)):
+for file in sorted(os.listdir(MUSIC_FOLDER)): 
     if not file.endswith(".mp3"):
         continue
 
