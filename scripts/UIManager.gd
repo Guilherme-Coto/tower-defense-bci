@@ -14,7 +14,7 @@ const label_prefab = preload("res://scenes/lbl_text_log.tscn")
 @onready var btn_fire = $VBoxContainer/HBoxContainer/btn_fire
 @onready var btn_water = $VBoxContainer/HBoxContainer/btn_water
 @onready var btn_wind = $VBoxContainer/HBoxContainer/btn_wind
-@onready var btn_earth = $VBoxContainer/HBoxContainer/btn_earth
+@onready var btn_electricity = $VBoxContainer/HBoxContainer/btn_electricity
 
 
 var blink_times = {
@@ -98,7 +98,7 @@ func _input(event: InputEvent) -> void:
 			btn_fire_enable()
 			btn_water_enable()
 			btn_wind_enable()
-			btn_earth_enable()
+			btn_electricity_enable()
 			
 			buttons_blink = false
 		else:
@@ -130,7 +130,7 @@ func _check_btn_active(indice: int) -> void:
 		0: btn_fire_enable()
 		1: btn_water_enable()
 		2: btn_wind_enable()
-		3: btn_earth_enable()
+		3: btn_electricity_enable()
 
 func _on_timer_fire_timeout():
 	if btn_fire.disabled: #mostra o botão
@@ -151,10 +151,10 @@ func _on_timer_wind_timeout():
 		btn_wind_disable()
 
 func _on_timer_earth_timeout():
-	if btn_earth.disabled: #mostra o botão
-		btn_earth_enable()
+	if btn_electricity.disabled: #mostra o botão
+		btn_electricity_enable()
 	else: #esconde o botão
-		btn_earth_disbale()
+		btn_electricity_disbale()
 
 #função para o timer piscar
 func _on_timer_box_blink_timeout():
@@ -185,13 +185,13 @@ func btn_wind_disable():
 	btn_wind.modulate.a = 0.0 
 	btn_wind.disabled = true
 
-func btn_earth_enable():
-	btn_earth.modulate.a = 1.0  
-	btn_earth.disabled = false
-	LSLManager.send_marker("EARTH_MARKER")
-func btn_earth_disbale():
-	btn_earth.modulate.a = 0.0 
-	btn_earth.disabled = true
+func btn_electricity_enable():
+	btn_electricity.modulate.a = 1.0  
+	btn_electricity.disabled = false
+	LSLManager.send_marker("ELECTRICITT_MARKER")
+func btn_electricity_disbale():
+	btn_electricity.modulate.a = 0.0 
+	btn_electricity.disabled = true
 
 #função de clique em um botão de elemento
 func on_button_power_clicket(element : Weak_System.ELEMENT):
@@ -204,9 +204,9 @@ func on_button_power_clicket(element : Weak_System.ELEMENT):
 	elif element == Weak_System.ELEMENT.Wind:
 		lbl_element.text = "Vento"
 		add_text_to_log("O jogador selecionou Vento")
-	elif element == Weak_System.ELEMENT.Earth:
-		lbl_element.text = "Terra"
-		add_text_to_log("O jogador selecionouTerra")
+	elif element == Weak_System.ELEMENT.Electricity:
+		lbl_element.text = "Eletricidade"
+		add_text_to_log("O jogador selecionou Eletricidade")
 
 	tower.change_element(element)
 
@@ -219,8 +219,8 @@ func _on_btn_water_pressed() -> void:
 func _on_btn_wind_pressed() -> void:
 	on_button_power_clicket(Weak_System.ELEMENT.Wind)
 
-func _on_btn_earth_pressed() -> void:
-	on_button_power_clicket(Weak_System.ELEMENT.Earth)
+func _on_btn_electricity_pressed() -> void:
+	on_button_power_clicket(Weak_System.ELEMENT.Electricity)
 
 func add_text_to_log(text):
 	#espera que seja carregado

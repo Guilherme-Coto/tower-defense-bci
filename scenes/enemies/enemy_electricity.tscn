@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://eby0ck1ounac"]
+
+[ext_resource type="PackedScene" uid="uid://c58heabx8df2b" path="res://scenes/enemies/enemy.tscn" id="1_a63ct"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ou3o"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5k5y"]
+
+[node name="Enemy" unique_id=1689016585 instance=ExtResource("1_a63ct")]
+element = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" parent_id_path=PackedInt32Array(1397218761) index="1" unique_id=712141715]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2ou3o")
+mesh = SubResource("BoxMesh_j5k5y")

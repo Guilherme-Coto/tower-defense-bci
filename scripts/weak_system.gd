@@ -3,7 +3,7 @@ extends Resource
 #aqui vão estar definidas as fraquezas
 class_name Weak_System
 
-enum ELEMENT { Fire, Water, Wind, Earth}
+enum ELEMENT { Fire, Water, Wind, Electricity }
 
 #lista das fraquezas
 static var elements = {
@@ -11,25 +11,25 @@ static var elements = {
 		ELEMENT.Fire : "null",
 		ELEMENT.Water : "weak",
 		ELEMENT.Wind : "strong",
-		ELEMENT.Earth : "normal"
+		ELEMENT.Electricity : "normal"
 	},
 	ELEMENT.Water: {
 		ELEMENT.Fire : "strong",
 		ELEMENT.Water : "null",
 		ELEMENT.Wind : "normal",
-		ELEMENT.Earth  : "weak"
+		ELEMENT.Electricity  : "weak"
 	},
 	ELEMENT.Wind:{
 		ELEMENT.Fire : "weak",
 		ELEMENT.Water : "normal",
 		ELEMENT.Wind : "null",
-		ELEMENT.Earth : "strong"	
+		ELEMENT.Electricity : "strong"	
 	},
-	ELEMENT.Earth : {
+	ELEMENT.Electricity : {
 		ELEMENT.Fire : "normal",
 		ELEMENT.Water : "strong",
 		ELEMENT.Wind : "weak",
-		ELEMENT.Earth : "null"	
+		ELEMENT.Electricity : "null"	
 	}
 }
 

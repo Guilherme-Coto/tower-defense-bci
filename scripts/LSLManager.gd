@@ -15,7 +15,7 @@ var responses = {
 	"TRIGGER_FIRE" : Weak_System.ELEMENT.Fire,
 	"TRIGGER_WATER" : Weak_System.ELEMENT.Water,
 	"TRIGGER_WIND" : Weak_System.ELEMENT.Wind,
-	"TRIGGER_EARTH" : Weak_System.ELEMENT.Earth
+	"TRIGGER_ELECTRICITY" : Weak_System.ELEMENT.Electricity
 }
 
 func _ready():

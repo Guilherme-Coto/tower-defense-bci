@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://cbywb1ldj2e4i" path="res://scripts/UIManager.gd" id="13_kkaqo"]
 [ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="14_mcbik"]
 [ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="15_kkaqo"]
-[ext_resource type="Texture2D" uid="uid://dhyx8rbdd3knb" path="res://assets/icons/electric.png" id="17_ie5fn"]
+[ext_resource type="Texture2D" uid="uid://x7rxn2puf34a" path="res://assets/icons/earth-spit.png" id="16_ie5fn"]
 [ext_resource type="Script" uid="uid://bme37qjfpd6e8" path="res://scripts/LSLManager.gd" id="18_ie5fn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2hj8"]
@@ -414,7 +414,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("17_ie5fn")
+icon = ExtResource("16_ie5fn")
 icon_alignment = 1
 expand_icon = true
 
