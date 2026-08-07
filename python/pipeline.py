@@ -1,24 +1,27 @@
 """
 pipeline.py
 
-Liga todas as componentes do sistema.
+Pipeline de tempo real do BCI Tower Defense:
+- Recebe blocos de EEG do receptor/simulador
+- Gere a janela deslizante (SlidingWindow)
+- Extrai características de frequência (PSD) e domínio do tempo (Hjorth)
+- Classifica a faixa/ritmo e retorna (rótulo, confiança)
 """
 
-from preprocessing.window import SlidingWindow
-from features.bandpower import BandPowerExtractor
-from features.rhythm_features import RhythmExtractor
 from classifier.predictor import RhythmPredictor
+from features.extractor import BCIFeatureExtractor
+from preprocessing.window import SlidingWindow
+import config
 
-import config 
 
 class BCIPipeline:
 
     def __init__(self):
         self.window = SlidingWindow()
-        if config.MODE == "bandpower":
-            extractor = BandPowerExtractor()
-        elif config.MODE == "rhythm":
-            extractor = RhythmExtractor()
+        self.extractor = BCIFeatureExtractor(
+            fs=config.SAMPLING_RATE,
+            bands=config.BANDS
+        )
         self.predictor = RhythmPredictor()
 
     def process(self, eeg_chunk):
@@ -26,9 +29,8 @@ class BCIPipeline:
         Recebe um bloco EEG.
 
         Retorna:
-            None -> ainda não há janela completa
-
-            FIRE/WATER/WIND/EARTH -> previsão
+            None -> se a janela deslizante ainda não estiver pronta
+            (label, confidence) -> previsão do elemento do jogo e confiança
         """
 
         self.window.add_samples(eeg_chunk)
@@ -36,8 +38,8 @@ class BCIPipeline:
         if not self.window.is_ready():
             return None
 
-        eeg = self.window.get_window()
-        features = self.extractor.extract(eeg)
+        eeg_window = self.window.get_window()
+        features = self.extractor.extract(eeg_window)
         prediction = self.predictor.predict(features)
 
         return prediction
