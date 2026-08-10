@@ -1,21 +1,22 @@
-extends MarginContainer
+extends CanvasLayer
 
 const label_prefab = preload("res://scenes/lbl_text_log.tscn") 
 
 @onready var tower = get_tree().get_first_node_in_group("tower")
 @onready var LSLManager = get_tree().get_first_node_in_group("LSLManager")
 
-@onready var lbl_element = $VBox_element/lbl_element
-@onready var log_container = $PanelContainer/LogScrollBar/VBCLogs
-@onready var log_scrollbar = $PanelContainer/LogScrollBar
-@onready var box_blink = $VBoxBlinkContainer/BoxBlink
+@onready var lbl_element = $UI/VBox_element/lbl_element
+@onready var log_container = $UI/PanelContainer/LogScrollBar/VBCLogs
+@onready var log_scrollbar = $UI/PanelContainer/LogScrollBar
+@onready var box_blink = $UI/VBoxBlinkContainer/BoxBlink
 
 #botões
-@onready var btn_fire = $VBoxContainer/HBoxContainer/btn_fire
-@onready var btn_water = $VBoxContainer/HBoxContainer/btn_water
-@onready var btn_wind = $VBoxContainer/HBoxContainer/btn_wind
-@onready var btn_electricity = $VBoxContainer/HBoxContainer/btn_electricity
+@onready var btn_fire = $UI/VBoxContainer/HBoxContainer/btn_fire
+@onready var btn_water = $UI/VBoxContainer/HBoxContainer/btn_water
+@onready var btn_wind = $UI/VBoxContainer/HBoxContainer/btn_wind
+@onready var btn_electricity = $UI/VBoxContainer/HBoxContainer/btn_electricity
 
+@onready var pause_menu = $PauseMenu
 
 var blink_times = {
 	"fire" : 0.2,
@@ -44,6 +45,8 @@ var timer_alter : Timer
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS # Permite que este nó continue ativo para despausar
+	
 	add_text_to_log("Sistema de Log/UI iniciado")
 	
 	#dá set aos timers
@@ -115,7 +118,9 @@ func _input(event: InputEvent) -> void:
 		else:
 			timer_box_blink.start()
 			box_isblinking = true
-			
+	
+	if event.is_action_pressed("pause"):		
+		toggle_pause()
 	
 func _on_timer_alter_timeout() -> void:
 	timers_list[actual_index].stop()
@@ -154,7 +159,7 @@ func _on_timer_earth_timeout():
 	if btn_electricity.disabled: #mostra o botão
 		btn_electricity_enable()
 	else: #esconde o botão
-		btn_electricity_disbale()
+		btn_electricity_disable() 
 
 #função para o timer piscar
 func _on_timer_box_blink_timeout():
@@ -164,7 +169,7 @@ func _on_timer_box_blink_timeout():
 func btn_fire_enable():
 	btn_fire.modulate.a = 1.0  
 	btn_fire.disabled = false	
-	LSLManager.send_marker("FIRE_MARKER")
+	if LSLManager: LSLManager.send_marker("FIRE_MARKER")
 func btn_fire_disable():
 	btn_fire.modulate.a = 0.0 
 	btn_fire.disabled = true
@@ -172,7 +177,7 @@ func btn_fire_disable():
 func btn_water_enable():
 	btn_water.modulate.a = 1.0  
 	btn_water.disabled = false
-	LSLManager.send_marker("WATER_MARKER")
+	if LSLManager: LSLManager.send_marker("WATER_MARKER")
 func btn_water_disable():
 	btn_water.modulate.a = 0.0 
 	btn_water.disabled = true
@@ -180,7 +185,7 @@ func btn_water_disable():
 func btn_wind_enable():
 	btn_wind.modulate.a = 1.0  
 	btn_wind.disabled = false
-	LSLManager.send_marker("WIND_MARKER")
+	if LSLManager: LSLManager.send_marker("WIND_MARKER")
 func btn_wind_disable():
 	btn_wind.modulate.a = 0.0 
 	btn_wind.disabled = true
@@ -188,8 +193,8 @@ func btn_wind_disable():
 func btn_electricity_enable():
 	btn_electricity.modulate.a = 1.0  
 	btn_electricity.disabled = false
-	LSLManager.send_marker("ELECTRICITT_MARKER")
-func btn_electricity_disbale():
+	if LSLManager: LSLManager.send_marker("ELECTRICITT_MARKER")
+func btn_electricity_disable():
 	btn_electricity.modulate.a = 0.0 
 	btn_electricity.disabled = true
 
@@ -208,7 +213,7 @@ func on_button_power_clicket(element : Weak_System.ELEMENT):
 		lbl_element.text = "Eletricidade"
 		add_text_to_log("O jogador selecionou Eletricidade")
 
-	tower.change_element(element)
+	if tower: tower.change_element(element)
 
 func _on_btn_fire_pressed() -> void:
 	on_button_power_clicket(Weak_System.ELEMENT.Fire)
@@ -231,8 +236,23 @@ func add_text_to_log(text):
 	new_label.text = format_text(text);
 	log_container.add_child(new_label) 
 	#vai seguindo o texto	
-	log_scrollbar.scroll_vertical = log_container.size.y
+	await get_tree().process_frame
+	log_scrollbar.scroll_vertical = int(log_container.size.y)
 	
 func format_text(text):
 	var hour = Time.get_time_string_from_system()
 	return "[" + hour + "] " + text
+
+
+func _on_btn_quit_pressed() -> void:
+	get_tree().paused = false 
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_btn_resume_pressed() -> void:
+	toggle_pause()
+
+func toggle_pause() -> void:
+	#inverte o estado
+	get_tree().paused = !get_tree().paused
+	pause_menu.visible = get_tree().paused

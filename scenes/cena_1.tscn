@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://blgra26u6bp4l"]
 
 [ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="1_8p7vy"]
-[ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
+[ext_resource type="Script" uid="uid://duvtd8asfba6x" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
 [ext_resource type="PackedScene" uid="uid://dyh410ftmt6jx" path="res://assets/models/island/ground/ground_pathEnd.glb" id="2_11fdg"]
-[ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="2_l256h"]
+[ext_resource type="Script" uid="uid://gpgdq3x8p87k" path="res://scripts/tower.gd" id="2_l256h"]
 [ext_resource type="PackedScene" uid="uid://c4o8uay4f37xu" path="res://assets/models/island/ground/ground_pathStraight.glb" id="3_7f3w5"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="4_c13s3"]
 [ext_resource type="PackedScene" uid="uid://d3s86hv5ndp5" path="res://assets/models/island/trees/tree_default.glb" id="5_inr4k"]
@@ -12,12 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://dp1qe0455xaft" path="res://assets/models/island/trees/tree_oak.glb" id="8_l256h"]
 [ext_resource type="PackedScene" uid="uid://b32s01ofafoq" path="res://assets/models/island/trees/tree_detailed.glb" id="9_hhokd"]
 [ext_resource type="PackedScene" uid="uid://desuofmffs4k" path="res://assets/models/island/trees/tree_cone.glb" id="9_kfyrf"]
+[ext_resource type="Script" uid="uid://bh6107hretlxl" path="res://scripts/UI/UIManager.gd" id="13_ie5fn"]
 [ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="13_kfyrf"]
-[ext_resource type="Script" uid="uid://cbywb1ldj2e4i" path="res://scripts/UIManager.gd" id="13_kkaqo"]
 [ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="14_mcbik"]
 [ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="15_kkaqo"]
 [ext_resource type="Texture2D" uid="uid://dhyx8rbdd3knb" path="res://assets/icons/electric.png" id="17_ie5fn"]
-[ext_resource type="Script" uid="uid://bme37qjfpd6e8" path="res://scripts/LSLManager.gd" id="18_ie5fn"]
+[ext_resource type="Texture2D" uid="uid://bee470xhp06bs" path="res://assets/ui/buttons/btn_green.png" id="18_ftpxm"]
+[ext_resource type="Script" uid="uid://bsmugoknaqis1" path="res://scripts/LSLManager.gd" id="18_ie5fn"]
+[ext_resource type="Texture2D" uid="uid://bmty2w5mhyn3a" path="res://assets/ui/buttons/btn_red.png" id="19_1fixl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2hj8"]
 
@@ -343,9 +345,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 curve = SubResource("Curve3D_t2hj8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1803210829]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1803210829 groups=["UIManager"]]
+script = ExtResource("13_ie5fn")
 
-[node name="UI" type="MarginContainer" parent="CanvasLayer" unique_id=96816421 groups=["UIManager"]]
+[node name="UI" type="MarginContainer" parent="CanvasLayer" unique_id=96816421]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -356,7 +359,6 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("13_kkaqo")
 
 [node name="VBox_element" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=546561961]
 layout_mode = 2
@@ -442,11 +444,80 @@ size_flags_vertical = 0
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1218826499]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu" unique_id=1837923225]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -74.0
+offset_right = 74.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.4, 1.4)
+alignment = 1
+
+[node name="btn_resume" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1626555023]
+layout_mode = 2
+icon = ExtResource("18_ftpxm")
+flat = true
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer/btn_resume" unique_id=767653963]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -14.0
+offset_right = 31.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Resume"
+
+[node name="btn_quit" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1632923118]
+layout_mode = 2
+icon = ExtResource("19_1fixl")
+flat = true
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer/btn_quit" unique_id=349496447]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.015686275, 0, 0, 1)
+text = "Quit"
+horizontal_alignment = 1
+
 [node name="LSLManager" type="Node3D" parent="." unique_id=1277703950 groups=["LSLManager"]]
 script = ExtResource("18_ie5fn")
 
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer/UI" method="_on_btn_fire_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer/UI" method="_on_btn_water_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_wind" to="CanvasLayer/UI" method="_on_btn_wind_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_electricity" to="CanvasLayer/UI" method="_on_btn_earth_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_electricity" to="CanvasLayer/UI" method="_on_btn_electricity_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer" method="_on_btn_fire_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer" method="_on_btn_water_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_wind" to="CanvasLayer" method="_on_btn_wind_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_electricity" to="CanvasLayer" method="_on_btn_electricity_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/btn_resume" to="CanvasLayer" method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/btn_quit" to="CanvasLayer" method="_on_btn_quit_pressed"]
