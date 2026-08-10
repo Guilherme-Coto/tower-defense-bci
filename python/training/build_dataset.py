@@ -12,7 +12,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 import config
-from features.extractor_v2 import BCIFeatureExtractor
+from features.extractor import BCIFeatureExtractor
 
 def build_dataset(
     dataset_dir="datasets",

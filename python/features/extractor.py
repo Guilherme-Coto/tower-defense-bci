@@ -1,29 +1,37 @@
 """
 features/extractor.py
 
-Extração de características para sinal EEG em BCI Tower Defense:
-- Potência espectral logarítmica em 5 bandas clássicas (Delta, Theta, Alpha, Beta, Gamma)
-- Parâmetros de Hjorth (Atividade, Mobilidade, Complexidade)
+Feature extractor para EEG - BCI Tower Defense
+
+Features:
+- Absolute Band Power
+- Relative Band Power
+- Band Ratios
+- Spectral Entropy
+- Hjorth Parameters
 """
 
 import numpy as np
 from scipy.signal import welch
+
 import config
 
 
 class BCIFeatureExtractor:
 
-    def __init__(self, fs=config.SAMPLING_RATE, bands=config.BANDS):
+    def __init__(self,
+                 fs=config.SAMPLING_RATE,
+                 bands=config.BANDS):
+
         self.fs = fs
         self.bands = bands
 
+    ############################################################
+    # Hjorth
+    ############################################################
+
     def extract_hjorth(self, signal):
-        """
-        Calcula os parâmetros de Hjorth para um vetor 1D de sinal:
-        - Activity: variância da amplitude do sinal
-        - Mobility: estimativa da frequência média
-        - Complexity: estimativa da variação da frequência
-        """
+
         diff1 = np.diff(signal)
         diff2 = np.diff(diff1)
 
@@ -35,45 +43,166 @@ class BCIFeatureExtractor:
             return 0.0, 0.0, 0.0
 
         activity = var0
-        mobility = np.sqrt(var1 / var0) if var0 > 0 else 0.0
-        
-        mob_diff1 = np.sqrt(var2 / var1) if var1 > 0 else 0.0
-        complexity = mob_diff1 / mobility if mobility > 0 else 0.0
+
+        mobility = np.sqrt(var1 / var0)
+
+        if var1 < 1e-12:
+            complexity = 0.0
+        else:
+            complexity = np.sqrt(var2 / var1) / (mobility + 1e-12)
 
         return activity, mobility, complexity
 
+    ############################################################
+    # Spectral Entropy
+    ############################################################
+
+    def spectral_entropy(self, psd):
+
+        p = psd / (np.sum(psd) + 1e-12)
+
+        return -np.sum(
+            p * np.log2(p + 1e-12)
+        )
+
+    ############################################################
+    # Relative Power
+    ############################################################
+
+    def relative_power(self, band, total):
+
+        return band / (total + 1e-12)
+
+    ############################################################
+    # Main Extraction
+    ############################################################
+
     def extract(self, eeg_window):
-        """
-        eeg_window: array com shape (n_channels, n_samples) ou (n_samples, n_channels)
-        Retorna: array 1D com todas as features
-        """
+
         eeg = np.asarray(eeg_window)
 
-        # Garantir shape (n_channels, n_samples)
+        # Garantir (canais x amostras)
         if eeg.ndim == 2 and eeg.shape[0] > eeg.shape[1]:
             eeg = eeg.T
 
-        n_channels, n_samples = eeg.shape
+        n_channels = eeg.shape[0]
 
-        # 1. PSD por Welch
-        nperseg = min(512, n_samples)
-        freqs, psd = welch(eeg, fs=self.fs, axis=1, nperseg=nperseg)
+        ########################################################
+        # PSD
+        ########################################################
+
+        nperseg = min(512, eeg.shape[1])
+
+        freqs, psd = welch(
+            eeg,
+            fs=self.fs,
+            axis=1,
+            nperseg=nperseg
+        )
+
+        total_power = np.sum(psd, axis=1)
+
+        absolute = []
+        relative = []
+
+        ########################################################
+        # Band Powers
+        ########################################################
+
+        for low, high in self.bands:
+
+            idx = np.logical_and(
+                freqs >= low,
+                freqs <= high
+            )
+
+            if np.any(idx):
+                power = np.trapezoid(
+                    psd[:, idx],
+                    freqs[idx],
+                    axis=1
+                )
+            else:
+                power = np.zeros(n_channels)
+
+            absolute.append(power)
+
+            relative.append(
+                self.relative_power(
+                    power,
+                    total_power
+                )
+            )
 
         features = []
 
-        # Potência espectral por banda
-        for low, high in self.bands:
-            idx = (freqs >= low) & (freqs <= high)
-            if np.any(idx):
-                band_p = psd[:, idx].mean(axis=1)
-            else:
-                band_p = np.zeros(n_channels)
-            # Aplicar log(1 + p) para estabilizar variância
-            features.extend(np.log1p(band_p))
+        ########################################################
+        # Absolute Power
+        ########################################################
 
-        # 2. Parâmetros de Hjorth por canal
+        for band in absolute:
+
+            features.extend(
+                np.log1p(band)
+            )
+
+        ########################################################
+        # Relative Power
+        ########################################################
+
+        for band in relative:
+
+            features.extend(
+                band
+            )
+
+        ########################################################
+        # Band Ratios
+        ########################################################
+
+        delta = relative[0]
+        theta = relative[1]
+        alpha = relative[2]
+        beta = relative[3]
+        gamma = relative[4]
+
+        alpha_beta = alpha / (beta + 1e-12)
+
+        theta_beta = theta / (beta + 1e-12)
+
+        beta_gamma = beta / (gamma + 1e-12)
+
+        features.extend(alpha_beta)
+        features.extend(theta_beta)
+        features.extend(beta_gamma)
+
+        ########################################################
+        # Spectral Entropy
+        ########################################################
+
         for ch in range(n_channels):
-            act, mob, comp = self.extract_hjorth(eeg[ch])
-            features.extend([act, mob, comp])
 
-        return np.array(features, dtype=np.float32)
+            features.append(
+                self.spectral_entropy(
+                    psd[ch]
+                )
+            )
+
+        ########################################################
+        # Hjorth
+        ########################################################
+
+        for ch in range(n_channels):
+
+            act, mob, comp = self.extract_hjorth(
+                eeg[ch]
+            )
+
+            features.append(act)
+            features.append(mob)
+            features.append(comp)
+
+        return np.asarray(
+            features,
+            dtype=np.float32
+        )
