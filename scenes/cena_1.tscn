@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="14_mcbik"]
 [ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="15_kkaqo"]
 [ext_resource type="Texture2D" uid="uid://dhyx8rbdd3knb" path="res://assets/icons/electric.png" id="17_ie5fn"]
+[ext_resource type="Texture2D" uid="uid://do4lgbuuidfxl" path="res://assets/ui/star.png" id="18_1fixl"]
 [ext_resource type="Texture2D" uid="uid://bee470xhp06bs" path="res://assets/ui/buttons/btn_green.png" id="18_ftpxm"]
 [ext_resource type="Script" uid="uid://bsmugoknaqis1" path="res://scripts/LSLManager.gd" id="18_ie5fn"]
 [ext_resource type="Texture2D" uid="uid://bmty2w5mhyn3a" path="res://assets/ui/buttons/btn_red.png" id="19_1fixl"]
@@ -40,6 +41,8 @@ reflected_light_source = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gok1s"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui86w"]
+
 [sub_resource type="Curve3D" id="Curve3D_t2hj8"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.006, 0.1, -0.026, 0, 0, 0, 0, 0, 0, -0.006, 0.1, -6.906),
@@ -59,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.38
 environment = SubResource("Environment_j5k5y")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
-transform = Transform3D(-1, -3.5527137e-15, -8.742278e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
+transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
 environment = SubResource("Environment_11fdg")
 attributes = SubResource("CameraAttributesPractical_7f3w5")
 compositor = SubResource("Compositor_c13s3")
@@ -73,10 +76,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99999994, 0, -9)
 script = ExtResource("2_l256h")
 
 [node name="Range" type="Area3D" parent="Ilha/Tower" unique_id=1680673522]
+collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ilha/Tower/Range" unique_id=136593304]
 transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 1)
 shape = SubResource("BoxShape3D_gok1s")
+
+[node name="HitBox" type="Area3D" parent="Ilha/Tower" unique_id=887972251]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ilha/Tower/HitBox" unique_id=372096678]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_ui86w")
 
 [node name="ShootPoint" type="Marker3D" parent="Ilha/Tower" unique_id=380901935]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
@@ -376,12 +387,12 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/VBoxContainer" unique_id=848368200]
-custom_minimum_size = Vector2(1100, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 mouse_filter = 2
-theme_override_constants/separation = 280
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="btn_fire" type="Button" parent="CanvasLayer/UI/VBoxContainer/HBoxContainer" unique_id=1294608681]
@@ -438,11 +449,51 @@ layout_mode = 2
 [node name="VBoxBlinkContainer" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=2068541649]
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_vertical = 8
 
 [node name="BoxBlink" type="Panel" parent="CanvasLayer/UI/VBoxBlinkContainer" unique_id=1838908911]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+
+[node name="HealthBarContainer" type="HBoxContainer" parent="CanvasLayer/UI" unique_id=1123925192]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Hearth1" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=649966302]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("18_1fixl")
+expand_mode = 1
+
+[node name="Hearth2" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=360048493]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("18_1fixl")
+expand_mode = 1
+
+[node name="Hearth3" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=2127834409]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("18_1fixl")
+expand_mode = 1
+
+[node name="Hearth4" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=632552375]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("18_1fixl")
+expand_mode = 1
+
+[node name="Hearth5" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=1868935250]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("18_1fixl")
+expand_mode = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1218826499]
 visible = false

@@ -7,7 +7,7 @@ const enemy_wind = preload("res://scenes/enemies/enemy_wind.tscn")
 const enemy_electricity= preload("res://scenes/enemies/enemy_electricity.tscn")
 
 @onready var spawner: Path3D = $"../EnemyPath"
-@export var time_between_enemies = 8.0
+@export var time_between_enemies = 20.0
 
 var time_spawn = 0.0
 

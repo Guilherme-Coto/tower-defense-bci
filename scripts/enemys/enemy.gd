@@ -8,13 +8,16 @@ const bullet = preload("res://scenes/bullet.tscn") # Cria esta cena no Passo 3!
 
 @export var speed = 1.0
 @export var element : Weak_System.ELEMENT
+@onready var timer_attack = $TimerAttack
 
 var health = 100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	UIManager.add_text_to_log("Inimigo Spawnado")
-
+	timer_attack.timeout.connect(_on_timer_attack_timeout)
+	timer_attack.start()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	progress += speed * delta
@@ -27,8 +30,13 @@ func receive_damage(damage: float, attack_element: Weak_System.ELEMENT):
 	health -= damage * Weak_System.get_damage_mult(attack_element, element)
 	UIManager.add_text_to_log(str("Vida do inimigo: ",health))
 
+#função do timer
+func _on_timer_attack_timeout() -> void:
+		shoot()
+
 #função de disparar
 func shoot():
+	print("--- O Inimigo vai disparar! O meu alvo (tower) é: ", tower)
 	var new_shoot = bullet.instantiate()
 	get_tree().root.add_child(new_shoot) 
 	

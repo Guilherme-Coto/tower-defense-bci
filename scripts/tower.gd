@@ -56,10 +56,11 @@ func shoot():
 	new_shoot.global_position = shoot_point.global_position	
 	new_shoot.set_target(actual_enemy)
 	
-func receive_damage(damage: float):
-	#retira vida do inimigo
+func receive_damage(damage: float, attack_element: Weak_System.ELEMENT):
+	#retira a vida da torre
 	health -= damage 
-	print("Vida deste inimigo: ", health)
+	print("Vida da torre: ", health)
+	UIManager.take_hearth()
 	
 func change_element(new_element: Weak_System.ELEMENT):
 	current_element = new_element

@@ -48,6 +48,13 @@ pause={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Enemies"
+3d_physics/layer_3="Tower_HitBox"
+3d_physics/layer_4="Tower_Damage"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

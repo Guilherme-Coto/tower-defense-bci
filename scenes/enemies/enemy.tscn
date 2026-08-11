@@ -8,11 +8,15 @@
 loop = false
 script = ExtResource("1_6nto2")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1397218761 groups=["enemies"]]
+[node name="EnemyHitBox" type="Area3D" parent="." unique_id=1397218761 groups=["enemies"]]
+collision_layer = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=751730294 groups=["enemies"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHitBox" unique_id=751730294 groups=["enemies"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("BoxShape3D_ui86w")
 
 [node name="ShootPoint" type="Marker3D" parent="." unique_id=1164889274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12923624)
+
+[node name="TimerAttack" type="Timer" parent="." unique_id=459003528]
+wait_time = 3.0

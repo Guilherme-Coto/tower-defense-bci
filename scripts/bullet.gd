@@ -14,7 +14,6 @@ func change_element(new_element: Weak_System.ELEMENT):
 func set_target(enemy: Node3D):
 	target = enemy
 
-
 func _process(delta: float) -> void:
 	if not is_instance_valid(target):
 		queue_free()
@@ -23,8 +22,18 @@ func _process(delta: float) -> void:
 	var direction = (target.global_position - global_position).normalized()
 	global_position += direction * speed * delta
 
-func _on_area_entered(body: Node3D) -> void:
-	if body == target:
-		#tem de aceder ao pai 
-		body.get_parent_node_3d().receive_damage(40, element)
+func _on_area_entered(area: Area3D) -> void:
+	if not is_instance_valid(target):
+		queue_free()
+		return
+		
+	var parent = area.get_parent_node_3d()
+	
+	if parent == target: #inimigo ataca a torre
+		if parent.has_method("receive_damage"):
+			parent.receive_damage(40, element)
+		queue_free()
+	elif area == target: #a torre ataca inimigo
+		if parent and parent.has_method("receive_damage"):
+			parent.receive_damage(40, element)
 		queue_free()

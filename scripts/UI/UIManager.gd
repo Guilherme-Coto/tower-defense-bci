@@ -18,6 +18,15 @@ const label_prefab = preload("res://scenes/lbl_text_log.tscn")
 
 @onready var pause_menu = $PauseMenu
 
+#corações
+@onready var hearts = $UI/HealthBarContainer.get_children()
+#texturas dos corações
+var hearth_full = preload("res://assets/ui/star.png")
+var hearth_damage = preload("res://assets/ui/star_outline.png")
+
+
+var current_hearth_index = 4
+
 var blink_times = {
 	"fire" : 0.2,
 	"water" : 0.250,
@@ -256,3 +265,12 @@ func toggle_pause() -> void:
 	#inverte o estado
 	get_tree().paused = !get_tree().paused
 	pause_menu.visible = get_tree().paused
+
+func take_hearth() -> void:
+	if current_hearth_index < 0:
+		print("Morreu")
+	else:
+		hearts[current_hearth_index].texture = hearth_damage
+		current_hearth_index-=1
+	
+	
