@@ -79,7 +79,7 @@ script = ExtResource("2_l256h")
 collision_layer = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ilha/Tower/Range" unique_id=136593304]
-transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 6, 0, 0, 3)
+transform = Transform3D(2, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 1)
 shape = SubResource("BoxShape3D_gok1s")
 
 [node name="HitBox" type="Area3D" parent="Ilha/Tower" unique_id=887972251]

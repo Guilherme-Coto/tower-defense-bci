@@ -5,10 +5,13 @@ const bullet = preload("res://scenes/bullet.tscn") # Cria esta cena no Passo 3!
 @onready var shoot_point = $ShootPoint
 @onready var tower = get_tree().get_first_node_in_group("tower")
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
+@onready var spawner = get_tree().get_first_node_in_group("spawner")
 
 @export var speed = 1.0
 @export var element : Weak_System.ELEMENT
 @onready var timer_attack = $TimerAttack
+
+@export var attack_range: float = 3.0
 
 var health = 100.0
 
@@ -32,11 +35,15 @@ func receive_damage(damage: float, attack_element: Weak_System.ELEMENT):
 
 #função do timer
 func _on_timer_attack_timeout() -> void:
-		shoot()
+	if is_instance_valid(tower):
+		#só dispara quando estiver dentro da distância
+		var distance = global_position.distance_to(tower.global_position)
+		print("Distância",distance)
+		if distance <= attack_range:
+			shoot()
 
 #função de disparar
 func shoot():
-	print("--- O Inimigo vai disparar! O meu alvo (tower) é: ", tower)
 	var new_shoot = bullet.instantiate()
 	get_tree().root.add_child(new_shoot) 
 	
@@ -45,4 +52,5 @@ func shoot():
 
 func end():
 	UIManager.add_text_to_log("Inimigo morto")
+	spawner.spawn_enemy() #spawna o próximo inimigo
 	queue_free()
