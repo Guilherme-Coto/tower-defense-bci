@@ -3,9 +3,13 @@ extends Node3D
 const LOGS_DIR = "res://logs"
 var current_file_path = ""
 var start_time_msec: int = 0
+var last_event_time_msec: int = 0
+
+@onready var BCI_marker_send = get_tree().get_first_node_in_group("BCI")
 
 func _ready():
 	start_time_msec = Time.get_ticks_msec()
+	last_event_time_msec = start_time_msec
 	
 	_prepare_directory()
 	_create_new_log_file()
@@ -33,18 +37,23 @@ func _create_new_log_file():
 		print("Failed to open log file for writing.")
 
 func write_log(message: String):
-	if current_file_path == "":
-		return
-		
-	var file = FileAccess.open(current_file_path, FileAccess.READ_WRITE)
-	if file:
-		file.seek_end()
-		
-		var current_ticks = Time.get_ticks_msec()
-		var offset_msec = current_ticks - start_time_msec
-		var seconds = offset_msec / 1000
-		var milliseconds = offset_msec % 1000
-		var offset_string = str(seconds) + "." + str(milliseconds).pad_zeros(3) + "s"
-		
-		file.store_line("[" + offset_string + "] " + message)
-		file.close()
+	var current_ticks = Time.get_ticks_msec()
+	
+	var duration_sec: float = (current_ticks - last_event_time_msec) / 1000.0
+	
+	last_event_time_msec = current_ticks
+	
+	if current_file_path != "":
+		var file = FileAccess.open(current_file_path, FileAccess.READ_WRITE)
+		if file:
+			file.seek_end()
+			
+			var offset_msec = current_ticks - start_time_msec
+			var seconds = offset_msec / 1000
+			var milliseconds = offset_msec % 1000
+			var offset_string = str(seconds) + "." + str(milliseconds).pad_zeros(3) + "s"
+			
+			file.store_line("[" + offset_string + "] " + message)
+			file.close()
+			
+	BCI_marker_send.send_bci_marker(message, duration_sec)

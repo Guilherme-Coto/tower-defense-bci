@@ -3,7 +3,6 @@ extends CanvasLayer
 const label_prefab = preload("res://scenes/lbl_text_log.tscn") 
 
 @onready var tower = get_tree().get_first_node_in_group("tower")
-@onready var LSLManager = get_tree().get_first_node_in_group("LSLManager")
 @onready var logger = get_tree().get_first_node_in_group("logger")
 
 @onready var lbl_element = $UI/VBox_element/lbl_element
@@ -134,10 +133,12 @@ func _input(event: InputEvent) -> void:
 		toggle_pause()
 
 func active_box_blink():
+	logger.write_log("Box start blinking")
 	timer_box_blink.start()
 	box_isblinking = true
 
 func desactive_box_blink():
+	logger.write_log("Box stop blinking")
 	timer_box_blink.stop()
 	box_isblinking = false
 	

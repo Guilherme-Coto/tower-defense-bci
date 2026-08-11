@@ -19,9 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://dhyx8rbdd3knb" path="res://assets/icons/electric.png" id="17_ie5fn"]
 [ext_resource type="Texture2D" uid="uid://do4lgbuuidfxl" path="res://assets/ui/star.png" id="18_1fixl"]
 [ext_resource type="Texture2D" uid="uid://bee470xhp06bs" path="res://assets/ui/buttons/btn_green.png" id="18_ftpxm"]
-[ext_resource type="Script" uid="uid://bsmugoknaqis1" path="res://scripts/LSLManager.gd" id="18_ie5fn"]
 [ext_resource type="Texture2D" uid="uid://bmty2w5mhyn3a" path="res://assets/ui/buttons/btn_red.png" id="19_1fixl"]
 [ext_resource type="Script" uid="uid://cyxkxdmjqbu7l" path="res://scripts/logger.gd" id="22_8kp3a"]
+[ext_resource type="Script" uid="uid://deugmadm32eme" path="res://scripts/bci_marker_send.gd" id="22_vfye1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2hj8"]
 
@@ -564,11 +564,11 @@ theme_override_colors/font_color = Color(0.015686275, 0, 0, 1)
 text = "Quit"
 horizontal_alignment = 1
 
-[node name="LSLManager" type="Node3D" parent="." unique_id=1277703950 groups=["LSLManager"]]
-script = ExtResource("18_ie5fn")
-
 [node name="Logger" type="Node3D" parent="." unique_id=736949056 groups=["logger"]]
 script = ExtResource("22_8kp3a")
+
+[node name="BCI_Marker_Send" type="Node" parent="." unique_id=1083337362 groups=["BCI"]]
+script = ExtResource("22_vfye1")
 
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_fire" to="CanvasLayer" method="_on_btn_fire_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/HBoxContainer/btn_water" to="CanvasLayer" method="_on_btn_water_pressed"]
