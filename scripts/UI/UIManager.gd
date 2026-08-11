@@ -4,6 +4,7 @@ const label_prefab = preload("res://scenes/lbl_text_log.tscn")
 
 @onready var tower = get_tree().get_first_node_in_group("tower")
 @onready var LSLManager = get_tree().get_first_node_in_group("LSLManager")
+@onready var logger = get_tree().get_first_node_in_group("logger")
 
 @onready var lbl_element = $UI/VBox_element/lbl_element
 @onready var log_container = $UI/PanelContainer/LogScrollBar/VBCLogs
@@ -122,14 +123,23 @@ func _input(event: InputEvent) -> void:
 			buttons_blink = true
 	elif event.is_action_pressed("box_blink"):
 		if box_isblinking:
-			timer_box_blink.stop()
-			box_isblinking = false
+			logger.write_log("Box stop to blink")
+			desactive_box_blink()
 		else:
-			timer_box_blink.start()
-			box_isblinking = true
+			logger.write_log("Box start to blink")
+			active_box_blink()
 	
-	if event.is_action_pressed("pause"):		
+	if event.is_action_pressed("pause"):	
+		logger.write_log("Game paused")
 		toggle_pause()
+
+func active_box_blink():
+	timer_box_blink.start()
+	box_isblinking = true
+
+func desactive_box_blink():
+	timer_box_blink.stop()
+	box_isblinking = false
 	
 func _on_timer_alter_timeout() -> void:
 	timers_list[actual_index].stop()
@@ -178,7 +188,7 @@ func _on_timer_box_blink_timeout():
 func btn_fire_enable():
 	btn_fire.modulate.a = 1.0  
 	btn_fire.disabled = false	
-	if LSLManager: LSLManager.send_marker("FIRE_MARKER")
+
 func btn_fire_disable():
 	btn_fire.modulate.a = 0.0 
 	btn_fire.disabled = true
@@ -186,7 +196,7 @@ func btn_fire_disable():
 func btn_water_enable():
 	btn_water.modulate.a = 1.0  
 	btn_water.disabled = false
-	if LSLManager: LSLManager.send_marker("WATER_MARKER")
+
 func btn_water_disable():
 	btn_water.modulate.a = 0.0 
 	btn_water.disabled = true
@@ -194,7 +204,7 @@ func btn_water_disable():
 func btn_wind_enable():
 	btn_wind.modulate.a = 1.0  
 	btn_wind.disabled = false
-	if LSLManager: LSLManager.send_marker("WIND_MARKER")
+
 func btn_wind_disable():
 	btn_wind.modulate.a = 0.0 
 	btn_wind.disabled = true
@@ -202,7 +212,7 @@ func btn_wind_disable():
 func btn_electricity_enable():
 	btn_electricity.modulate.a = 1.0  
 	btn_electricity.disabled = false
-	if LSLManager: LSLManager.send_marker("ELECTRICITT_MARKER")
+
 func btn_electricity_disable():
 	btn_electricity.modulate.a = 0.0 
 	btn_electricity.disabled = true
@@ -212,15 +222,23 @@ func on_button_power_clicket(element : Weak_System.ELEMENT):
 	if element == Weak_System.ELEMENT.Fire:
 		lbl_element.text = "Fogo"
 		add_text_to_log("O jogador selecionou Fogo")
+		logger.write_log("FIRE selected")
+		
 	elif element == Weak_System.ELEMENT.Water:
 		lbl_element.text = "Água"
 		add_text_to_log("O jogador selecionou Água")
+		logger.write_log("WATER selected")
+		
 	elif element == Weak_System.ELEMENT.Wind:
 		lbl_element.text = "Vento"
 		add_text_to_log("O jogador selecionou Vento")
+		logger.write_log("WIND selected")
+		
 	elif element == Weak_System.ELEMENT.Electricity:
 		lbl_element.text = "Eletricidade"
 		add_text_to_log("O jogador selecionou Eletricidade")
+		logger.write_log("ELECTRICITY selected")
+		
 
 	if tower: tower.change_element(element)
 
@@ -259,6 +277,7 @@ func _on_btn_quit_pressed() -> void:
 
 
 func _on_btn_resume_pressed() -> void:
+	logger.write_log("Game unpaused")
 	toggle_pause()
 
 func toggle_pause() -> void:

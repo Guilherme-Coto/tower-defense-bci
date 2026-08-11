@@ -38,7 +38,6 @@ func _on_timer_attack_timeout() -> void:
 	if is_instance_valid(tower):
 		#só dispara quando estiver dentro da distância
 		var distance = global_position.distance_to(tower.global_position)
-		print("Distância",distance)
 		if distance <= attack_range:
 			shoot()
 
