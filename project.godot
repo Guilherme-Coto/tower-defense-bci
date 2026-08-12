@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TowerDefenseBCI"
-run/main_scene="uid://blgra26u6bp4l"
+run/main_scene="uid://bua5q1cktnsrp"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

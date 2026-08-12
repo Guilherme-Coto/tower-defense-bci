@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://blgra26u6bp4l"]
+[gd_scene format=3 uid="uid://dwoegroh7uijd"]
 
 [ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="1_8p7vy"]
 [ext_resource type="Script" uid="uid://duvtd8asfba6x" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
@@ -23,15 +23,16 @@
 [ext_resource type="Script" uid="uid://cyxkxdmjqbu7l" path="res://scripts/logger.gd" id="22_8kp3a"]
 [ext_resource type="Script" uid="uid://deugmadm32eme" path="res://scripts/bci_marker_send.gd" id="22_vfye1"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tussk"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2hj8"]
 
-[sub_resource type="Sky" id="Sky_ijrgl"]
-sky_material = SubResource("ProceduralSkyMaterial_tussk")
+[sub_resource type="Sky" id="Sky_2ou3o"]
+sky_material = SubResource("ProceduralSkyMaterial_t2hj8")
 
-[sub_resource type="Environment" id="Environment_vfye1"]
+[sub_resource type="Environment" id="Environment_j5k5y"]
 background_mode = 2
-sky = SubResource("Sky_ijrgl")
+sky = SubResource("Sky_2ou3o")
 ambient_light_source = 3
+reflected_light_source = 2
 
 [sub_resource type="Environment" id="Environment_11fdg"]
 
@@ -53,14 +54,13 @@ point_count = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgflu"]
 bg_color = Color(0.23137255, 0.23137255, 0.23137255, 0.47058824)
 
-[node name="Level_1" type="Node3D" unique_id=1881958309]
+[node name="Level_2" type="Node3D" unique_id=1881958309]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302068175]
-transform = Transform3D(0.81915206, -0.3686878, 0.43938506, 0, 0.76604444, 0.6427876, -0.57357645, -0.52654076, 0.62750685, 1.389256, 6.5485835, -4.7011547)
-shadow_enabled = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.389256, 6.5485835, -4.7011547)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=608070035]
-environment = SubResource("Environment_vfye1")
+environment = SubResource("Environment_j5k5y")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
 transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
@@ -159,7 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="tree_cone2" parent="Ilha/Trees/tree_cone2" unique_id=1656026332 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 
 [node name="tree_oak2" parent="Ilha/Trees" unique_id=779533057 instance=ExtResource("8_l256h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
@@ -186,7 +186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="tree_detailed2" parent="Ilha/Trees" unique_id=131327728 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
 
 [node name="tree_detailed2" parent="Ilha/Trees/tree_detailed2" unique_id=338582778 instance=ExtResource("9_hhokd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)

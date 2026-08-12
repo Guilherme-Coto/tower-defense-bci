@@ -1,6 +1,0 @@
-Log Start (Execution 3)
-[0.002s] Log system started successfully.
-[9.968s] WATER selected
-[11.600s] WIND selected
-[17.711s] ELECTRICITY selected
-[25.622s] FIRE selected
