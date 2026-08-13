@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bua5q1cktnsrp"]
 
-[ext_resource type="Script" uid="uid://6cvur72j0hw" path="res://scripts/UI/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://covku5tejlxqg" path="res://scripts/UI/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://ccvttnj007n3d" path="res://assets/ui/buttons/btn_default.png" id="2_ekxnf"]
 
 [sub_resource type="SystemFont" id="SystemFont_l6cm7"]
@@ -65,4 +65,57 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar"
 
+[node name="Play_auto" type="Button" parent="VBoxContainer" unique_id=810333125]
+layout_mode = 2
+icon = ExtResource("2_ekxnf")
+
+[node name="lbl_name" type="Label" parent="VBoxContainer/Play_auto" unique_id=1299004903]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -17.5
+offset_right = 31.142883
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Jogar Automático"
+
+[node name="LabelMusic" type="Label" parent="VBoxContainer" unique_id=999999990]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Testar Músicas:"
+horizontal_alignment = 1
+
+[node name="HBoxMusic" type="HBoxContainer" parent="VBoxContainer" unique_id=999999991]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BtnMusicFire" type="Button" parent="VBoxContainer/HBoxMusic" unique_id=999999992]
+layout_mode = 2
+text = " Fogo "
+
+[node name="BtnMusicWater" type="Button" parent="VBoxContainer/HBoxMusic" unique_id=999999993]
+layout_mode = 2
+text = " Água "
+
+[node name="BtnMusicWind" type="Button" parent="VBoxContainer/HBoxMusic" unique_id=999999994]
+layout_mode = 2
+text = " Vento "
+
+[node name="BtnMusicElectricity" type="Button" parent="VBoxContainer/HBoxMusic" unique_id=999999995]
+layout_mode = 2
+text = " Eletricidade "
+
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxMusic/BtnMusicFire" to="." method="_on_btn_music_fire_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxMusic/BtnMusicWater" to="." method="_on_btn_music_water_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxMusic/BtnMusicWind" to="." method="_on_btn_music_wind_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxMusic/BtnMusicElectricity" to="." method="_on_btn_music_electricity_pressed"]
