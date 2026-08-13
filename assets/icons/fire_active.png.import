@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvscuwteptai5"
-path="res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"
+uid="uid://brbu5kbpdmig3"
+path="res://.godot/imported/fire_active.png-fe6f365c415fb0df212b286075f877f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/electric.png"
-dest_files=["res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"]
+source_file="res://assets/icons/fire_active.png"
+dest_files=["res://.godot/imported/fire_active.png-fe6f365c415fb0df212b286075f877f8.ctex"]
 
 [params]
 

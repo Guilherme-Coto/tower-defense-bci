@@ -1,0 +1,16 @@
+Log Start (Execution 35)
+[0.001s] Log system started successfully.
+[0.005s] Box start blinking
+[2.918s] Box stop blinking
+[3.355s] ELECTRICITY selected
+[3.943s] WATER selected
+[4.373s] FIRE selected
+[4.774s] WATER selected
+[5.058s] ELECTRICITY selected
+[5.525s] WIND selected
+[6.095s] WATER selected
+[6.302s] Box start blinking
+[7.155s] FIRE selected
+[9.168s] WATER selected
+[9.300s] Box stop blinking
+[9.701s] ELECTRICITY selected

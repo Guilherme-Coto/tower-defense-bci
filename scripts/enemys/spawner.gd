@@ -15,6 +15,8 @@ const enemy_electricity= preload("res://scenes/enemies/enemy_electricity.tscn")
 var time_spawn = 3.0
 var waves = 1
 
+var enemies_elements = ["Fogo", "Água", "Vento", "Eletricidade"]
+
 const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_electricity]
 var index = 0
 
@@ -40,4 +42,7 @@ func spawn_enemy():
 		index = 0
 	else:
 		index+=1 #aumenta o index
+	
+	
+	UIManager.change_next_element(str("Próximo elemento: " + enemies_elements[index]))
 	

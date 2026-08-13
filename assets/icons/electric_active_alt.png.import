@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvscuwteptai5"
-path="res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"
+uid="uid://3t1pnf1f5wbj"
+path="res://.godot/imported/electric_active_alt.png-88f15d92eee8b976d07f82aa6d72d33d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/electric.png"
-dest_files=["res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"]
+source_file="res://assets/icons/electric_active_alt.png"
+dest_files=["res://.godot/imported/electric_active_alt.png-88f15d92eee8b976d07f82aa6d72d33d.ctex"]
 
 [params]
 

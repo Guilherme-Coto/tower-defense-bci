@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca0pmt3ky6uit"
-path="res://.godot/imported/star_outline.png-2ea1a289077c6ae84607a75ee24cd701.ctex"
+uid="uid://dhyx8rbdd3knb"
+path="res://.godot/imported/electric_active.png-c1e69ae9173a7768ef3e32c1937fd06a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/star_outline.png"
-dest_files=["res://.godot/imported/star_outline.png-2ea1a289077c6ae84607a75ee24cd701.ctex"]
+source_file="res://assets/icons/electric_active.png"
+dest_files=["res://.godot/imported/electric_active.png-c1e69ae9173a7768ef3e32c1937fd06a.ctex"]
 
 [params]
 

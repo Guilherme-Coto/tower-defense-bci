@@ -20,10 +20,20 @@ const label_prefab = preload("res://scenes/lbl_text_log.tscn")
 
 #corações
 @onready var hearts = $UI/HealthBarContainer.get_children()
-#texturas dos corações
-var hearth_full = preload("res://assets/ui/star.png")
-var hearth_damage = preload("res://assets/ui/star_outline.png")
 
+#texturas dos corações
+var hearth_full = preload("res://assets/ui/Heart_Full.png")
+var hearth_damage = preload("res://assets/ui/Heart_Empty.png")
+
+#texturas dos botões
+var fire_disable = preload("res://assets/icons/fire-zone.png")
+var fire_enable = preload("res://assets/icons/fire_active.png")
+var water_disable = preload("res://assets/icons/water-recycling.png")
+var water_enable = preload("res://assets/icons/water_active.png")
+var wind_disable = preload("res://assets/icons/wind-hole.png")
+var wind_enable = preload("res://assets/icons/wind_active.png")
+var electricity_disable = preload("res://assets/icons/electric.png")
+var electricity_enable = preload("res://assets/icons/electric_active.png")
 
 var current_hearth_index = 4
 
@@ -96,6 +106,9 @@ func _ready() -> void:
 	timer_box_blink.wait_time = box_blink_time
 	timer_box_blink.timeout.connect(_on_timer_box_blink_timeout)
 	add_child(timer_box_blink)
+	
+	active_a_button(Weak_System.ELEMENT.Fire)
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log"):
@@ -221,22 +234,15 @@ func btn_electricity_disable():
 #função de clique em um botão de elemento
 func on_button_power_clicket(element : Weak_System.ELEMENT):
 	if element == Weak_System.ELEMENT.Fire:
-		lbl_element.text = "Fogo"
 		add_text_to_log("O jogador selecionou Fogo")
 		logger.write_log("FIRE selected")
-		
 	elif element == Weak_System.ELEMENT.Water:
-		lbl_element.text = "Água"
 		add_text_to_log("O jogador selecionou Água")
 		logger.write_log("WATER selected")
-		
 	elif element == Weak_System.ELEMENT.Wind:
-		lbl_element.text = "Vento"
 		add_text_to_log("O jogador selecionou Vento")
 		logger.write_log("WIND selected")
-		
 	elif element == Weak_System.ELEMENT.Electricity:
-		lbl_element.text = "Eletricidade"
 		add_text_to_log("O jogador selecionou Eletricidade")
 		logger.write_log("ELECTRICITY selected")
 		
@@ -244,17 +250,41 @@ func on_button_power_clicket(element : Weak_System.ELEMENT):
 	if tower: tower.change_element(element)
 
 func _on_btn_fire_pressed() -> void:
-	on_button_power_clicket(Weak_System.ELEMENT.Fire)
+	active_a_button(Weak_System.ELEMENT.Fire)
 
 func _on_btn_water_pressed() -> void:
-	on_button_power_clicket(Weak_System.ELEMENT.Water)
+	active_a_button(Weak_System.ELEMENT.Water)
 
 func _on_btn_wind_pressed() -> void:
-	on_button_power_clicket(Weak_System.ELEMENT.Wind)
+	active_a_button(Weak_System.ELEMENT.Wind)
 
 func _on_btn_electricity_pressed() -> void:
-	on_button_power_clicket(Weak_System.ELEMENT.Electricity)
+	active_a_button(Weak_System.ELEMENT.Electricity)
 
+func active_a_button(element: Weak_System.ELEMENT):
+	_set_button_texture(btn_fire, fire_disable)
+	_set_button_texture(btn_water, water_disable)
+	_set_button_texture(btn_wind, wind_disable)
+	_set_button_texture(btn_electricity, electricity_disable)
+	
+	match element:
+		Weak_System.ELEMENT.Fire:
+			_set_button_texture(btn_fire, fire_enable)
+		Weak_System.ELEMENT.Water:
+			_set_button_texture(btn_water, water_enable)
+		Weak_System.ELEMENT.Wind:
+			_set_button_texture(btn_wind, wind_enable)
+		Weak_System.ELEMENT.Electricity:
+			_set_button_texture(btn_electricity, electricity_enable)
+			
+	on_button_power_clicket(element)
+
+func _set_button_texture(btn: Control, tex: Texture2D) -> void:
+	if btn is TextureButton:
+		btn.texture_normal = tex
+	elif btn is Button:
+		btn.icon = tex
+	
 func add_text_to_log(text):
 	#espera que seja carregado
 	if log_container == null:
@@ -271,6 +301,8 @@ func format_text(text):
 	var hour = Time.get_time_string_from_system()
 	return "[" + hour + "] " + text
 
+func change_next_element(text):
+	lbl_element.text = text
 
 func _on_btn_quit_pressed() -> void:
 	get_tree().paused = false 
@@ -292,5 +324,3 @@ func take_hearth() -> void:
 	else:
 		hearts[current_hearth_index].texture = hearth_damage
 		current_hearth_index-=1
-	
-	

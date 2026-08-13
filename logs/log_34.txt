@@ -1,0 +1,30 @@
+Log Start (Execution 34)
+[0.003s] Log system started successfully.
+[0.007s] Box start blinking
+[0.750s] FIRE selected
+[1.380s] WATER selected
+[1.932s] WIND selected
+[2.284s] ELECTRICITY selected
+[2.919s] Box stop blinking
+[3.113s] WIND selected
+[3.440s] WATER selected
+[3.725s] FIRE selected
+[4.004s] WATER selected
+[4.241s] WIND selected
+[4.490s] ELECTRICITY selected
+[4.677s] ELECTRICITY selected
+[4.967s] FIRE selected
+[5.295s] WATER selected
+[5.604s] FIRE selected
+[5.805s] ELECTRICITY selected
+[5.999s] ELECTRICITY selected
+[6.604s] WIND selected
+[6.823s] WATER selected
+[7.022s] FIRE selected
+[7.228s] FIRE selected
+[7.241s] Box start blinking
+[7.453s] WATER selected
+[8.113s] ELECTRICITY selected
+[8.325s] WATER selected
+[8.568s] FIRE selected
+[8.756s] FIRE selected

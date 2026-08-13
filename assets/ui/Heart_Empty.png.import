@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvscuwteptai5"
-path="res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"
+uid="uid://bcd3f5v50d66w"
+path="res://.godot/imported/Heart_Empty.png-6d3d8d6d6420cc2ff69474d311c00cdc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/electric.png"
-dest_files=["res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"]
+source_file="res://assets/ui/Heart_Empty.png"
+dest_files=["res://.godot/imported/Heart_Empty.png-6d3d8d6d6420cc2ff69474d311c00cdc.ctex"]
 
 [params]
 

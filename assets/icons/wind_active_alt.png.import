@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvscuwteptai5"
-path="res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"
+uid="uid://qvxvq2ilxhry"
+path="res://.godot/imported/wind_active_alt.png-e5846ff1fa21fe82e769ef8c20cb8db6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/electric.png"
-dest_files=["res://.godot/imported/electric.png-30e2ec5efe01560f45e31741524db41b.ctex"]
+source_file="res://assets/icons/wind_active_alt.png"
+dest_files=["res://.godot/imported/wind_active_alt.png-e5846ff1fa21fe82e769ef8c20cb8db6.ctex"]
 
 [params]
 
