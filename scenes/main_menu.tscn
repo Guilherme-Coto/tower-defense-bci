@@ -15,43 +15,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
-[node name="Label" type="Label" parent="." unique_id=1415957630]
+[node name="Menu" type="Control" parent="." unique_id=1866361820]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Menu" unique_id=1415957630]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -237.0
+offset_left = 319.0
 offset_top = 50.0
-offset_right = 237.0
+offset_right = 793.0
 offset_bottom = 99.0
 grow_horizontal = 2
 theme_override_fonts/font = SubResource("SystemFont_l6cm7")
 theme_override_font_sizes/font_size = 35
 text = "Tower Defense - BCI Version"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1246084125]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=1246084125]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -126.0
-offset_top = -138.0
-offset_right = 266.0
-offset_bottom = 138.0
+offset_left = 430.0
+offset_top = 166.0
+offset_right = 822.0
+offset_bottom = 442.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 alignment = 1
 
-[node name="Play" type="Button" parent="VBoxContainer" unique_id=244032195]
+[node name="Play" type="Button" parent="Menu/VBoxContainer" unique_id=244032195]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 icon = ExtResource("2_ekxnf")
 
-[node name="lbl_name" type="Label" parent="VBoxContainer/Play" unique_id=1442370728]
+[node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play" unique_id=1442370728]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -68,13 +73,13 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar"
 
-[node name="Play_auto" type="Button" parent="VBoxContainer" unique_id=810333125]
+[node name="Play_auto" type="Button" parent="Menu/VBoxContainer" unique_id=810333125]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 icon = ExtResource("2_ekxnf")
 
-[node name="lbl_name" type="Label" parent="VBoxContainer/Play_auto" unique_id=1299004903]
+[node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play_auto" unique_id=1299004903]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -91,53 +96,235 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar Automático"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1561020794]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu" unique_id=1561020794]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -155.0
-offset_top = -93.0
-offset_right = 155.0
-offset_bottom = -30.0
+offset_left = 401.0
+offset_top = 515.0
+offset_right = 711.0
+offset_bottom = 578.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="LabelMusic" type="Label" parent="VBoxContainer2" unique_id=999999990]
+[node name="LabelMusic" type="Label" parent="Menu/VBoxContainer2" unique_id=999999990]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 text = "Testar Músicas:"
 horizontal_alignment = 1
 
-[node name="HBoxMusic" type="HBoxContainer" parent="VBoxContainer2" unique_id=999999991]
+[node name="HBoxMusic" type="HBoxContainer" parent="Menu/VBoxContainer2" unique_id=999999991]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="BtnMusicFire" type="Button" parent="VBoxContainer2/HBoxMusic" unique_id=999999992]
+[node name="BtnMusicFire" type="Button" parent="Menu/VBoxContainer2/HBoxMusic" unique_id=999999992]
 layout_mode = 2
 text = " Fogo "
 
-[node name="BtnMusicWater" type="Button" parent="VBoxContainer2/HBoxMusic" unique_id=999999993]
+[node name="BtnMusicWater" type="Button" parent="Menu/VBoxContainer2/HBoxMusic" unique_id=999999993]
 layout_mode = 2
 text = " Água "
 
-[node name="BtnMusicWind" type="Button" parent="VBoxContainer2/HBoxMusic" unique_id=999999994]
+[node name="BtnMusicWind" type="Button" parent="Menu/VBoxContainer2/HBoxMusic" unique_id=999999994]
 layout_mode = 2
 text = " Vento "
 
-[node name="BtnMusicElectricity" type="Button" parent="VBoxContainer2/HBoxMusic" unique_id=999999995]
+[node name="BtnMusicElectricity" type="Button" parent="Menu/VBoxContainer2/HBoxMusic" unique_id=999999995]
 layout_mode = 2
 text = " Eletricidade "
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxMusic/BtnMusicFire" to="." method="_on_btn_music_fire_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxMusic/BtnMusicWater" to="." method="_on_btn_music_water_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxMusic/BtnMusicWind" to="." method="_on_btn_music_wind_pressed"]
-[connection signal="pressed" from="VBoxContainer2/HBoxMusic/BtnMusicElectricity" to="." method="_on_btn_music_electricity_pressed"]
+[node name="LevelSelector" type="Control" parent="." unique_id=720684336]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="LevelSelector" unique_id=347704820]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.0
+offset_top = 15.0
+offset_right = 237.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 24
+text = "Selecione um nível"
+horizontal_alignment = 1
+
+[node name="MainVBox" type="VBoxContainer" parent="LevelSelector" unique_id=471538110]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -260.0
+offset_right = 480.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="lbl_1_element" type="Label" parent="LevelSelector/MainVBox" unique_id=656973500]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 18
+text = "Níveis com 1 elemento"
+horizontal_alignment = 1
+
+[node name="HBox_1_Element" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799393]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_fire" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=1488397930]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Fire"
+
+[node name="btn_level_water" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=2107927443]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Water"
+
+[node name="btn_level_wind" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=84353908]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Wind"
+
+[node name="btn_level_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=1898831301]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Electricity"
+
+[node name="lbl_2_elements" type="Label" parent="LevelSelector/MainVBox" unique_id=656973501]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 18
+text = "Níveis com 2 elementos"
+horizontal_alignment = 1
+
+[node name="HBox_2_Elements_A" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799394]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_fire_water" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_A" unique_id=1488397931]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "Level Fire - Water"
+
+[node name="btn_level_fire_wind" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_A" unique_id=1488397932]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "Level Fire - Wind"
+
+[node name="btn_level_fire_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_A" unique_id=1488397933]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "Level Fire - Electricity"
+
+[node name="HBox_2_Elements_B" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799395]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_water_wind" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_B" unique_id=1488397934]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "Level Water - Wind"
+
+[node name="btn_level_water_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_B" unique_id=1488397935]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "Level Water - Electricity"
+
+[node name="btn_level_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_B" unique_id=1488397936]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+text = "Level Wind - Electricity"
+
+[node name="lbl_3_elements" type="Label" parent="LevelSelector/MainVBox" unique_id=656973502]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 18
+text = "Níveis com 3 elementos"
+horizontal_alignment = 1
+
+[node name="HBox_3_Elements_A" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799396]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="btn_level_fire_water_wind" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_A" unique_id=1488397937]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+text = "Level Fire - Water - Wind"
+
+[node name="btn_level_fire_water_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_A" unique_id=1488397938]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+text = "Level Fire - Water - Electricity"
+
+[node name="HBox_3_Elements_B" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799397]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="btn_level_fire_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_B" unique_id=1488397939]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+text = "Level Fire - Wind - Electricity"
+
+[node name="btn_level_water_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_B" unique_id=1488397940]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+text = "Level Water - Wind - Electricity"
+
+[node name="lbl_4_elements" type="Label" parent="LevelSelector/MainVBox" unique_id=656973503]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 18
+text = "Nível com 4 elementos"
+horizontal_alignment = 1
+
+[node name="HBox_4_Elements" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799398]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_fire_water_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_4_Elements" unique_id=1488397941]
+custom_minimum_size = Vector2(280, 38)
+layout_mode = 2
+text = "Level Fire - Water - Wind - Electricity"
+
+[node name="btn_back" type="Button" parent="LevelSelector" unique_id=999999996]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 110.0
+offset_bottom = 50.0
+text = "Voltar"
+
+[connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicFire" to="." method="_on_btn_music_fire_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWater" to="." method="_on_btn_music_water_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWind" to="." method="_on_btn_music_wind_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicElectricity" to="." method="_on_btn_music_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/btn_back" to="." method="_on_btn_back_pressed"]
