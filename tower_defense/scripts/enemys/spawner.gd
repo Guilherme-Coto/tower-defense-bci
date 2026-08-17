@@ -18,11 +18,12 @@ const tracks = [track_fire, track_water, track_wind, track_electricity]
 @onready var spawner: Path3D = $"../EnemyPath"
 @export var time_between_enemies = 20.0
 
-var time_spawn = 3.0
 var waves = 1
 
-var enemies_elements = ["Fogo", "Água", "Vento", "Eletricidade"]
+enum SpawnElement { FOGO, AGUA, VENTO, ELETRICIDADE }
+@export var spawn_sequence: Array[SpawnElement] = [SpawnElement.FOGO, SpawnElement.AGUA, SpawnElement.VENTO, SpawnElement.ELETRICIDADE]
 
+var enemies_elements = ["Fogo", "Água", "Vento", "Eletricidade"]
 const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_electricity]
 var index = 0
 
@@ -32,46 +33,55 @@ var audio_player: AudioStreamPlayer
 func _ready() -> void:
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
-	spawn_enemy()
+	
+	if spawn_sequence.size() > 0:
+		UIManager.call_deferred("change_next_element", str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
+		spawn_enemy()
 
 func spawn_enemy():
-	if waves <= 0:
+	if waves <= 0 or spawn_sequence.is_empty():
 		logger.write_log("Game Finished")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		return 
 		
+	var current_enemy_type = spawn_sequence[index]
+	
+	var counter_idx = 0
+	var max_multiplier = -1.0
+	for attack_elem in [0, 1, 2, 3]:
+		var mult = Weak_System.get_damage_mult(attack_elem, current_enemy_type)
+		if mult > max_multiplier:
+			max_multiplier = mult
+			counter_idx = attack_elem
+			
+	var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
+	print("A tocar música: " + track_names[counter_idx] + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[current_enemy_type] + ")")
+	audio_player.stream = tracks[counter_idx]
+	audio_player.play()
+	
+	# Toca 5 segundos
+	await get_tree().create_timer(5.0).timeout
+	audio_player.stop()
+	
+	# Pisca a caixa apenas enquanto a pessoa pensa
 	UIManager.call_deferred("active_box_blink")
 	
-	if logger.mode_selected == logger.MODE.AUTO:
-		var counter_idx = 0
-		var max_multiplier = -1.0
-		for attack_elem in [0, 1, 2, 3]:
-			var mult = Weak_System.get_damage_mult(attack_elem, index)
-			if mult > max_multiplier:
-				max_multiplier = mult
-				counter_idx = attack_elem
-				
-		var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
-		print("A tocar música: " + track_names[counter_idx] + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[index] + ")")
-		audio_player.stream = tracks[counter_idx]
-		audio_player.play()
+	# Pensa 5 segundos
+	await get_tree().create_timer(5.0).timeout
+	
+	UIManager.call_deferred("desactive_box_blink")
+	
+	# Troca automaticamente
+	UIManager.call_deferred("active_a_button", counter_idx)
 		
-	await get_tree().create_timer(time_spawn).timeout
+	var new_enemy = enemies[current_enemy_type].instantiate()
+	spawner.add_child(new_enemy)
 	
-	if logger.mode_selected == logger.MODE.AUTO:
-		audio_player.stop()
-		
-	UIManager.desactive_box_blink()
-	
-	var new_enemy = enemies[index].instantiate()
-	spawner.add_child(	new_enemy)
-	
-	if index == enemies.size() - 1:
-		waves-=1
+	if index == spawn_sequence.size() - 1:
+		waves -= 1
 		index = 0
 	else:
-		index+=1 #aumenta o index
+		index += 1 #aumenta o index
 	
-	
-	UIManager.change_next_element(str("Próximo elemento: " + enemies_elements[index]))
-	
+	if spawn_sequence.size() > 0:
+		UIManager.change_next_element(str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))

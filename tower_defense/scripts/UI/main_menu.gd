@@ -21,7 +21,6 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	level_selector.visible = true
 	menu.visible = false
-	#get_tree().change_scene_to_file("res://scenes/cena_1.tscn")
 
 func _on_play_auto_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/cena_auto.tscn")
@@ -47,3 +46,7 @@ func _on_btn_music_electricity_pressed() -> void:
 func _on_btn_back_pressed() -> void:
 	level_selector.visible = false
 	menu.visible = true
+
+
+func _on_btn_level_fire_water_wind_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/cena_1.tscn")

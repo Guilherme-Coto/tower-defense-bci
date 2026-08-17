@@ -107,7 +107,7 @@ func _ready() -> void:
 	timer_box_blink.timeout.connect(_on_timer_box_blink_timeout)
 	add_child(timer_box_blink)
 	
-	active_a_button(Weak_System.ELEMENT.Fire)
+	active_a_button(Weak_System.ELEMENT.Fire, false)
 	
 
 func _input(event: InputEvent) -> void:
@@ -232,21 +232,21 @@ func btn_electricity_disable():
 	btn_electricity.disabled = true
 
 #função de clique em um botão de elemento
-func on_button_power_clicket(element : Weak_System.ELEMENT):
-	if element == Weak_System.ELEMENT.Fire:
-		add_text_to_log("O jogador selecionou Fogo")
-		logger.write_log("FIRE selected")
-	elif element == Weak_System.ELEMENT.Water:
-		add_text_to_log("O jogador selecionou Água")
-		logger.write_log("WATER selected")
-	elif element == Weak_System.ELEMENT.Wind:
-		add_text_to_log("O jogador selecionou Vento")
-		logger.write_log("WIND selected")
-	elif element == Weak_System.ELEMENT.Electricity:
-		add_text_to_log("O jogador selecionou Eletricidade")
-		logger.write_log("ELECTRICITY selected")
+func on_button_power_clicket(element : Weak_System.ELEMENT, send_log: bool = true):
+	if send_log:
+		if element == Weak_System.ELEMENT.Fire:
+			add_text_to_log("O jogador selecionou Fogo")
+			logger.write_log("FIRE selected")
+		elif element == Weak_System.ELEMENT.Water:
+			add_text_to_log("O jogador selecionou Água")
+			logger.write_log("WATER selected")
+		elif element == Weak_System.ELEMENT.Wind:
+			add_text_to_log("O jogador selecionou Vento")
+			logger.write_log("WIND selected")
+		elif element == Weak_System.ELEMENT.Electricity:
+			add_text_to_log("O jogador selecionou Eletricidade")
+			logger.write_log("ELECTRICITY selected")
 		
-
 	if tower: tower.change_element(element)
 
 func _on_btn_fire_pressed() -> void:
@@ -261,7 +261,7 @@ func _on_btn_wind_pressed() -> void:
 func _on_btn_electricity_pressed() -> void:
 	active_a_button(Weak_System.ELEMENT.Electricity)
 
-func active_a_button(element: Weak_System.ELEMENT):
+func active_a_button(element: Weak_System.ELEMENT, send_log: bool = true):
 	_set_button_texture(btn_fire, fire_disable)
 	_set_button_texture(btn_water, water_disable)
 	_set_button_texture(btn_wind, wind_disable)
@@ -277,7 +277,8 @@ func active_a_button(element: Weak_System.ELEMENT):
 		Weak_System.ELEMENT.Electricity:
 			_set_button_texture(btn_electricity, electricity_enable)
 			
-	on_button_power_clicket(element)
+	on_button_power_clicket(element, send_log)
+
 
 func _set_button_texture(btn: Control, tex: Texture2D) -> void:
 	if btn is TextureButton:

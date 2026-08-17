@@ -1,0 +1,6 @@
+Log Start (Execution 44)
+[0.002s] Log system started successfully.
+[0.004s] FIRE selected
+[0.008s] Box start blinking
+[9.904s] Box stop blinking
+[16.039s] Game Finished
