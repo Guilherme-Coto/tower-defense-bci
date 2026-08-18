@@ -1,0 +1,10 @@
+Log Start (Execution 3)
+[0.001s] Log system started successfully.
+[1.999s] Wizard of Oz command: spawn:1
+[6.987s] Box start blinking
+[11.993s] Box stop blinking
+[11.994s] ELECTRICITY selected
+[18.829s] Wizard of Oz command: spawn:2
+[23.829s] Box start blinking
+[28.836s] Box stop blinking
+[28.837s] FIRE selected

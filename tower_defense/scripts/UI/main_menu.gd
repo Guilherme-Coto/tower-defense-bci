@@ -96,3 +96,7 @@ func _on_btn_level_fire_wind_electricity_pressed() -> void:
 	
 func _on_btn_level_water_wind_electricity_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_wind_electricity.tscn")
+
+#feiticeiro de oz
+func _on_play_oz_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_oz.tscn")

@@ -42,9 +42,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 430.0
-offset_top = 166.0
+offset_top = 130.0
 offset_right = 822.0
-offset_bottom = 442.0
+offset_bottom = 546.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
@@ -95,6 +95,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar Automático"
+
+[node name="Play_oz" type="Button" parent="Menu/VBoxContainer" unique_id=2005177788]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("2_ekxnf")
+
+[node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play_oz" unique_id=1268759568]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -17.5
+offset_right = 31.142883
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Jogar (Modo Oz)"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Menu" unique_id=1561020794]
 layout_mode = 1
@@ -323,6 +346,7 @@ text = "Voltar"
 
 [connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Play_oz" to="." method="_on_play_oz_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicFire" to="." method="_on_btn_music_fire_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWater" to="." method="_on_btn_music_water_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWind" to="." method="_on_btn_music_wind_pressed"]
