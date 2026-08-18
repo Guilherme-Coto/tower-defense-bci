@@ -47,6 +47,52 @@ func _on_btn_back_pressed() -> void:
 	level_selector.visible = false
 	menu.visible = true
 
-
+#quatro elementos
 func _on_btn_level_fire_water_wind_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/cena_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_four_elements.tscn")
+
+#funções de mundança de nível
+#elemento único
+func _on_btn_level_fire_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire.tscn")
+
+func _on_btn_level_water_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water.tscn")
+
+func _on_btn_level_wind_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_wind.tscn")
+
+func _on_btn_level_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_electricity.tscn")
+
+#dois elementos
+func _on_btn_level_fire_water_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_water.tscn")
+
+func _on_btn_level_fire_wind_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_wind.tscn")
+
+func _on_btn_level_fire_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_electricity.tscn")
+
+func _on_btn_level_water_wind_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_wind.tscn")
+
+func _on_btn_level_water_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_electricity.tscn")
+
+func _on_btn_level_wind_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_wind_electricity.tscn")
+
+#três elementos
+func _on_btn_level_fire_water_wind_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_water_wind.tscn")
+
+func _on_btn_level_fire_water_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_water_electricity.tscn")
+
+func _on_btn_level_fire_wind_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_wind_electricity.tscn")
+	
+func _on_btn_level_water_wind_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_wind_electricity.tscn")

@@ -1,6 +1,0 @@
-Log Start (Execution 52)
-[0.001s] Log system started successfully.
-[4.901s] Box start blinking
-[9.908s] Box stop blinking
-[9.908s] WATER selected
-[13.205s] Game Finished

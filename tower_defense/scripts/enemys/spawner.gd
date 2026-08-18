@@ -16,7 +16,7 @@ const tracks = [track_fire, track_water, track_wind, track_electricity]
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 @onready var spawner: Path3D = $"../EnemyPath"
-@export var time_between_enemies = 20.0
+@export var time_between_enemies = 5.0
 
 var waves = 1
 
@@ -26,6 +26,7 @@ enum SpawnElement { FOGO, AGUA, VENTO, ELETRICIDADE }
 var enemies_elements = ["Fogo", "Água", "Vento", "Eletricidade"]
 const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_electricity]
 var index = 0
+var is_first_spawn = true
 
 var audio_player: AudioStreamPlayer
 
@@ -43,6 +44,13 @@ func spawn_enemy():
 		logger.write_log("Game Finished")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		return 
+		
+	# Espera o tempo de descanso entre os inimigos
+	if not is_first_spawn:
+		await get_tree().create_timer(time_between_enemies).timeout
+	else:
+		is_first_spawn = false
+		await get_tree().create_timer(3.0).timeout # pequeno delay inicial
 		
 	var current_enemy_type = spawn_sequence[index]
 	

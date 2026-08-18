@@ -1,7 +1,0 @@
-Log Start (Execution 42)
-[0.001s] Log system started successfully.
-[0.003s] FIRE selected
-[0.004s] Box start blinking
-[3.711s] Box stop blinking
-[4.371s] WATER selected
-[7.712s] Box start blinking

@@ -1,4 +1,0 @@
-Log Start (Execution 36)
-[0.001s] Log system started successfully.
-[0.005s] Box start blinking
-[0.494s] WATER selected

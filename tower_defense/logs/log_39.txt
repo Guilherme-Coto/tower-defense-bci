@@ -1,4 +1,0 @@
-Log Start (Execution 39)
-[0.003s] Log system started successfully.
-[0.005s] FIRE selected
-[0.007s] Box start blinking

@@ -1,4 +1,0 @@
-Log Start (Execution 33)
-[0.002s] Log system started successfully.
-[0.005s] Box start blinking
-[2.910s] Box stop blinking
