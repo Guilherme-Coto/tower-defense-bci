@@ -49,3 +49,12 @@ func process_oz_command(cmd: String):
 			var elem_id = parts[1].to_int()
 			if spawner:
 				spawner.spawn_enemy(true, elem_id)
+	elif cmd == "curar_jogador":
+		if UIManager:
+			UIManager.heal()
+	elif cmd == "kill_enemy":
+		if spawner and spawner.spawner:
+			for child in spawner.spawner.get_children():
+				if child.has_method("end"):
+					child.end()
+					break

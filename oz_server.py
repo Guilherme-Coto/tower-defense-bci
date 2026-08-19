@@ -41,9 +41,11 @@ HTML_UI = """
         <button class="yellow" onclick="send('music:3')">Música Elétrica</button>
     </div>
 
-    <h3>Pensamento</h3>
+    <h3> Interações</h3>
     <div class="grid">
-        <button class="purple full-width" onclick="send('blink_box')">Pensar (On/Off)</button>
+        <button class="purple full-width" onclick="send('blink_box')">Piscar Caixa (On/Off)</button>
+        <button class="green" onclick="send('curar_jogador')">Curar</button>
+        <button class="red" onclick="send('kill_enemy')">Disparar</button>
     </div>
 
     <h3>Trocar de Poder</h3>
