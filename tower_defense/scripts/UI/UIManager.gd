@@ -330,5 +330,4 @@ func heal() -> void:
 	if current_hearth_index < 4:
 		current_hearth_index += 1
 		hearts[current_hearth_index].texture = hearth_full
-		add_text_to_log("O Feiticeiro curou o jogador!")
-		logger.write_log("Player healed by Wizard")
+		logger.write_log("Player healed by Oz Server")

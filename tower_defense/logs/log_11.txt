@@ -1,0 +1,29 @@
+Log Start (Execution 11)
+[0.003s] Log system started successfully.
+[4.979s] Wizard of Oz command: power:2
+[4.982s] WIND selected
+[7.610s] Wizard of Oz command: spawn:0
+[13.756s] Wizard of Oz command: music:3
+[19.968s] Wizard of Oz command: blink_box
+[19.968s] Box start blinking
+[23.315s] Wizard of Oz command: blink_box
+[23.316s] Box stop blinking
+[25.130s] Wizard of Oz command: power:3
+[25.131s] ELECTRICITY selected
+[28.859s] Wizard of Oz command: music:2
+[35.054s] Wizard of Oz command: blink_box
+[35.055s] Box start blinking
+[38.452s] Wizard of Oz command: blink_box
+[38.452s] Box stop blinking
+[38.478s] Wizard of Oz command: blink_box
+[38.497s] Box start blinking
+[38.668s] Wizard of Oz command: blink_box
+[38.669s] Box stop blinking
+[39.301s] Wizard of Oz command: power:2
+[39.302s] WIND selected
+[41.432s] Wizard of Oz command: spawn:1
+[42.731s] Wizard of Oz command: kill_enemy
+[42.898s] Wizard of Oz command: kill_enemy
+[46.312s] Wizard of Oz command: curar_jogador
+[46.314s] Player healed by Wizard
+[47.444s] Wizard of Oz command: curar_jogador

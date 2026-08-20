@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bua5q1cktnsrp"]
 
-[ext_resource type="Script" uid="uid://covku5tejlxqg" path="res://scripts/UI/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://6cvur72j0hw" path="res://scripts/UI/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://ccvttnj007n3d" path="res://assets/ui/buttons/btn_default.png" id="2_ekxnf"]
 
 [sub_resource type="SystemFont" id="SystemFont_l6cm7"]
