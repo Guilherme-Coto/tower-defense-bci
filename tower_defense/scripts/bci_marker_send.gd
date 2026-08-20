@@ -9,8 +9,16 @@ func _ready():
 	udp_peer.connect_to_host(bridge_host, bridge_port)
 	print("BCI UDP Peer connected to ", bridge_host, ":", bridge_port)
 
-	# Send an initial marker to verify connection
-	send_bci_marker("Game_Started", 0.0)
+	# Send an initial marker to verify connection and include level name
+	call_deferred("_send_start_marker")
+
+func _send_start_marker():
+	var level_name = "Unknown_Level"
+	if get_tree().current_scene and get_tree().current_scene.scene_file_path != "":
+		level_name = get_tree().current_scene.scene_file_path.get_file().get_basename()
+	elif get_tree().current_scene:
+		level_name = get_tree().current_scene.name
+	send_bci_marker("Game_Started_" + level_name, 0.0)
 
 func send_bci_marker(marker_name: String, duration: float = 0.0):
 	# Construct the JSON payload required by the bridge
