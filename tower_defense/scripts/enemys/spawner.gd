@@ -16,11 +16,11 @@ const tracks = [track_fire, track_water, track_wind, track_electricity]
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 @onready var spawner: Path3D = $"../EnemyPath"
-@export var time_between_enemies = 5.0
+@export var time_between_enemies = 3.0
+@export var blink_time = 5.5
 @export var auto_spawn = true
 
-
-var waves = 1
+@export var waves = 1
 
 enum SpawnElement { FOGO, AGUA, VENTO, ELETRICIDADE }
 @export var spawn_sequence: Array[SpawnElement] = [SpawnElement.FOGO, SpawnElement.AGUA, SpawnElement.VENTO, SpawnElement.ELETRICIDADE]
@@ -84,8 +84,8 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 		# Pisca a caixa apenas enquanto a pessoa pensa
 		UIManager.call_deferred("active_box_blink")
 		
-		# Pensa 5 segundos
-		await get_tree().create_timer(5.0).timeout
+		# Pensa blink_time segundos
+		await get_tree().create_timer(blink_time).timeout
 		
 		UIManager.call_deferred("desactive_box_blink")
 		

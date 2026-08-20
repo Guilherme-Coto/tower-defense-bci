@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dwoegroh7uijd"]
 
-[ext_resource type="Script" uid="uid://b1koowj5x24dv" path="res://scripts/logger.gd" id="1_dmpth"]
+[ext_resource type="Script" uid="uid://cyxkxdmjqbu7l" path="res://scripts/logger.gd" id="1_dmpth"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="3_vgyso"]
-[ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="4_hnxwg"]
-[ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="5_pyn4q"]
+[ext_resource type="Script" uid="uid://gpgdq3x8p87k" path="res://scripts/tower.gd" id="4_hnxwg"]
+[ext_resource type="Script" uid="uid://duvtd8asfba6x" path="res://scripts/enemys/spawner.gd" id="5_pyn4q"]
 [ext_resource type="PackedScene" uid="uid://dyh410ftmt6jx" path="res://assets/models/island/ground/ground_pathEnd.glb" id="6_2y4ka"]
 [ext_resource type="PackedScene" uid="uid://c4o8uay4f37xu" path="res://assets/models/island/ground/ground_pathStraight.glb" id="7_6khyg"]
 [ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="8_uxiuu"]
@@ -12,9 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://d3s86hv5ndp5" path="res://assets/models/island/trees/tree_default.glb" id="11_tjhny"]
 [ext_resource type="PackedScene" uid="uid://cpar50r73ia41" path="res://assets/models/island/trees/tree_detailed_dark.glb" id="12_a072t"]
 [ext_resource type="PackedScene" uid="uid://dxrxqclirlu3x" path="res://assets/models/island/trees/tree_fat.glb" id="13_kpfp4"]
-[ext_resource type="Script" uid="uid://cnj1o4rvf7xv" path="res://scripts/auto.gd" id="14_dmpth"]
+[ext_resource type="Script" uid="uid://c77mc6myyo16o" path="res://scripts/auto.gd" id="14_dmpth"]
 [ext_resource type="PackedScene" uid="uid://b32s01ofafoq" path="res://assets/models/island/trees/tree_detailed.glb" id="14_nkdrp"]
-[ext_resource type="Script" uid="uid://bfgdp1lda7823" path="res://scripts/UI/UIManager.gd" id="15_r3c6n"]
+[ext_resource type="Script" uid="uid://bh6107hretlxl" path="res://scripts/UI/UIManager.gd" id="15_r3c6n"]
 [ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="16_ik0yi"]
 [ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="17_ogwau"]
 [ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="18_wd38x"]
@@ -73,9 +73,6 @@ environment = SubResource("Environment_vfye1")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
 transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
-environment = SubResource("Environment_11fdg")
-attributes = SubResource("CameraAttributesPractical_7f3w5")
-compositor = SubResource("Compositor_c13s3")
 current = true
 size = 6.291
 

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b1trllbbabrmj"]
 
-[ext_resource type="Script" uid="uid://b1koowj5x24dv" path="res://scripts/logger.gd" id="1_l6ba7"]
-[ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/bci_marker_send.gd" id="2_oxwjf"]
+[ext_resource type="Script" uid="uid://cyxkxdmjqbu7l" path="res://scripts/logger.gd" id="1_l6ba7"]
+[ext_resource type="Script" uid="uid://deugmadm32eme" path="res://scripts/bci_marker_send.gd" id="2_oxwjf"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="3_m7fsv"]
-[ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="4_vp1fi"]
-[ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="5_keayy"]
+[ext_resource type="Script" uid="uid://gpgdq3x8p87k" path="res://scripts/tower.gd" id="4_vp1fi"]
+[ext_resource type="Script" uid="uid://duvtd8asfba6x" path="res://scripts/enemys/spawner.gd" id="5_keayy"]
 [ext_resource type="PackedScene" uid="uid://dyh410ftmt6jx" path="res://assets/models/island/ground/ground_pathEnd.glb" id="6_foyo4"]
 [ext_resource type="PackedScene" uid="uid://c4o8uay4f37xu" path="res://assets/models/island/ground/ground_pathStraight.glb" id="7_kmwq7"]
 [ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="8_p8wli"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cpar50r73ia41" path="res://assets/models/island/trees/tree_detailed_dark.glb" id="12_sbvus"]
 [ext_resource type="PackedScene" uid="uid://dxrxqclirlu3x" path="res://assets/models/island/trees/tree_fat.glb" id="13_6iy2w"]
 [ext_resource type="PackedScene" uid="uid://b32s01ofafoq" path="res://assets/models/island/trees/tree_detailed.glb" id="14_excaq"]
-[ext_resource type="Script" uid="uid://bfgdp1lda7823" path="res://scripts/UI/UIManager.gd" id="15_2hywc"]
+[ext_resource type="Script" uid="uid://bh6107hretlxl" path="res://scripts/UI/UIManager.gd" id="15_2hywc"]
 [ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="16_dhqlr"]
 [ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="17_wmhtb"]
 [ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="18_xkchp"]
@@ -73,9 +73,6 @@ environment = SubResource("Environment_vfye1")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
 transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
-environment = SubResource("Environment_11fdg")
-attributes = SubResource("CameraAttributesPractical_7f3w5")
-compositor = SubResource("Compositor_c13s3")
 current = true
 size = 6.291
 
@@ -117,6 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
 [node name="Spawner" type="Node3D" parent="Ilha" unique_id=2094228835 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 script = ExtResource("5_keayy")
+waves = 5
 spawn_sequence = Array[int]([3])
 
 [node name="Path" parent="Ilha" unique_id=950608434 instance=ExtResource("6_foyo4")]

@@ -74,9 +74,6 @@ environment = SubResource("Environment_vfye1")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
 transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
-environment = SubResource("Environment_11fdg")
-attributes = SubResource("CameraAttributesPractical_7f3w5")
-compositor = SubResource("Compositor_c13s3")
 current = true
 size = 6.291
 
