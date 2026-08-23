@@ -62,11 +62,24 @@ var timers_list : Array[Timer] = []
 var actual_index : int = 0
 var timer_alter : Timer
 
+var lbl_instruction: Label
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS # Permite que este nó continue ativo para despausar
 	
 	add_text_to_log("Sistema de Log/UI iniciado")
+	
+	lbl_instruction = Label.new()
+	lbl_instruction.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl_instruction.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	lbl_instruction.add_theme_font_size_override("font_size", 28)
+	lbl_instruction.add_theme_color_override("font_outline_color", Color.BLACK)
+	lbl_instruction.add_theme_constant_override("outline_size", 6)
+	lbl_instruction.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	lbl_instruction.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	lbl_instruction.offset_bottom = -20
+	$UI.add_child(lbl_instruction)
 	
 	#dá set aos timers
 	#timer botão de fogo
@@ -109,10 +122,11 @@ func _ready() -> void:
 	
 	active_a_button(Weak_System.ELEMENT.Fire, false)
 	
+	$UI/PanelContainer.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("log"):
-		log_scrollbar.visible = not log_scrollbar.visible
+		$UI/PanelContainer.visible = not $UI/PanelContainer.visible
 	
 	if event.is_action_pressed("blink_buttons"):
 		if buttons_blink:
@@ -331,3 +345,11 @@ func heal() -> void:
 		current_hearth_index += 1
 		hearts[current_hearth_index].texture = hearth_full
 		logger.write_log("Player healed by Oz Server")
+
+func show_instruction(text: String) -> void:
+	if lbl_instruction:
+		lbl_instruction.text = text
+
+func hide_instruction() -> void:
+	if lbl_instruction:
+		lbl_instruction.text = ""

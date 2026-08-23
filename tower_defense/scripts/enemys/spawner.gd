@@ -77,16 +77,20 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 		audio_player.stream = tracks[counter_idx]
 		audio_player.play()
 		
+		UIManager.call_deferred("show_instruction", "Presta atenção")
+		
 		# Toca 5 segundos
 		await get_tree().create_timer(5.0).timeout
 		audio_player.stop()
 		
 		# Pisca a caixa apenas enquanto a pessoa pensa
+		UIManager.call_deferred("show_instruction", "Pensa na musica")
 		UIManager.call_deferred("active_box_blink")
 		
 		# Pensa blink_time segundos
 		await get_tree().create_timer(blink_time).timeout
 		
+		UIManager.call_deferred("hide_instruction")
 		UIManager.call_deferred("desactive_box_blink")
 		
 		# Troca automaticamente
@@ -108,7 +112,7 @@ func play_music(element_index: int):
 	if element_index >= 0 and element_index < tracks.size():
 		audio_player.stream = tracks[element_index]
 		audio_player.play()
-		print("Feiticeiro ativou a música: " + str(element_index))
+		print("Servidor OZ ativou a música: " + str(element_index))
 
 func stop_music():
 	audio_player.stop()
