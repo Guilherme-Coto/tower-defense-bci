@@ -16,7 +16,7 @@ const tracks = [track_fire, track_water, track_wind, track_electricity]
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 @onready var spawner: Path3D = $"../EnemyPath"
-@export var time_between_enemies = 3.0
+@export var time_between_enemies = 3.5
 @export var blink_time = 5.5
 @export var auto_spawn = true
 
@@ -52,11 +52,13 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 		
 	# Espera o tempo de descanso entre os inimigos
 	if auto_spawn:
+		UIManager.call_deferred("show_instruction", "Descansa")
 		if not is_first_spawn:
 			await get_tree().create_timer(time_between_enemies).timeout
 		else:
 			is_first_spawn = false
 			await get_tree().create_timer(3.0).timeout # pequeno delay inicial
+		UIManager.call_deferred("hide_instruction")
 
 		
 	var current_enemy_type = spawn_sequence[index]
