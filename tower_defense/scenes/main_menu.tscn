@@ -336,6 +336,48 @@ custom_minimum_size = Vector2(280, 38)
 layout_mode = 2
 text = "Level Fire - Water - Wind - Electricity"
 
+[node name="lbl_reverse" type="Label" parent="LevelSelector/MainVBox" unique_id=656973504]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 18
+text = "Modo da imaginação"
+horizontal_alignment = 1
+
+[node name="HBox_Reverse" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799399]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_reverse_fire" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397943]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Fire"
+
+[node name="btn_level_reverse_water" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397944]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Water"
+
+[node name="btn_level_reverse_wind" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397945]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Wind"
+
+[node name="btn_level_reverse_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397946]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Electricity"
+
+[node name="HBox_Reverse_All" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799400]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_reverse_four_elements" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse_All" unique_id=1488397947]
+custom_minimum_size = Vector2(280, 38)
+layout_mode = 2
+text = "Level Fire - Water - Wind - Electricity"
+
 [node name="btn_back" type="Button" parent="LevelSelector" unique_id=999999996]
 layout_mode = 0
 offset_left = 20.0
@@ -366,4 +408,9 @@ text = "Voltar"
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_3_Elements_B/btn_level_fire_wind_electricity" to="." method="_on_btn_level_fire_wind_electricity_pressed"]
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_3_Elements_B/btn_level_water_wind_electricity" to="." method="_on_btn_level_water_wind_electricity_pressed"]
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_4_Elements/btn_level_fire_water_wind_electricity" to="." method="_on_btn_level_fire_water_wind_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_fire" to="." method="_on_btn_level_reverse_fire_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_water" to="." method="_on_btn_level_reverse_water_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_wind" to="." method="_on_btn_level_reverse_wind_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_electricity" to="." method="_on_btn_level_reverse_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse_All/btn_level_reverse_four_elements" to="." method="_on_btn_level_reverse_four_elements_pressed"]
 [connection signal="pressed" from="LevelSelector/btn_back" to="." method="_on_btn_back_pressed"]

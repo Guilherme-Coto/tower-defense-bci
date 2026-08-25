@@ -51,6 +51,20 @@ func _on_btn_back_pressed() -> void:
 func _on_btn_level_fire_water_wind_electricity_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_four_elements.tscn")
 
+func _on_btn_level_reverse_fire_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_fire.tscn")
+
+func _on_btn_level_reverse_water_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_water.tscn")
+	
+func _on_btn_level_reverse_wind_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_wind.tscn")
+
+func _on_btn_level_reverse_electricity_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_electricity.tscn")
+
+func _on_btn_level_reverse_four_elements_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_four_elements.tscn")
 #funções de mundança de nível
 #elemento único
 func _on_btn_level_fire_pressed() -> void:

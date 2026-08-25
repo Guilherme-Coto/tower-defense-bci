@@ -51,5 +51,8 @@ func shoot():
 
 func end():
 	UIManager.add_text_to_log("Inimigo morto")
-	spawner.spawn_enemy() #spawna o próximo inimigo
+	if "reverse_mode" in spawner and spawner.reverse_mode:
+		spawner.play_reverse_music_then_spawn()
+	else:
+		spawner.spawn_enemy() #spawna o próximo inimigo
 	queue_free()

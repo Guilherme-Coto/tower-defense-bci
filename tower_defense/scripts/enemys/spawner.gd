@@ -19,6 +19,7 @@ const tracks = [track_fire, track_water, track_wind, track_electricity]
 @export var time_between_enemies = 3.5
 @export var blink_time = 5.5
 @export var auto_spawn = true
+@export var reverse_mode = false
 
 @export var waves = 1
 
@@ -29,6 +30,9 @@ var enemies_elements = ["Fogo", "Água", "Vento", "Eletricidade"]
 const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_electricity]
 var index = 0
 var is_first_spawn = true
+
+var last_counter_idx = -1
+var last_enemy_type = -1
 
 var audio_player: AudioStreamPlayer
 
@@ -65,8 +69,8 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 	if specific_element != -1:
 		current_enemy_type = specific_element
 	
+	var counter_idx = 0
 	if auto_spawn:
-		var counter_idx = 0
 		var max_multiplier = -1.0
 		for attack_elem in [0, 1, 2, 3]:
 			var mult = Weak_System.get_damage_mult(attack_elem, current_enemy_type)
@@ -75,32 +79,49 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 				counter_idx = attack_elem
 				
 		var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
-		print("A tocar música: " + track_names[counter_idx] + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[current_enemy_type] + ")")
-		audio_player.stream = tracks[counter_idx]
-		audio_player.play()
 		
-		UIManager.call_deferred("show_instruction", "Presta atenção")
-		
-		# Toca 5 segundos
-		await get_tree().create_timer(5.0).timeout
-		audio_player.stop()
-		
-		# Pisca a caixa apenas enquanto a pessoa pensa
-		UIManager.call_deferred("show_instruction", "Pensa na musica")
-		UIManager.call_deferred("active_box_blink")
-		
-		# Pensa blink_time segundos
-		await get_tree().create_timer(blink_time).timeout
-		
-		UIManager.call_deferred("hide_instruction")
-		UIManager.call_deferred("desactive_box_blink")
-		
-		# Troca automaticamente
-		UIManager.call_deferred("active_a_button", counter_idx)
+		if not reverse_mode:
+			print("A tocar música: " + track_names[counter_idx] + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[current_enemy_type] + ")")
+			audio_player.stream = tracks[counter_idx]
+			audio_player.play()
+			
+			UIManager.call_deferred("show_instruction", "Presta atenção")
+			
+			# Toca 5 segundos
+			await get_tree().create_timer(5.0).timeout
+			audio_player.stop()
+			
+			# Pisca a caixa apenas enquanto a pessoa pensa
+			UIManager.call_deferred("show_instruction", "Pensa na musica")
+			UIManager.call_deferred("active_box_blink")
+			
+			# Pensa blink_time segundos
+			await get_tree().create_timer(blink_time).timeout
+			
+			UIManager.call_deferred("hide_instruction")
+			UIManager.call_deferred("desactive_box_blink")
+			
+			# Troca automaticamente
+			UIManager.call_deferred("active_a_button", counter_idx)
+		else:
+			# Reverse mode: Imagine -> Select
+			UIManager.call_deferred("show_instruction", "Próximo inimigo: " + enemies_elements[current_enemy_type])
+			await get_tree().create_timer(2.0).timeout
+			
+			UIManager.call_deferred("show_instruction", "Pensa na musica")
+			UIManager.call_deferred("active_box_blink")
+			
+			await get_tree().create_timer(blink_time).timeout
+			
+			UIManager.call_deferred("desactive_box_blink")
+			UIManager.call_deferred("active_a_button", counter_idx)
 		
 	var new_enemy = enemies[current_enemy_type].instantiate()
 	spawner.add_child(new_enemy)
 	
+	if auto_spawn and reverse_mode:
+		last_counter_idx = counter_idx
+		last_enemy_type = current_enemy_type
 	if index == spawn_sequence.size() - 1:
 		waves -= 1
 		index = 0
@@ -118,3 +139,18 @@ func play_music(element_index: int):
 
 func stop_music():
 	audio_player.stop()
+
+func play_reverse_music_then_spawn():
+	if last_counter_idx != -1 and last_enemy_type != -1:
+		var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
+		print("A tocar música: " + track_names[last_counter_idx] + " (selecionou " + enemies_elements[last_counter_idx] + " para combater " + enemies_elements[last_enemy_type] + ")")
+		audio_player.stream = tracks[last_counter_idx]
+		audio_player.play()
+		
+		UIManager.call_deferred("show_instruction", "Presta atenção")
+		
+		await get_tree().create_timer(5.0).timeout
+		audio_player.stop()
+		UIManager.call_deferred("hide_instruction")
+	
+	spawn_enemy()
