@@ -7,13 +7,13 @@ const bullet = preload("res://scenes/bullet.tscn") # Cria esta cena no Passo 3!
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 @onready var spawner = get_tree().get_first_node_in_group("spawner")
 
-@export var speed = 1.0
+@export var speed = 0.5
 @export var element : Weak_System.ELEMENT
 @onready var timer_attack = $TimerAttack
 
 @export var attack_range: float = 3.0
 
-var health = 100.0
+var health = 250.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

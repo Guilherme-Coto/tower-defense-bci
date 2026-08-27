@@ -12,14 +12,15 @@ const track_wind = preload("res://assets/musics/Track5_The_Four_Seasons.wav")
 const track_electricity = preload("res://assets/musics/Track6_Waltz_of_the_flowers.wav")
 const tracks = [track_fire, track_water, track_wind, track_electricity]
 
-@onready var logger = get_tree().get_first_node_in_group("logger")
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 @onready var spawner: Path3D = $"../EnemyPath"
 @export var time_between_enemies = 3.5
-@export var blink_time = 5.5
+@export var blink_time = 3.0
 @export var auto_spawn = true
 @export var reverse_mode = false
+@export var random_spawn = false
+@export var random_spawn_count = 20
 
 @export var waves = 1
 
@@ -35,19 +36,28 @@ var last_counter_idx = -1
 var last_enemy_type = -1
 
 var audio_player: AudioStreamPlayer
+var logger: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
+	logger = get_tree().get_first_node_in_group("logger")
 	
+	if random_spawn:
+		waves = 1
+		spawn_sequence.clear()
+		for i in range(random_spawn_count):
+			spawn_sequence.append(randi() % 4 as SpawnElement)
+			
 	if spawn_sequence.size() > 0:
 		UIManager.call_deferred("change_next_element", str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
 		spawn_enemy()
 
 func spawn_enemy(force: bool = false, specific_element: int = -1):
 	if waves <= 0 or spawn_sequence.is_empty():
-		logger.write_log("Game Finished")
+		if logger:
+			logger.write_log("Game Finished")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		return 
 		
@@ -57,15 +67,18 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 	# Espera o tempo de descanso entre os inimigos
 	if auto_spawn:
 		UIManager.call_deferred("show_instruction", "Descansa")
+		if logger:
+			logger.call_deferred("write_log", "Rest")
 		if not is_first_spawn:
 			await get_tree().create_timer(time_between_enemies).timeout
 		else:
 			is_first_spawn = false
-			await get_tree().create_timer(3.0).timeout # pequeno delay inicial
+			await get_tree().create_timer(3.0).timeout
+			
 		UIManager.call_deferred("hide_instruction")
-
-		
+	
 	var current_enemy_type = spawn_sequence[index]
+	
 	if specific_element != -1:
 		current_enemy_type = specific_element
 	
@@ -82,6 +95,8 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 		
 		if not reverse_mode:
 			print("A tocar música: " + track_names[counter_idx] + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[current_enemy_type] + ")")
+			if logger:
+				logger.call_deferred("write_log", "Start Listen")
 			audio_player.stream = tracks[counter_idx]
 			audio_player.play()
 			
@@ -90,31 +105,37 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 			# Toca 5 segundos
 			await get_tree().create_timer(5.0).timeout
 			audio_player.stop()
+			if logger:
+				logger.call_deferred("write_log", "End Listen")
 			
-			# Pisca a caixa apenas enquanto a pessoa pensa
-			UIManager.call_deferred("show_instruction", "Pensa na musica")
+			# Pisca a caixa
+			UIManager.call_deferred("show_instruction", "Olha para o quadrado")
 			UIManager.call_deferred("active_box_blink")
 			
-			# Pensa blink_time segundos
+			# Espera blink_time segundos
 			await get_tree().create_timer(blink_time).timeout
 			
-			UIManager.call_deferred("hide_instruction")
 			UIManager.call_deferred("desactive_box_blink")
-			
-			# Troca automaticamente
 			UIManager.call_deferred("active_a_button", counter_idx)
+			UIManager.call_deferred("show_instruction", "Imagina")
+			if logger:
+				logger.call_deferred("write_log", "Imagine")
+			
 		else:
 			# Reverse mode: Imagine -> Select
 			UIManager.call_deferred("show_instruction", "Próximo inimigo: " + enemies_elements[current_enemy_type])
 			await get_tree().create_timer(2.0).timeout
 			
-			UIManager.call_deferred("show_instruction", "Pensa na musica")
+			UIManager.call_deferred("show_instruction", "Olha para o quadrado")
 			UIManager.call_deferred("active_box_blink")
 			
 			await get_tree().create_timer(blink_time).timeout
 			
 			UIManager.call_deferred("desactive_box_blink")
 			UIManager.call_deferred("active_a_button", counter_idx)
+			UIManager.call_deferred("show_instruction", "Pensa na musica")
+			if logger:
+				logger.call_deferred("write_log", "Imagina")
 		
 	var new_enemy = enemies[current_enemy_type].instantiate()
 	spawner.add_child(new_enemy)
@@ -144,6 +165,8 @@ func play_reverse_music_then_spawn():
 	if last_counter_idx != -1 and last_enemy_type != -1:
 		var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
 		print("A tocar música: " + track_names[last_counter_idx] + " (selecionou " + enemies_elements[last_counter_idx] + " para combater " + enemies_elements[last_enemy_type] + ")")
+		if logger:
+			logger.call_deferred("write_log", "Start Listen")
 		audio_player.stream = tracks[last_counter_idx]
 		audio_player.play()
 		
@@ -151,6 +174,8 @@ func play_reverse_music_then_spawn():
 		
 		await get_tree().create_timer(5.0).timeout
 		audio_player.stop()
+		if logger:
+			logger.call_deferred("write_log", "End Listen")
 		UIManager.call_deferred("hide_instruction")
 	
 	spawn_enemy()

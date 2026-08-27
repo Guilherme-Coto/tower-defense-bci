@@ -336,6 +336,11 @@ custom_minimum_size = Vector2(280, 38)
 layout_mode = 2
 text = "Level Fire - Water - Wind - Electricity"
 
+[node name="btn_level_random" type="Button" parent="LevelSelector/MainVBox/HBox_4_Elements" unique_id=1488397948]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Random"
+
 [node name="lbl_reverse" type="Label" parent="LevelSelector/MainVBox" unique_id=656973504]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_l6cm7")
@@ -376,7 +381,12 @@ alignment = 1
 [node name="btn_level_reverse_four_elements" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse_All" unique_id=1488397947]
 custom_minimum_size = Vector2(280, 38)
 layout_mode = 2
-text = "Level Fire - Water - Wind - Electricity"
+text = "Level All Elements"
+
+[node name="btn_level_reverse_random" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse_All" unique_id=1488397949]
+custom_minimum_size = Vector2(180, 38)
+layout_mode = 2
+text = "Level Random"
 
 [node name="btn_back" type="Button" parent="LevelSelector" unique_id=999999996]
 layout_mode = 0
@@ -412,5 +422,7 @@ text = "Voltar"
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_water" to="." method="_on_btn_level_reverse_water_pressed"]
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_wind" to="." method="_on_btn_level_reverse_wind_pressed"]
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_electricity" to="." method="_on_btn_level_reverse_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_4_Elements/btn_level_random" to="." method="_on_btn_level_random_pressed"]
 [connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse_All/btn_level_reverse_four_elements" to="." method="_on_btn_level_reverse_four_elements_pressed"]
+[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse_All/btn_level_reverse_random" to="." method="_on_btn_level_reverse_random_pressed"]
 [connection signal="pressed" from="LevelSelector/btn_back" to="." method="_on_btn_back_pressed"]

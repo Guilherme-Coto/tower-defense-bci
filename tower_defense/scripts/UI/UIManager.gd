@@ -320,6 +320,7 @@ func change_next_element(text):
 	lbl_element.text = text
 
 func _on_btn_quit_pressed() -> void:
+	logger.write_log("Game Finished")
 	get_tree().paused = false 
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
