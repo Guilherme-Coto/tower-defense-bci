@@ -1,33 +1,31 @@
 [gd_scene format=3 uid="uid://dfc0oslexbunn"]
 
-[ext_resource type="PackedScene" uid="uid://dnj1pkaciiuuj" path="res://assets/models/island/ground/ground_grass.glb" id="1_8p7vy"]
-[ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="1_l256h"]
-[ext_resource type="PackedScene" uid="uid://dyh410ftmt6jx" path="res://assets/models/island/ground/ground_pathEnd.glb" id="2_11fdg"]
-[ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="2_l256h"]
-[ext_resource type="PackedScene" uid="uid://c4o8uay4f37xu" path="res://assets/models/island/ground/ground_pathStraight.glb" id="3_7f3w5"]
-[ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="4_c13s3"]
-[ext_resource type="PackedScene" uid="uid://d3s86hv5ndp5" path="res://assets/models/island/trees/tree_default.glb" id="5_inr4k"]
-[ext_resource type="PackedScene" uid="uid://cpar50r73ia41" path="res://assets/models/island/trees/tree_detailed_dark.glb" id="6_hhokd"]
-[ext_resource type="PackedScene" uid="uid://dxrxqclirlu3x" path="res://assets/models/island/trees/tree_fat.glb" id="7_t2hj8"]
-[ext_resource type="PackedScene" uid="uid://dp1qe0455xaft" path="res://assets/models/island/trees/tree_oak.glb" id="8_l256h"]
-[ext_resource type="PackedScene" uid="uid://b32s01ofafoq" path="res://assets/models/island/trees/tree_detailed.glb" id="9_hhokd"]
-[ext_resource type="PackedScene" uid="uid://desuofmffs4k" path="res://assets/models/island/trees/tree_cone.glb" id="9_kfyrf"]
-[ext_resource type="Script" uid="uid://bfgdp1lda7823" path="res://scripts/UI/UIManager.gd" id="13_ie5fn"]
-[ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="13_kfyrf"]
-[ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="14_mcbik"]
-[ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="15_kkaqo"]
-[ext_resource type="Texture2D" uid="uid://dvscuwteptai5" path="res://assets/icons/electric.png" id="17_ie5fn"]
-[ext_resource type="Texture2D" uid="uid://bee470xhp06bs" path="res://assets/ui/buttons/btn_green.png" id="18_ftpxm"]
-[ext_resource type="Texture2D" uid="uid://bmty2w5mhyn3a" path="res://assets/ui/buttons/btn_red.png" id="19_1fixl"]
-[ext_resource type="Texture2D" uid="uid://u7kajwg37j05" path="res://assets/ui/Heart_Full.png" id="20_8kp3a"]
-[ext_resource type="Script" uid="uid://b1koowj5x24dv" path="res://scripts/logger.gd" id="22_8kp3a"]
-[ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/bci_marker_send.gd" id="22_vfye1"]
+[ext_resource type="Script" uid="uid://b1koowj5x24dv" path="res://scripts/logger.gd" id="1_tyjy4"]
+[ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/bci_marker_send.gd" id="2_hhefr"]
+[ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="3_j8b2v"]
+[ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="4_65u5i"]
+[ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="5_2myk0"]
+[ext_resource type="Texture2D" uid="uid://cl5ksv5pei2if" path="res://assets/models/grass_0.png" id="10_tt56j"]
+[ext_resource type="PackedScene" uid="uid://dupq3keup5cwu" path="res://assets/models/trees/jabami_anime_tree_v3.glb" id="10_wlt2n"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="11_wb0hq"]
+[ext_resource type="Script" uid="uid://d0et0pmme2ckm" path="res://addons/zylann.hterrain/hterrain.gd" id="14_4judb"]
+[ext_resource type="Script" uid="uid://bfgdp1lda7823" path="res://scripts/UI/UIManager.gd" id="15_2c3ra"]
+[ext_resource type="Resource" uid="uid://bps7r04g27jff" path="res://Terrain/data.hterrain" id="15_6uhms"]
+[ext_resource type="Texture2D" uid="uid://cg4vysnltdvc" path="res://assets/icons/fire-zone.png" id="16_ls23f"]
+[ext_resource type="Script" uid="uid://cfdu4i8b2af3x" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="16_wlt2n"]
+[ext_resource type="Texture2D" uid="uid://bgwpswhncfxyv" path="res://assets/icons/water-recycling.png" id="17_g42db"]
+[ext_resource type="Texture2D" uid="uid://bfmp46cq0ajhi" path="res://assets/icons/wind-hole.png" id="18_wdqp3"]
+[ext_resource type="Texture2D" uid="uid://dvscuwteptai5" path="res://assets/icons/electric.png" id="19_3k5jp"]
+[ext_resource type="Texture2D" uid="uid://u7kajwg37j05" path="res://assets/ui/Heart_Full.png" id="20_qbhfy"]
+[ext_resource type="Texture2D" uid="uid://bee470xhp06bs" path="res://assets/ui/buttons/btn_green.png" id="21_dyqtb"]
+[ext_resource type="Texture2D" uid="uid://bmty2w5mhyn3a" path="res://assets/ui/buttons/btn_red.png" id="22_x7rst"]
+[ext_resource type="Script" uid="uid://dmnwj0nec3t70" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="23_8kd3j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tussk"]
-sky_top_color = Color(0, 0.43137255, 0.7019608, 1)
-sky_horizon_color = Color(3.272891e-06, 0.54819995, 0.78095424, 1)
-ground_bottom_color = Color(0, 0.48243308, 0.6836459, 1)
-ground_horizon_color = Color(0.057767943, 0.51375824, 0.67864406, 1)
+sky_top_color = Color(0.2, 0.45, 0.85, 1)
+sky_horizon_color = Color(0.95, 0.65, 0.45, 1)
+ground_bottom_color = Color(0.12, 0.16, 0.15, 1)
+ground_horizon_color = Color(0.7, 0.55, 0.4, 1)
 
 [sub_resource type="Sky" id="Sky_ijrgl"]
 sky_material = SubResource("ProceduralSkyMaterial_tussk")
@@ -35,12 +33,37 @@ sky_material = SubResource("ProceduralSkyMaterial_tussk")
 [sub_resource type="Environment" id="Environment_vfye1"]
 background_mode = 2
 sky = SubResource("Sky_ijrgl")
-ambient_light_source = 2
-ambient_light_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.65, 0.75, 0.85, 1)
+ambient_light_sky_contribution = 0.6
+ambient_light_energy = 0.9
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_exposure = 1.05
+tonemap_white = 1.1
+ssao_enabled = true
+ssao_radius = 1.5
+ssil_enabled = true
+ssil_intensity = 0.8
+glow_enabled = true
+glow_intensity = 0.6
+glow_bloom = 0.15
+fog_enabled = true
 fog_mode = 1
-fog_density = 1.0
+fog_light_color = Color(0.85, 0.7, 0.6, 1)
+fog_light_energy = 0.4
+fog_density = 0.004
+fog_aerial_perspective = 0.5
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
+volumetric_fog_density = 0.008
+volumetric_fog_albedo = Color(0.95, 0.85, 0.75, 1)
+volumetric_fog_emission = Color(0.2, 0.1, 0.05, 1)
+volumetric_fog_emission_energy = 0.2
+volumetric_fog_anisotropy = 0.3
+adjustment_enabled = true
+adjustment_brightness = 1.02
+adjustment_contrast = 1.1
+adjustment_saturation = 1.18
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gok1s"]
 
@@ -53,34 +76,46 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Resource" id="Resource_t84pl"]
+script = ExtResource("16_wlt2n")
+mode = 0
+textures = [[], []]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgflu"]
 bg_color = Color(0.23137255, 0.23137255, 0.23137255, 0.47058824)
 
 [node name="Level_1" type="Node3D" unique_id=1881958309]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302068175]
-transform = Transform3D(0.81915206, -0.3686878, 0.43938506, 0, 0.76604444, 0.6427876, -0.57357645, -0.52654076, 0.62750685, 1.389256, 6.5485835, -4.7011547)
+transform = Transform3D(0.7071067, 0.49999994, -0.49999997, 0, 0.7071067, 0.70710677, 0.7071067, -0.49999994, 0.49999997, 1.389256, 6.5485835, -12.4286)
+light_color = Color(1, 0.95, 0.88, 1)
+light_energy = 1.3
+light_indirect_energy = 1.2
+light_volumetric_fog_energy = 1.2
 shadow_enabled = true
+shadow_bias = 0.03
+shadow_blur = 0.3
+directional_shadow_blend_splits = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=608070035]
 environment = SubResource("Environment_vfye1")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=388915644]
-transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 1.2301786, -8.660372)
+transform = Transform3D(-1, -3.5527137e-15, -8.7422784e-08, -4.3856986e-08, 0.86506176, 0.50166535, 7.5626104e-08, 0.50166535, -0.86506176, 1.069865, 2.3351312, -8.175171)
 current = true
 size = 6.291
 
 [node name="Logger" type="Node3D" parent="." unique_id=736949056 groups=["logger"]]
-script = ExtResource("22_8kp3a")
+script = ExtResource("1_tyjy4")
 
 [node name="BCI_Marker_Send" type="Node" parent="." unique_id=1083337362 groups=["BCI"]]
-script = ExtResource("22_vfye1")
+script = ExtResource("2_hhefr")
 
 [node name="Ilha" type="Node3D" parent="." unique_id=2076354987]
 
-[node name="Tower" parent="Ilha" unique_id=1170968770 groups=["tower"] instance=ExtResource("4_c13s3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99999994, 0, -9)
-script = ExtResource("2_l256h")
+[node name="Tower" parent="Ilha" unique_id=1170968770 groups=["tower"] instance=ExtResource("3_j8b2v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 0, -9)
+script = ExtResource("4_65u5i")
 
 [node name="Range" type="Area3D" parent="Ilha/Tower" unique_id=1680673522]
 collision_layer = 8
@@ -107,372 +142,142 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
 
 [node name="Spawner" type="Node3D" parent="Ilha" unique_id=2094228835 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
-script = ExtResource("1_l256h")
-reverse_mode = true
-random_spawn_count = 2
-
-[node name="Path" parent="Ilha" unique_id=950608434 instance=ExtResource("2_11fdg")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1, 0, -1)
-
-[node name="ground_pathStraight2" parent="Ilha/Path" unique_id=550690290 instance=ExtResource("3_7f3w5")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.1920929e-07, 0, 0.9999999)
-
-[node name="ground_pathStraight2" parent="Ilha/Path/ground_pathStraight2" unique_id=201435281 instance=ExtResource("3_7f3w5")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.9604645e-08, 0, -1.0000001)
-
-[node name="ground_pathStraight2" parent="Ilha/Path/ground_pathStraight2/ground_pathStraight2" unique_id=47700718 instance=ExtResource("3_7f3w5")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.1920929e-07, 0, 1)
-
-[node name="ground_pathStraight2" parent="Ilha/Path/ground_pathStraight2/ground_pathStraight2/ground_pathStraight2" unique_id=417051573 instance=ExtResource("3_7f3w5")]
-transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 1.1920929e-07, 0, -1.0000002)
-
-[node name="ground_pathStraight2" parent="Ilha/Path/ground_pathStraight2/ground_pathStraight2/ground_pathStraight2/ground_pathStraight2" unique_id=11920204 instance=ExtResource("3_7f3w5")]
-transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, -3.5762787e-07, 0, 1)
-
-[node name="ground_pathStraight2" parent="Ilha/Path/ground_pathStraight2/ground_pathStraight2/ground_pathStraight2/ground_pathStraight2/ground_pathStraight2" unique_id=1415103963 instance=ExtResource("3_7f3w5")]
-transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, 0, 8.742276e-08, 0, -1, 3.5762787e-07, 0, -1)
-
-[node name="ground_pathEnd2" parent="Ilha/Path/ground_pathStraight2" unique_id=1330349318 instance=ExtResource("2_11fdg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
-
-[node name="ground_grass3" parent="Ilha/Path" unique_id=1368956621 instance=ExtResource("1_8p7vy")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.1525574e-07, 0, 8)
-
-[node name="LeftSide" parent="Ilha" unique_id=1252373820 instance=ExtResource("1_8p7vy")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 9, 4.4589915, 0, -5)
-
-[node name="RightSide" parent="Ilha" unique_id=348148785 instance=ExtResource("1_8p7vy")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 9, -2.4580235, 0, -5)
-
-[node name="Trees" type="Node3D" parent="Ilha" unique_id=1901310310]
-
-[node name="tree_cone3" parent="Ilha/Trees" unique_id=1656026332 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -8)
-
-[node name="tree_cone2" parent="Ilha/Trees" unique_id=80416879 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-
-[node name="tree_oak4" parent="Ilha/Trees" unique_id=182825724 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
-
-[node name="tree_oak3" parent="Ilha/Trees" unique_id=654946924 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
-
-[node name="tree_oak2" parent="Ilha/Trees" unique_id=779533057 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
-
-[node name="tree_default3" parent="Ilha/Trees" unique_id=680319701 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
-
-[node name="tree_detailed_dark2" parent="Ilha/Trees" unique_id=2004397438 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
-
-[node name="tree_detailed_dark2" parent="Ilha/Trees/tree_detailed_dark2" unique_id=1932002420 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9780655, 0, 1.0246122)
-
-[node name="tree_detailed_dark3" parent="Ilha/Trees/tree_detailed_dark2" unique_id=1437253045 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059885144, 2.3841858e-07, 1.3879042)
-
-[node name="tree_detailed_dark3" parent="Ilha/Trees" unique_id=521293296 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4.313798)
-
-[node name="tree_detailed_dark4" parent="Ilha/Trees" unique_id=1200993027 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
-
-[node name="tree_default2" parent="Ilha/Trees" unique_id=461880743 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-
-[node name="tree_fat2" parent="Ilha/Trees" unique_id=1997806616 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-
-[node name="tree_detailed3" parent="Ilha/Trees" unique_id=338582778 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
-
-[node name="tree_cone5" parent="Ilha/Trees" unique_id=300034950 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.593227)
-
-[node name="tree_oak6" parent="Ilha/Trees" unique_id=910308877 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.593227)
-
-[node name="tree_detailed_dark5" parent="Ilha/Trees" unique_id=1428038035 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5.593227)
-
-[node name="tree_detailed5" parent="Ilha/Trees" unique_id=1908766028 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6.593227)
-
-[node name="tree_cone7" parent="Ilha/Trees" unique_id=1388831870 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-
-[node name="tree_detailed_dark6" parent="Ilha/Trees" unique_id=201404967 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4.313798)
-
-[node name="tree_detailed_dark7" parent="Ilha/Trees" unique_id=1791281819 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5.593227)
-
-[node name="tree_detailed7" parent="Ilha/Trees" unique_id=1403827843 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6.593227)
-
-[node name="tree_detailed2" parent="Ilha/Trees" unique_id=131327728 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -7)
-
-[node name="tree_cone4" parent="Ilha/Trees" unique_id=1410154379 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0459921, 0, -7.0637383)
-
-[node name="tree_oak5" parent="Ilha/Trees" unique_id=1615043922 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1489153, 0, -4.0637383)
-
-[node name="tree_detailed4" parent="Ilha/Trees" unique_id=1892001505 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9259157, 0, -6.0637383)
-
-[node name="tree_oak7" parent="Ilha/Trees" unique_id=1270956216 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5999331, 0, -2.2503743)
-
-[node name="tree_cone6" parent="Ilha/Trees" unique_id=155691689 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.553941, 0, -4.3141127)
-
-[node name="tree_cone9" parent="Ilha/Trees" unique_id=883528373 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7176843, 0, -1.0226696)
-
-[node name="tree_detailed10" parent="Ilha/Trees" unique_id=5163363 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7176843, 0, -2.0226696)
-
-[node name="tree_cone10" parent="Ilha/Trees" unique_id=1165573186 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7176843, 0, -2.6158965)
-
-[node name="tree_detailed11" parent="Ilha/Trees" unique_id=2012066350 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7176843, 0, -3.6158965)
-
-[node name="tree_detailed_dark14" parent="Ilha/Trees" unique_id=532621785 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13941, 0, -3.2547958)
-
-[node name="tree_detailed28" parent="Ilha/Trees" unique_id=1083555240 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8570943, 0, -2.8706923)
-
-[node name="tree_cone11" parent="Ilha/Trees" unique_id=503828885 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.163743, 0, -1.3367822)
-
-[node name="tree_detailed6" parent="Ilha/Trees" unique_id=178531958 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6740174, 0, -3.3141127)
-
-[node name="tree_detailed_dark16" parent="Ilha/Trees" unique_id=614613109 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.272531, 0, 0.56864643)
-
-[node name="tree_detailed_dark17" parent="Ilha/Trees" unique_id=1349788830 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.272531, 0, -0.7107825)
-
-[node name="tree_oak19" parent="Ilha/Trees" unique_id=1813304922 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8724642, 0, 2.63207)
-
-[node name="tree_detailed30" parent="Ilha/Trees" unique_id=864505740 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9465485, 0, 1.5683317)
-
-[node name="tree_oak8" parent="Ilha/Trees" unique_id=2091271284 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6897101, 0, -1.3620242)
-
-[node name="tree_default8" parent="Ilha/Trees" unique_id=2086652141 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.145086, 0, -3.1083093)
-
-[node name="tree_detailed_dark18" parent="Ilha/Trees" unique_id=549369988 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1450856, 0, -5.422107)
-
-[node name="tree_detailed31" parent="Ilha/Trees" unique_id=507097638 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.819103, 0, -4.422422)
-
-[node name="tree_oak20" parent="Ilha/Trees" unique_id=1796833841 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8347955, 0, -2.4703336)
-
-[node name="tree_oak9" parent="Ilha/Trees" unique_id=1796534047 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68971014, 0, -0.3620242)
-
-[node name="tree_default4" parent="Ilha/Trees" unique_id=284585300 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2086835, 0, 3.4919796)
-
-[node name="tree_detailed_dark9" parent="Ilha/Trees" unique_id=2060474662 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6897101, 0, 2.3241777)
-
-[node name="tree_default5" parent="Ilha/Trees" unique_id=312006438 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09284139, 0, 3.3466206)
-
-[node name="tree_fat4" parent="Ilha/Trees" unique_id=1790956440 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68971014, 0, 3.6379757)
-
-[node name="tree_detailed12" parent="Ilha/Trees" unique_id=843889629 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6897101, 0, 1.6379758)
-
-[node name="tree_cone12" parent="Ilha/Trees" unique_id=454457402 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68971014, 0, 1.0447489)
-
-[node name="tree_oak15" parent="Ilha/Trees" unique_id=1443170612 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19155952, 0, 0.39337325)
-
-[node name="tree_cone15" parent="Ilha/Trees" unique_id=388845434 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2798053, 0, 0.83660823)
-
-[node name="tree_oak10" parent="Ilha/Trees" unique_id=260591840 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68971014, 0, -1.9552516)
-
-[node name="tree_default6" parent="Ilha/Trees" unique_id=1960517675 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9258631, 0, -0.056267202)
-
-[node name="tree_oak16" parent="Ilha/Trees" unique_id=1652168063 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.370784, 0, -1.0115187)
-
-[node name="tree_detailed_dark10" parent="Ilha/Trees" unique_id=152559545 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6897101, 0, 0.6458782)
-
-[node name="tree_detailed13" parent="Ilha/Trees" unique_id=1257657526 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6897101, 0, 0.044748902)
-
-[node name="tree_default7" parent="Ilha/Trees" unique_id=1945328686 instance=ExtResource("5_inr4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.32112, 0, -8.740896)
-
-[node name="tree_oak17" parent="Ilha/Trees" unique_id=1285591092 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0108304, 0, -8.102921)
-
-[node name="tree_oak18" parent="Ilha/Trees" unique_id=1259344677 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.691904, 0, -7.7524157)
-
-[node name="tree_detailed_dark15" parent="Ilha/Trees" unique_id=1615961343 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0108304, 0, -6.0950184)
-
-[node name="tree_detailed29" parent="Ilha/Trees" unique_id=1960267954 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0108302, 0, -6.696148)
-
-[node name="tree_cone13" parent="Ilha/Trees" unique_id=1855404405 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68971014, 0, 2.6379757)
-
-[node name="tree_oak11" parent="Ilha/Trees" unique_id=1239650316 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14579272, 0, 1.8271301)
-
-[node name="tree_cone14" parent="Ilha/Trees" unique_id=1077424251 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2436512, 0, 2.323863)
-
-[node name="tree_detailed14" parent="Ilha/Trees" unique_id=941558627 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3637276, 0, 3.323863)
-
-[node name="tree_fat3" parent="Ilha/Trees" unique_id=534572085 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.047294, 0, -4.5076327)
-
-[node name="tree_detailed8" parent="Ilha/Trees" unique_id=1299491099 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.047294, 0, -6.5076327)
-
-[node name="tree_detailed_dark8" parent="Ilha/Trees" unique_id=502818907 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0472941, 0, -5.8214307)
-
-[node name="tree_cone8" parent="Ilha/Trees" unique_id=143367837 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.493353, 0, -5.8217454)
-
-[node name="tree_cone22" parent="Ilha/Trees" unique_id=531773457 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.457156, 0, -8.63822)
-
-[node name="tree_fat7" parent="Ilha/Trees" unique_id=428778219 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.458458, 0, -6.082114)
-
-[node name="tree_detailed24" parent="Ilha/Trees" unique_id=1836050093 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.458458, 0, -8.082114)
-
-[node name="tree_cone23" parent="Ilha/Trees" unique_id=1785199391 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9045167, 0, -7.396227)
-
-[node name="tree_oak12" parent="Ilha/Trees" unique_id=1144756755 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.021956, -4.7683716e-07, 2.5832107)
-
-[node name="tree_detailed_dark11" parent="Ilha/Trees" unique_id=201230161 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.021956, -4.7683716e-07, 3.5832107)
-
-[node name="tree_detailed15" parent="Ilha/Trees" unique_id=206234239 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.021956, -4.7683716e-07, 0.58321077)
-
-[node name="tree_cone16" parent="Ilha/Trees" unique_id=2028625845 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.067948, -4.7683716e-07, 0.5194724)
-
-[node name="tree_cone18" parent="Ilha/Trees" unique_id=296450664 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6753454, -2.3841858e-07, -0.27565598)
-
-[node name="tree_oak13" parent="Ilha/Trees" unique_id=166902657 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1708713, -4.7683716e-07, 3.5194724)
-
-[node name="tree_detailed16" parent="Ilha/Trees" unique_id=1253376203 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9478717, -4.7683716e-07, 1.5194724)
-
-[node name="tree_oak14" parent="Ilha/Trees" unique_id=1324194437 instance=ExtResource("8_l256h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7687285, -4.7683716e-07, 2.5832107)
-
-[node name="tree_detailed19" parent="Ilha/Trees" unique_id=919439941 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6946442, -4.7683716e-07, 1.5194724)
-
-[node name="tree_detailed17" parent="Ilha/Trees" unique_id=1117754689 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7396402, -4.7683716e-07, 3.9673145)
-
-[node name="tree_fat5" parent="Ilha/Trees" unique_id=650730198 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06925, -4.7683716e-07, 3.075578)
-
-[node name="tree_detailed18" parent="Ilha/Trees" unique_id=1155429425 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.06925, -4.7683716e-07, 1.075578)
-
-[node name="tree_detailed_dark12" parent="Ilha/Trees" unique_id=1098193716 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.06925, -4.7683716e-07, 1.76178)
-
-[node name="tree_cone17" parent="Ilha/Trees" unique_id=2080122655 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.515309, -4.7683716e-07, 1.7614653)
-
-[node name="tree_detailed9" parent="Ilha/Trees" unique_id=945022077 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3732767, 0, -4.8217454)
-
-[node name="tree_cone24" parent="Ilha/Trees" unique_id=39319624 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.126366, 0, -5.5789824)
-
-[node name="tree_detailed25" parent="Ilha/Trees" unique_id=715745262 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.798058, 0, -2.131141)
-
-[node name="tree_fat8" parent="Ilha/Trees" unique_id=370693819 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.127668, 0, -3.022877)
-
-[node name="tree_detailed26" parent="Ilha/Trees" unique_id=1837975477 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.127668, 0, -5.0228767)
-
-[node name="tree_cone25" parent="Ilha/Trees" unique_id=1565473274 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5737267, 0, -4.3369894)
-
-[node name="tree_detailed27" parent="Ilha/Trees" unique_id=1098164465 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4536505, 0, -3.3369896)
-
-[node name="tree_cone19" parent="Ilha/Trees" unique_id=1630989598 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.753377, 0, -1.2173152)
-
-[node name="tree_detailed20" parent="Ilha/Trees" unique_id=508613304 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.753377, 0, -0.2173152)
-
-[node name="tree_cone20" parent="Ilha/Trees" unique_id=1039672176 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7993693, 0, -0.28105354)
-
-[node name="tree_detailed21" parent="Ilha/Trees" unique_id=1481245509 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6792927, 0, 0.71894646)
-
-[node name="tree_fat6" parent="Ilha/Trees" unique_id=804678217 instance=ExtResource("7_t2hj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.800671, 0, 2.275052)
-
-[node name="tree_detailed22" parent="Ilha/Trees" unique_id=1389594604 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.800671, 0, 0.27505207)
-
-[node name="tree_detailed_dark13" parent="Ilha/Trees" unique_id=2132316971 instance=ExtResource("6_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.800671, 0, 0.9612541)
-
-[node name="tree_cone21" parent="Ilha/Trees" unique_id=2059003132 instance=ExtResource("9_kfyrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.24673, 0, 0.9609394)
-
-[node name="tree_detailed23" parent="Ilha/Trees" unique_id=1294120048 instance=ExtResource("9_hhokd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1266537, 0, 1.9609394)
+waves = 5
+spawn_sequence = Array[int]([0])
+script = ExtResource("5_2myk0")
 
 [node name="EnemyPath" type="Path3D" parent="Ilha" unique_id=1560135437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 curve = SubResource("Curve3D_t2hj8")
 
-[node name="ground_grass2" parent="Ilha" unique_id=1773699949 instance=ExtResource("1_8p7vy")]
-transform = Transform3D(13, 0, 0, 0, 1, 0, 0, 0, 5, 1, 0, 1.9493818)
+[node name="HTerrain" type="Node3D" parent="Ilha" unique_id=2050112967]
+script = ExtResource("14_4judb")
+centered = true
+_terrain_data = ExtResource("15_6uhms")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+physics_material = null
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_t84pl")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 0, 0, 0)
+shader_params/u_specular = 0.5
+metadata/_custom_type_script = "uid://d0et0pmme2ckm"
+
+[node name="HTerrainDetailLayer" type="Node3D" parent="Ilha/HTerrain" unique_id=1022214185]
+script = ExtResource("23_8kd3j")
+texture = ExtResource("10_tt56j")
+view_distance = 150.0
+shader_params/u_globalmap_tint_bottom = 0.0
+shader_params/u_globalmap_tint_top = 0.0
+shader_params/u_bottom_ao = 0.0
+shader_params/u_instance_scale = Vector3(1, 1, 1)
+shader_params/u_roughness = 0.9
+metadata/_editor_icon = ExtResource("11_wb0hq")
+
+[node name="Trees" type="Node3D" parent="Ilha" unique_id=203368520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4024744)
+
+[node name="Sketchfab_Scene2" parent="Ilha/Trees" unique_id=1764085687 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.584183, -0.06163, -5.601116)
+
+[node name="Sketchfab_Scene3" parent="Ilha/Trees" unique_id=43940223 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 2.731651, -0.06163, -3.424277)
+
+[node name="Sketchfab_Scene4" parent="Ilha/Trees" unique_id=870042216 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -4.545205, -0.06163, -6.322373)
+
+[node name="Sketchfab_Scene5" parent="Ilha/Trees" unique_id=483524954 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.000411, -0.06163, -1.928071)
+
+[node name="Sketchfab_Scene9" parent="Ilha/Trees" unique_id=1614146979 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.990009, -0.06163, -6.921966)
+
+[node name="Sketchfab_Scene10" parent="Ilha/Trees" unique_id=1274854780 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.325662, -0.06163, -8.506596)
+
+[node name="Sketchfab_Scene24" parent="Ilha/Trees" unique_id=1048128400 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.630672, -0.06163, -6.928041)
+
+[node name="Sketchfab_Scene25" parent="Ilha/Trees" unique_id=10229451 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.966325, -0.06163, -8.512671)
+
+[node name="Sketchfab_Scene11" parent="Ilha/Trees" unique_id=486895383 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.277834, -0.06163, -3.625945)
+
+[node name="Sketchfab_Scene26" parent="Ilha/Trees" unique_id=2076752049 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -3.923162, -0.06163, -4.408177)
+
+[node name="Sketchfab_Scene22" parent="Ilha/Trees" unique_id=808743286 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.616437, -0.06163, -3.373393)
+
+[node name="Sketchfab_Scene23" parent="Ilha/Trees" unique_id=1752297623 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.89386, -0.06163, -5.071266)
+
+[node name="Sketchfab_Scene12" parent="Ilha/Trees" unique_id=1249811462 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.439784, -0.06163, -0.587012)
+
+[node name="Sketchfab_Scene13" parent="Ilha/Trees" unique_id=1353845171 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.999064, -0.06163, -0.425453)
+
+[node name="Sketchfab_Scene27" parent="Ilha/Trees" unique_id=445039547 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -5.077736, -0.06163, -2.736674)
+
+[node name="Sketchfab_Scene28" parent="Ilha/Trees" unique_id=1023545049 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -4.076389, -0.06163, -1.234055)
+
+[node name="Sketchfab_Scene6" parent="Ilha/Trees" unique_id=1775540230 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 4.320976, -0.06163, -1.544171)
+
+[node name="Sketchfab_Scene7" parent="Ilha/Trees" unique_id=1380869714 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 4.616494, -0.06163, -4.526383)
+
+[node name="Sketchfab_Scene14" parent="Ilha/Trees" unique_id=977165412 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.165425, -0.06163, -6.797072)
+
+[node name="Sketchfab_Scene15" parent="Ilha/Trees" unique_id=209595798 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 5.050268, -0.06163, -7.899177)
+
+[node name="Sketchfab_Scene16" parent="Ilha/Trees" unique_id=1470412420 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 2.731651, -0.06163, -4.945264)
+
+[node name="Sketchfab_Scene17" parent="Ilha/Trees" unique_id=1636534480 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 4.616494, -0.06163, -6.04737)
+
+[node name="Sketchfab_Scene18" parent="Ilha/Trees" unique_id=1198343169 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.165425, -0.06163, -8.318058)
+
+[node name="Sketchfab_Scene19" parent="Ilha/Trees" unique_id=28542429 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 5.050268, -0.06163, -9.420164)
+
+[node name="Sketchfab_Scene8" parent="Ilha/Trees" unique_id=1841677897 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.140927, -0.06163, -1.260738)
+
+[node name="Sketchfab_Scene20" parent="Ilha/Trees" unique_id=592669215 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.522964, -0.06163, -0.978487)
+
+[node name="Sketchfab_Scene21" parent="Ilha/Trees" unique_id=226630244 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 1.942252, -0.06163, -1.652212)
+
+[node name="Sketchfab_Scene29" parent="Ilha/Trees" unique_id=1978121980 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 2.802839, -0.06163, 0.630053)
+
+[node name="Sketchfab_Scene30" parent="Ilha/Trees" unique_id=1634451920 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.636009, -0.06163, 0.791613)
+
+[node name="Sketchfab_Scene31" parent="Ilha/Trees" unique_id=2019963555 instance=ExtResource("10_wlt2n")]
+transform = Transform3D(0.7998561, -0.015174538, 0, 0.015174538, 0.7998561, 0, 0, 0, 0.8, 0.626871, -0.06163, 1.010304)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1803210829 groups=["UIManager"]]
-script = ExtResource("13_ie5fn")
+script = ExtResource("15_2c3ra")
 
 [node name="UI" type="MarginContainer" parent="CanvasLayer" unique_id=96816421]
 anchors_preset = 15
@@ -514,7 +319,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("13_kfyrf")
+icon = ExtResource("16_ls23f")
 icon_alignment = 1
 expand_icon = true
 
@@ -523,7 +328,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("14_mcbik")
+icon = ExtResource("17_g42db")
 icon_alignment = 1
 expand_icon = true
 
@@ -532,7 +337,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("15_kkaqo")
+icon = ExtResource("18_wdqp3")
 icon_alignment = 1
 expand_icon = true
 
@@ -541,7 +346,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-icon = ExtResource("17_ie5fn")
+icon = ExtResource("19_3k5jp")
 icon_alignment = 1
 expand_icon = true
 
@@ -578,35 +383,35 @@ size_flags_vertical = 0
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 8
-texture = ExtResource("20_8kp3a")
+texture = ExtResource("20_qbhfy")
 expand_mode = 1
 
 [node name="Hearth2" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=360048493]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 8
-texture = ExtResource("20_8kp3a")
+texture = ExtResource("20_qbhfy")
 expand_mode = 1
 
 [node name="Hearth3" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=2127834409]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 8
-texture = ExtResource("20_8kp3a")
+texture = ExtResource("20_qbhfy")
 expand_mode = 1
 
 [node name="Hearth4" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=632552375]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 8
-texture = ExtResource("20_8kp3a")
+texture = ExtResource("20_qbhfy")
 expand_mode = 1
 
 [node name="Hearth5" type="TextureRect" parent="CanvasLayer/UI/HealthBarContainer" unique_id=1868935250]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 8
-texture = ExtResource("20_8kp3a")
+texture = ExtResource("20_qbhfy")
 expand_mode = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1218826499]
@@ -636,7 +441,7 @@ alignment = 1
 
 [node name="btn_resume" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1626555023]
 layout_mode = 2
-icon = ExtResource("18_ftpxm")
+icon = ExtResource("21_dyqtb")
 flat = true
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer/btn_resume" unique_id=767653963]
@@ -657,7 +462,7 @@ text = "Resume"
 
 [node name="btn_quit" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1632923118]
 layout_mode = 2
-icon = ExtResource("19_1fixl")
+icon = ExtResource("22_x7rst")
 flat = true
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer/btn_quit" unique_id=349496447]
