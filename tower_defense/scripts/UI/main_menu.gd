@@ -13,14 +13,49 @@ var audio_player: AudioStreamPlayer
 
 @onready var menu = $Menu
 @onready var level_selector = $LevelSelector
+@onready var page_recall = $LevelSelector/CarouselContainer/PageRecall
+@onready var page_inverse = $LevelSelector/CarouselContainer/PageInverse
+@onready var btn_tab_recall = $LevelSelector/PageNavHBox/btn_tab_recall
+@onready var btn_tab_inverse = $LevelSelector/PageNavHBox/btn_tab_inverse
+
+var current_page = 0 # 0 = Recall, 1 = Inverse
 
 func _ready() -> void:
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
+	_update_carousel_page(0)
+
+func _update_carousel_page(page_idx: int) -> void:
+	current_page = page_idx
+	if current_page == 0:
+		if page_recall:
+			page_recall.visible = true
+		if page_inverse:
+			page_inverse.visible = false
+		if btn_tab_recall:
+			btn_tab_recall.disabled = true
+		if btn_tab_inverse:
+			btn_tab_inverse.disabled = false
+	else:
+		if page_recall:
+			page_recall.visible = false
+		if page_inverse:
+			page_inverse.visible = true
+		if btn_tab_recall:
+			btn_tab_recall.disabled = false
+		if btn_tab_inverse:
+			btn_tab_inverse.disabled = true
+
+func _on_btn_tab_recall_pressed() -> void:
+	_update_carousel_page(0)
+
+func _on_btn_tab_inverse_pressed() -> void:
+	_update_carousel_page(1)
 
 func _on_play_pressed() -> void:
 	level_selector.visible = true
 	menu.visible = false
+	_update_carousel_page(0)
 
 func _on_play_auto_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/cena_auto.tscn")
@@ -71,6 +106,7 @@ func _on_btn_level_reverse_four_elements_pressed() -> void:
 
 func _on_btn_level_reverse_random_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_random.tscn")
+
 #funções de mundança de nível
 #elemento único
 func _on_btn_level_fire_pressed() -> void:

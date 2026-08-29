@@ -172,222 +172,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="LevelSelector" unique_id=347704820]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -237.0
-offset_top = 15.0
-offset_right = 237.0
-offset_bottom = 45.0
-grow_horizontal = 2
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 24
-text = "Selecione um nível"
-horizontal_alignment = 1
-
-[node name="MainVBox" type="VBoxContainer" parent="LevelSelector" unique_id=471538110]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -480.0
-offset_top = -260.0
-offset_right = 480.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="lbl_1_element" type="Label" parent="LevelSelector/MainVBox" unique_id=656973500]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 18
-text = "Níveis com 1 elemento"
-horizontal_alignment = 1
-
-[node name="HBox_1_Element" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799393]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="btn_level_fire" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=1488397930]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Fire"
-
-[node name="btn_level_water" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=2107927443]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Water"
-
-[node name="btn_level_wind" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=84353908]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Wind"
-
-[node name="btn_level_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_1_Element" unique_id=1898831301]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Electricity"
-
-[node name="lbl_2_elements" type="Label" parent="LevelSelector/MainVBox" unique_id=656973501]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 18
-text = "Níveis com 2 elementos"
-horizontal_alignment = 1
-
-[node name="HBox_2_Elements_A" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799394]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="btn_level_fire_water" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_A" unique_id=1488397931]
-custom_minimum_size = Vector2(220, 38)
-layout_mode = 2
-text = "Level Fire - Water"
-
-[node name="btn_level_fire_wind" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_A" unique_id=1488397932]
-custom_minimum_size = Vector2(220, 38)
-layout_mode = 2
-text = "Level Fire - Wind"
-
-[node name="btn_level_fire_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_A" unique_id=1488397933]
-custom_minimum_size = Vector2(220, 38)
-layout_mode = 2
-text = "Level Fire - Electricity"
-
-[node name="HBox_2_Elements_B" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799395]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="btn_level_water_wind" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_B" unique_id=1488397934]
-custom_minimum_size = Vector2(220, 38)
-layout_mode = 2
-text = "Level Water - Wind"
-
-[node name="btn_level_water_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_B" unique_id=1488397935]
-custom_minimum_size = Vector2(220, 38)
-layout_mode = 2
-text = "Level Water - Electricity"
-
-[node name="btn_level_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_2_Elements_B" unique_id=1488397936]
-custom_minimum_size = Vector2(220, 38)
-layout_mode = 2
-text = "Level Wind - Electricity"
-
-[node name="lbl_3_elements" type="Label" parent="LevelSelector/MainVBox" unique_id=656973502]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 18
-text = "Níveis com 3 elementos"
-horizontal_alignment = 1
-
-[node name="HBox_3_Elements_A" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799396]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="btn_level_fire_water_wind" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_A" unique_id=1488397937]
-custom_minimum_size = Vector2(240, 38)
-layout_mode = 2
-text = "Level Fire - Water - Wind"
-
-[node name="btn_level_fire_water_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_A" unique_id=1488397938]
-custom_minimum_size = Vector2(240, 38)
-layout_mode = 2
-text = "Level Fire - Water - Electricity"
-
-[node name="HBox_3_Elements_B" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799397]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="btn_level_fire_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_B" unique_id=1488397939]
-custom_minimum_size = Vector2(240, 38)
-layout_mode = 2
-text = "Level Fire - Wind - Electricity"
-
-[node name="btn_level_water_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_3_Elements_B" unique_id=1488397940]
-custom_minimum_size = Vector2(240, 38)
-layout_mode = 2
-text = "Level Water - Wind - Electricity"
-
-[node name="lbl_4_elements" type="Label" parent="LevelSelector/MainVBox" unique_id=656973503]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 18
-text = "Nível com 4 elementos"
-horizontal_alignment = 1
-
-[node name="HBox_4_Elements" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799398]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="btn_level_fire_water_wind_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_4_Elements" unique_id=1488397941]
-custom_minimum_size = Vector2(280, 38)
-layout_mode = 2
-text = "Level Fire - Water - Wind - Electricity"
-
-[node name="btn_level_random" type="Button" parent="LevelSelector/MainVBox/HBox_4_Elements" unique_id=1488397948]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Random"
-
-[node name="lbl_reverse" type="Label" parent="LevelSelector/MainVBox" unique_id=656973504]
-layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 18
-text = "Modo da imaginação"
-horizontal_alignment = 1
-
-[node name="HBox_Reverse" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799399]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="btn_level_reverse_fire" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397943]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Fire"
-
-[node name="btn_level_reverse_water" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397944]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Water"
-
-[node name="btn_level_reverse_wind" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397945]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Wind"
-
-[node name="btn_level_reverse_electricity" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse" unique_id=1488397946]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Electricity"
-
-[node name="HBox_Reverse_All" type="HBoxContainer" parent="LevelSelector/MainVBox" unique_id=1128799400]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="btn_level_reverse_four_elements" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse_All" unique_id=1488397947]
-custom_minimum_size = Vector2(280, 38)
-layout_mode = 2
-text = "Level All Elements"
-
-[node name="btn_level_reverse_random" type="Button" parent="LevelSelector/MainVBox/HBox_Reverse_All" unique_id=1488397949]
-custom_minimum_size = Vector2(180, 38)
-layout_mode = 2
-text = "Level Random"
-
 [node name="btn_back" type="Button" parent="LevelSelector" unique_id=999999996]
 layout_mode = 0
 offset_left = 20.0
@@ -396,6 +180,280 @@ offset_right = 110.0
 offset_bottom = 50.0
 text = "Voltar"
 
+[node name="TitleLabel" type="Label" parent="LevelSelector" unique_id=347704820]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.0
+offset_top = 12.0
+offset_right = 237.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 24
+text = "Selecione um nível"
+horizontal_alignment = 1
+
+[node name="PageNavHBox" type="HBoxContainer" parent="LevelSelector" unique_id=123984711]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 50.0
+offset_right = 260.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="btn_tab_recall" type="Button" parent="LevelSelector/PageNavHBox" unique_id=123984713]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Modo Recall"
+
+[node name="btn_tab_inverse" type="Button" parent="LevelSelector/PageNavHBox" unique_id=123984714]
+custom_minimum_size = Vector2(220, 38)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Modo Imagine"
+
+[node name="CarouselContainer" type="Control" parent="LevelSelector" unique_id=123984716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PageRecall" type="VBoxContainer" parent="LevelSelector/CarouselContainer" unique_id=471538110]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -245.0
+offset_right = 480.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="lbl_1_element" type="Label" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=656973500]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 17
+text = "Níveis com 1 elemento"
+horizontal_alignment = 1
+
+[node name="HBox_1_Element" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=1128799393]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_fire" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element" unique_id=1488397930]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+text = "Level Fire"
+
+[node name="btn_level_water" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element" unique_id=2107927443]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+text = "Level Water"
+
+[node name="btn_level_wind" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element" unique_id=84353908]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+text = "Level Wind"
+
+[node name="btn_level_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element" unique_id=1898831301]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+text = "Level Electricity"
+
+[node name="lbl_2_elements" type="Label" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=656973501]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 17
+text = "Níveis com 2 elementos"
+horizontal_alignment = 1
+
+[node name="HBox_2_Elements_A" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=1128799394]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_fire_water" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_A" unique_id=1488397931]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+text = "Level Fire - Water"
+
+[node name="btn_level_fire_wind" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_A" unique_id=1488397932]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+text = "Level Fire - Wind"
+
+[node name="btn_level_fire_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_A" unique_id=1488397933]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+text = "Level Fire - Electricity"
+
+[node name="HBox_2_Elements_B" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=1128799395]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_water_wind" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_B" unique_id=1488397934]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+text = "Level Water - Wind"
+
+[node name="btn_level_water_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_B" unique_id=1488397935]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+text = "Level Water - Electricity"
+
+[node name="btn_level_wind_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_B" unique_id=1488397936]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+text = "Level Wind - Electricity"
+
+[node name="lbl_3_elements" type="Label" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=656973502]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 17
+text = "Níveis com 3 elementos"
+horizontal_alignment = 1
+
+[node name="HBox_3_Elements_A" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=1128799396]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="btn_level_fire_water_wind" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_A" unique_id=1488397937]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Level Fire - Water - Wind"
+
+[node name="btn_level_fire_water_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_A" unique_id=1488397938]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Level Fire - Water - Electricity"
+
+[node name="HBox_3_Elements_B" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=1128799397]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="btn_level_fire_wind_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_B" unique_id=1488397939]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Level Fire - Wind - Electricity"
+
+[node name="btn_level_water_wind_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_B" unique_id=1488397940]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+text = "Level Water - Wind - Electricity"
+
+[node name="lbl_4_elements" type="Label" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=656973503]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 17
+text = "Nível com 4 elementos e Aleatório"
+horizontal_alignment = 1
+
+[node name="HBox_4_Elements" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageRecall" unique_id=1128799398]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_fire_water_wind_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_4_Elements" unique_id=1488397941]
+custom_minimum_size = Vector2(280, 36)
+layout_mode = 2
+text = "Level Fire - Water - Wind - Electricity"
+
+[node name="btn_level_random" type="Button" parent="LevelSelector/CarouselContainer/PageRecall/HBox_4_Elements" unique_id=1488397948]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+text = "Level Random"
+
+[node name="PageInverse" type="VBoxContainer" parent="LevelSelector/CarouselContainer" unique_id=1128799401]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -180.0
+offset_right = 480.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="lbl_reverse_1" type="Label" parent="LevelSelector/CarouselContainer/PageInverse" unique_id=656973504]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 20
+text = "Modo da Imaginação  - 1 Elemento"
+horizontal_alignment = 1
+
+[node name="HBox_Reverse" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageInverse" unique_id=1128799399]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_reverse_fire" type="Button" parent="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse" unique_id=1488397943]
+custom_minimum_size = Vector2(180, 42)
+layout_mode = 2
+text = "Level Fire"
+
+[node name="btn_level_reverse_water" type="Button" parent="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse" unique_id=1488397944]
+custom_minimum_size = Vector2(180, 42)
+layout_mode = 2
+text = "Level Water"
+
+[node name="btn_level_reverse_wind" type="Button" parent="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse" unique_id=1488397945]
+custom_minimum_size = Vector2(180, 42)
+layout_mode = 2
+text = "Level Wind "
+
+[node name="btn_level_reverse_electricity" type="Button" parent="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse" unique_id=1488397946]
+custom_minimum_size = Vector2(180, 42)
+layout_mode = 2
+text = "Level Electricity "
+
+[node name="lbl_reverse_all" type="Label" parent="LevelSelector/CarouselContainer/PageInverse" unique_id=656973505]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 20
+text = "Modo da Imaginação - Múltiplos Elementos"
+horizontal_alignment = 1
+
+[node name="HBox_Reverse_All" type="HBoxContainer" parent="LevelSelector/CarouselContainer/PageInverse" unique_id=1128799400]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="btn_level_reverse_four_elements" type="Button" parent="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All" unique_id=1488397947]
+custom_minimum_size = Vector2(280, 42)
+layout_mode = 2
+text = "Level Fire-Water-Wind-Electricity"
+
+[node name="btn_level_reverse_random" type="Button" parent="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All" unique_id=1488397949]
+custom_minimum_size = Vector2(180, 42)
+layout_mode = 2
+text = "Level Random "
+
 [connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Play_oz" to="." method="_on_play_oz_pressed"]
@@ -403,26 +461,28 @@ text = "Voltar"
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWater" to="." method="_on_btn_music_water_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWind" to="." method="_on_btn_music_wind_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicElectricity" to="." method="_on_btn_music_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_1_Element/btn_level_fire" to="." method="_on_btn_level_fire_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_1_Element/btn_level_water" to="." method="_on_btn_level_water_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_1_Element/btn_level_wind" to="." method="_on_btn_level_wind_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_1_Element/btn_level_electricity" to="." method="_on_btn_level_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_2_Elements_A/btn_level_fire_water" to="." method="_on_btn_level_fire_water_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_2_Elements_A/btn_level_fire_wind" to="." method="_on_btn_level_fire_wind_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_2_Elements_A/btn_level_fire_electricity" to="." method="_on_btn_level_fire_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_2_Elements_B/btn_level_water_wind" to="." method="_on_btn_level_water_wind_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_2_Elements_B/btn_level_water_electricity" to="." method="_on_btn_level_water_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_2_Elements_B/btn_level_wind_electricity" to="." method="_on_btn_level_wind_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_3_Elements_A/btn_level_fire_water_wind" to="." method="_on_btn_level_fire_water_wind_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_3_Elements_A/btn_level_fire_water_electricity" to="." method="_on_btn_level_fire_water_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_3_Elements_B/btn_level_fire_wind_electricity" to="." method="_on_btn_level_fire_wind_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_3_Elements_B/btn_level_water_wind_electricity" to="." method="_on_btn_level_water_wind_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_4_Elements/btn_level_fire_water_wind_electricity" to="." method="_on_btn_level_fire_water_wind_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_fire" to="." method="_on_btn_level_reverse_fire_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_water" to="." method="_on_btn_level_reverse_water_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_wind" to="." method="_on_btn_level_reverse_wind_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse/btn_level_reverse_electricity" to="." method="_on_btn_level_reverse_electricity_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_4_Elements/btn_level_random" to="." method="_on_btn_level_random_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse_All/btn_level_reverse_four_elements" to="." method="_on_btn_level_reverse_four_elements_pressed"]
-[connection signal="pressed" from="LevelSelector/MainVBox/HBox_Reverse_All/btn_level_reverse_random" to="." method="_on_btn_level_reverse_random_pressed"]
 [connection signal="pressed" from="LevelSelector/btn_back" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="LevelSelector/PageNavHBox/btn_tab_recall" to="." method="_on_btn_tab_recall_pressed"]
+[connection signal="pressed" from="LevelSelector/PageNavHBox/btn_tab_inverse" to="." method="_on_btn_tab_inverse_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element/btn_level_fire" to="." method="_on_btn_level_fire_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element/btn_level_water" to="." method="_on_btn_level_water_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element/btn_level_wind" to="." method="_on_btn_level_wind_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_1_Element/btn_level_electricity" to="." method="_on_btn_level_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_A/btn_level_fire_water" to="." method="_on_btn_level_fire_water_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_A/btn_level_fire_wind" to="." method="_on_btn_level_fire_wind_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_A/btn_level_fire_electricity" to="." method="_on_btn_level_fire_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_B/btn_level_water_wind" to="." method="_on_btn_level_water_wind_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_B/btn_level_water_electricity" to="." method="_on_btn_level_water_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_2_Elements_B/btn_level_wind_electricity" to="." method="_on_btn_level_wind_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_A/btn_level_fire_water_wind" to="." method="_on_btn_level_fire_water_wind_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_A/btn_level_fire_water_electricity" to="." method="_on_btn_level_fire_water_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_B/btn_level_fire_wind_electricity" to="." method="_on_btn_level_fire_wind_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_3_Elements_B/btn_level_water_wind_electricity" to="." method="_on_btn_level_water_wind_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_4_Elements/btn_level_fire_water_wind_electricity" to="." method="_on_btn_level_fire_water_wind_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageRecall/HBox_4_Elements/btn_level_random" to="." method="_on_btn_level_random_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse/btn_level_reverse_fire" to="." method="_on_btn_level_reverse_fire_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse/btn_level_reverse_water" to="." method="_on_btn_level_reverse_water_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse/btn_level_reverse_wind" to="." method="_on_btn_level_reverse_wind_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse/btn_level_reverse_electricity" to="." method="_on_btn_level_reverse_electricity_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All/btn_level_reverse_four_elements" to="." method="_on_btn_level_reverse_four_elements_pressed"]
+[connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All/btn_level_reverse_random" to="." method="_on_btn_level_reverse_random_pressed"]
