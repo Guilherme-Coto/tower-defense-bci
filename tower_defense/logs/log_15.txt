@@ -1,4 +1,0 @@
-Log Start (Execution 15)
-[0.001s] Log system started successfully.
-[0.011s] Rest
-[2.918s] Start Listen

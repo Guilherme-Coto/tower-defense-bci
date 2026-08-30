@@ -1,3 +1,0 @@
-Log Start (Execution 21)
-[0.001s] Log system started successfully.
-[0.013s] Rest
