@@ -3,9 +3,24 @@
 [ext_resource type="Script" uid="uid://v8pfodgbcdu1" path="res://scripts/enemys/enemy.gd" id="1_6nto2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ui86w"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bg"]
+shading_mode = 0
+albedo_color = Color(0.1, 0.1, 0.1, 0.8)
+
+[sub_resource type="QuadMesh" id="QuadMesh_bg"]
+size = Vector2(0.84, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fill"]
+shading_mode = 0
+albedo_color = Color(0.2, 0.9, 0.3, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fill"]
+size = Vector2(0.8, 0.08)
 
 [node name="Enemy" type="PathFollow3D" unique_id=1689016585]
-transform = Transform3D(4.5, 0, 0, 0, 4.5, 0, 0, 0, 4.5, 0, 0, 0)
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0, 0)
 loop = false
 script = ExtResource("1_6nto2")
 
@@ -16,7 +31,21 @@ collision_layer = 3
 shape = SubResource("BoxShape3D_ui86w")
 
 [node name="ShootPoint" type="Marker3D" parent="." unique_id=1164889274]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12923624)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0.2)
 
 [node name="TimerAttack" type="Timer" parent="." unique_id=459003528]
 wait_time = 3.0
+
+[node name="Body" type="Node3D" parent="." unique_id=184910293]
+
+[node name="HealthBar" type="Node3D" parent="." unique_id=98371284]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.32, 0)
+
+[node name="BarBg" type="MeshInstance3D" parent="HealthBar" unique_id=8923741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
+material_override = SubResource("StandardMaterial3D_bg")
+mesh = SubResource("QuadMesh_bg")
+
+[node name="BarFill" type="MeshInstance3D" parent="HealthBar" unique_id=8923742]
+material_override = SubResource("StandardMaterial3D_fill")
+mesh = SubResource("QuadMesh_fill")

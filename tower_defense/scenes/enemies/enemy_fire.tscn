@@ -1,16 +1,62 @@
 [gd_scene format=3 uid="uid://ie8wiiocgq5g"]
 
 [ext_resource type="PackedScene" uid="uid://c58heabx8df2b" path="res://scenes/enemies/enemy.tscn" id="1_u20kf"]
+[ext_resource type="Shader" path="res://shaders/elemental_slime.gdshader" id="2_shader"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gok1s"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fire"]
+render_priority = 0
+shader = ExtResource("2_shader")
+shader_parameter/core_color = Color(0.95, 0.22, 0.02, 1)
+shader_parameter/rim_color = Color(1, 0.85, 0.15, 1)
+shader_parameter/emission_energy = 3.5
+shader_parameter/pulse_speed = 3.5
+shader_parameter/wobble_amount = 0.08
+shader_parameter/wobble_speed = 4.5
+shader_parameter/fresnel_power = 2.2
+shader_parameter/roughness = 0.25
+shader_parameter/metallic = 0.1
+shader_parameter/alpha_transparency = 0.95
+shader_parameter/is_hit = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_ui86w"]
+[sub_resource type="SphereMesh" id="SphereMesh_slime"]
+radius = 0.22
+height = 0.36
 
-[node name="Enemy" unique_id=1689016585 instance=ExtResource("1_u20kf")]
-loop = false
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fire"]
+emission_shape = 1
+emission_sphere_radius = 0.18
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.4
+initial_velocity_max = 0.8
+gravity = Vector3(0, 0.2, 0)
+scale_min = 0.03
+scale_max = 0.06
+color = Color(1, 0.6, 0.1, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0" unique_id=1209860899]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_gok1s")
-mesh = SubResource("BoxMesh_ui86w")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fire_particle"]
+shading_mode = 0
+albedo_color = Color(1, 0.55, 0.1, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_particle"]
+material = SubResource("StandardMaterial3D_fire_particle")
+size = Vector2(0.08, 0.08)
+
+[node name="Enemy_Fire" instance=ExtResource("1_u20kf")]
+element = 0
+
+[node name="SlimeMesh" type="MeshInstance3D" parent="Body" index="0" unique_id=1209860899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+material_override = SubResource("ShaderMaterial_fire")
+mesh = SubResource("SphereMesh_slime")
+
+[node name="FireParticles" type="GPUParticles3D" parent="Body" index="1" unique_id=987123401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+amount = 16
+lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_fire")
+draw_pass_1 = SubResource("QuadMesh_particle")

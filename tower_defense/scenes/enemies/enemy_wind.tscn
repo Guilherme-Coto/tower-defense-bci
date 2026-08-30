@@ -1,16 +1,74 @@
 [gd_scene format=3 uid="uid://b4ohg62v8r8li"]
 
 [ext_resource type="PackedScene" uid="uid://c58heabx8df2b" path="res://scenes/enemies/enemy.tscn" id="1_001ok"]
+[ext_resource type="Shader" path="res://shaders/elemental_slime.gdshader" id="2_shader"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gok1s"]
-albedo_color = Color(0.32941177, 0.7490196, 0.3137255, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wind"]
+render_priority = 0
+shader = ExtResource("2_shader")
+shader_parameter/core_color = Color(0.2, 0.82, 0.5, 0.85)
+shader_parameter/rim_color = Color(0.7, 1, 0.85, 1)
+shader_parameter/emission_energy = 2.8
+shader_parameter/pulse_speed = 4.5
+shader_parameter/wobble_amount = 0.06
+shader_parameter/wobble_speed = 5.5
+shader_parameter/fresnel_power = 2.5
+shader_parameter/roughness = 0.2
+shader_parameter/metallic = 0.1
+shader_parameter/alpha_transparency = 0.9
+shader_parameter/is_hit = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_ui86w"]
+[sub_resource type="SphereMesh" id="SphereMesh_slime"]
+radius = 0.2
+height = 0.34
 
-[node name="Enemy" unique_id=1689016585 instance=ExtResource("1_001ok")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ring"]
+shading_mode = 0
+albedo_color = Color(0.6, 1, 0.8, 0.8)
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+material = SubResource("StandardMaterial3D_ring")
+inner_radius = 0.28
+outer_radius = 0.32
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wind"]
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 0.5, 0)
+spread = 60.0
+initial_velocity_min = 0.4
+initial_velocity_max = 0.9
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.03
+scale_max = 0.06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wind_particle"]
+shading_mode = 0
+albedo_color = Color(0.5, 1, 0.7, 0.9)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_particle"]
+material = SubResource("StandardMaterial3D_wind_particle")
+size = Vector2(0.06, 0.06)
+
+[node name="Enemy_Wind" instance=ExtResource("1_001ok")]
 element = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" parent_id_path=PackedInt32Array(1397218761) index="1" unique_id=1331042573]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_gok1s")
-mesh = SubResource("BoxMesh_ui86w")
+[node name="SlimeMesh" type="MeshInstance3D" parent="Body" index="0" unique_id=1331042573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+material_override = SubResource("ShaderMaterial_wind")
+mesh = SubResource("SphereMesh_slime")
+
+[node name="WindRing" type="MeshInstance3D" parent="Body" index="1" unique_id=987123403]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.15, 0)
+mesh = SubResource("TorusMesh_ring")
+
+[node name="WindParticles" type="GPUParticles3D" parent="Body" index="2" unique_id=987123404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+amount = 16
+lifetime = 0.7
+process_material = SubResource("ParticleProcessMaterial_wind")
+draw_pass_1 = SubResource("QuadMesh_particle")

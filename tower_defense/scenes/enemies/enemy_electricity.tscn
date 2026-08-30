@@ -1,16 +1,61 @@
 [gd_scene format=3 uid="uid://eby0ck1ounac"]
 
 [ext_resource type="PackedScene" uid="uid://c58heabx8df2b" path="res://scenes/enemies/enemy.tscn" id="1_a63ct"]
+[ext_resource type="Shader" path="res://shaders/elemental_slime.gdshader" id="2_shader"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ou3o"]
-albedo_color = Color(1, 1, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_electric"]
+render_priority = 0
+shader = ExtResource("2_shader")
+shader_parameter/core_color = Color(0.95, 0.85, 0.05, 0.95)
+shader_parameter/rim_color = Color(1, 1, 0.75, 1)
+shader_parameter/emission_energy = 4.2
+shader_parameter/pulse_speed = 6.0
+shader_parameter/wobble_amount = 0.09
+shader_parameter/wobble_speed = 9.0
+shader_parameter/fresnel_power = 1.8
+shader_parameter/roughness = 0.15
+shader_parameter/metallic = 0.1
+shader_parameter/alpha_transparency = 0.95
+shader_parameter/is_hit = false
 
-[sub_resource type="BoxMesh" id="BoxMesh_j5k5y"]
+[sub_resource type="SphereMesh" id="SphereMesh_slime"]
+radius = 0.21
+height = 0.35
 
-[node name="Enemy" unique_id=1689016585 instance=ExtResource("1_a63ct")]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_electric"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.6
+initial_velocity_max = 1.2
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_electric_particle"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0.5, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_particle"]
+material = SubResource("StandardMaterial3D_electric_particle")
+size = Vector2(0.06, 0.06)
+
+[node name="Enemy_Electricity" instance=ExtResource("1_a63ct")]
 element = 3
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" parent_id_path=PackedInt32Array(1397218761) index="1" unique_id=712141715]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_2ou3o")
-mesh = SubResource("BoxMesh_j5k5y")
+[node name="SlimeMesh" type="MeshInstance3D" parent="Body" index="0" unique_id=712141715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+material_override = SubResource("ShaderMaterial_electric")
+mesh = SubResource("SphereMesh_slime")
+
+[node name="ElectricSparks" type="GPUParticles3D" parent="Body" index="1" unique_id=987123405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+amount = 20
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_electric")
+draw_pass_1 = SubResource("QuadMesh_particle")
