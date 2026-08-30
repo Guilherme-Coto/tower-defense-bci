@@ -1,0 +1,9 @@
+Log Start (Execution 31)
+[0.002s] Log system started successfully.
+[0.028s] Rest
+[2.888s] Start Listen
+[7.888s] End Listen
+[7.888s] Box start blinking
+[10.894s] Box stop blinking
+[10.895s] FIRE selected
+[10.895s] Imagine

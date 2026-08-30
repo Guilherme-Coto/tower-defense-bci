@@ -1,0 +1,6 @@
+Log Start (Execution 20)
+[0.001s] Log system started successfully.
+[0.010s] Rest
+[2.902s] Start Listen
+[7.907s] End Listen
+[7.908s] Box start blinking
