@@ -6,12 +6,6 @@ const enemy_water = preload("res://scenes/enemies/enemy_water.tscn")
 const enemy_wind = preload("res://scenes/enemies/enemy_wind.tscn")
 const enemy_electricity= preload("res://scenes/enemies/enemy_electricity.tscn")
 
-const track_fire = preload("res://assets/musics/Track1_Fur_Elise.wav")
-const track_water = preload("res://assets/musics/Track3_Prelude_C_Major.wav")
-const track_wind = preload("res://assets/musics/Track5_The_Four_Seasons.wav")
-const track_electricity = preload("res://assets/musics/Track6_Waltz_of_the_flowers.wav")
-const tracks = [track_fire, track_water, track_wind, track_electricity]
-
 @onready var UIManager = get_tree().get_first_node_in_group("UIManager")
 
 @onready var spawner: Path3D = $"../EnemyPath"
@@ -91,13 +85,13 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 				max_multiplier = mult
 				counter_idx = attack_elem
 				
-		var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
+		var track_name = AudioSettings.get_track_name_for_element(counter_idx)
 		
 		if not reverse_mode:
-			print("A tocar música: " + track_names[counter_idx] + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[current_enemy_type] + ")")
+			print("A tocar música: " + track_name + " (selecionou " + enemies_elements[counter_idx] + " para combater " + enemies_elements[current_enemy_type] + ")")
 			if logger:
 				logger.call_deferred("write_log", "Start Listen")
-			audio_player.stream = tracks[counter_idx]
+			audio_player.stream = AudioSettings.get_track_for_element(counter_idx)
 			audio_player.play()
 			
 			UIManager.call_deferred("show_instruction", "Presta atenção")
@@ -153,21 +147,22 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 		UIManager.change_next_element(str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
 
 func play_music(element_index: int):
-	if element_index >= 0 and element_index < tracks.size():
-		audio_player.stream = tracks[element_index]
+	var stream = AudioSettings.get_track_for_element(element_index)
+	if stream:
+		audio_player.stream = stream
 		audio_player.play()
-		print("Servidor OZ ativou a música: " + str(element_index))
+		print("Servidor OZ ativou a música: " + str(element_index) + " (" + AudioSettings.get_track_name_for_element(element_index) + ")")
 
 func stop_music():
 	audio_player.stop()
 
 func play_reverse_music_then_spawn():
 	if last_counter_idx != -1 and last_enemy_type != -1:
-		var track_names = ["Track1_Fur_Elise", "Track3_Prelude_C_Major", "Track5_The_Four_Seasons", "Track6_Waltz_of_the_flowers"]
-		print("A tocar música: " + track_names[last_counter_idx] + " (selecionou " + enemies_elements[last_counter_idx] + " para combater " + enemies_elements[last_enemy_type] + ")")
+		var track_name = AudioSettings.get_track_name_for_element(last_counter_idx)
+		print("A tocar música: " + track_name + " (selecionou " + enemies_elements[last_counter_idx] + " para combater " + enemies_elements[last_enemy_type] + ")")
 		if logger:
 			logger.call_deferred("write_log", "Start Listen")
-		audio_player.stream = tracks[last_counter_idx]
+		audio_player.stream = AudioSettings.get_track_for_element(last_counter_idx)
 		audio_player.play()
 		
 		UIManager.call_deferred("show_instruction", "Presta atenção")

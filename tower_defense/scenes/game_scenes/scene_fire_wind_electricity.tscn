@@ -178,6 +178,7 @@ mesh = SubResource("PlaneMesh_j5k5y")
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Ilha/Floor/Path" unique_id=1997330775]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10847902, 0)
 material_override = SubResource("ShaderMaterial_grass")
+cast_shadow = 0
 multimesh = SubResource("MultiMesh_wb0hq")
 
 [node name="Tower" parent="Ilha" unique_id=1170968770 groups=["tower"] instance=ExtResource("3_j8b2v")]

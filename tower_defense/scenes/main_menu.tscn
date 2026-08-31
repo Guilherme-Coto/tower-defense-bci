@@ -16,23 +16,27 @@ grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
 [node name="Menu" type="Control" parent="." unique_id=1866361820]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="Menu" unique_id=1415957630]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 319.0
-offset_top = 50.0
-offset_right = 793.0
-offset_bottom = 99.0
+offset_left = -300.0
+offset_top = 40.0
+offset_right = 300.0
+offset_bottom = 90.0
 grow_horizontal = 2
 theme_override_fonts/font = SubResource("SystemFont_l6cm7")
 theme_override_font_sizes/font_size = 35
 text = "Tower Defense - BCI Version"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=1246084125]
 layout_mode = 1
@@ -41,13 +45,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 430.0
-offset_top = 130.0
-offset_right = 822.0
-offset_bottom = 546.0
+offset_left = -196.0
+offset_top = -145.0
+offset_right = 196.0
+offset_bottom = 255.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(196, 200)
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Play" type="Button" parent="Menu/VBoxContainer" unique_id=244032195]
@@ -59,19 +65,15 @@ icon = ExtResource("2_ekxnf")
 [node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play" unique_id=1442370728]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -17.5
-offset_right = 31.142883
-offset_bottom = 17.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Play_auto" type="Button" parent="Menu/VBoxContainer" unique_id=810333125]
 layout_mode = 2
@@ -82,19 +84,15 @@ icon = ExtResource("2_ekxnf")
 [node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play_auto" unique_id=1299004903]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -17.5
-offset_right = 31.142883
-offset_bottom = 17.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar Automático"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Play_oz" type="Button" parent="Menu/VBoxContainer" unique_id=2005177788]
 layout_mode = 2
@@ -105,19 +103,34 @@ icon = ExtResource("2_ekxnf")
 [node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play_oz" unique_id=1268759568]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -17.5
-offset_right = 31.142883
-offset_bottom = 17.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 25
 text = "Jogar (Modo Oz)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play_options" type="Button" parent="Menu/VBoxContainer" unique_id=2005177789]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("2_ekxnf")
+
+[node name="lbl_name" type="Label" parent="Menu/VBoxContainer/Play_options" unique_id=1268759569]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Opções"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Menu" unique_id=1561020794]
 layout_mode = 1
@@ -126,12 +139,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 401.0
-offset_top = 515.0
-offset_right = 711.0
-offset_bottom = 578.0
+offset_left = -200.0
+offset_top = -95.0
+offset_right = 200.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
 [node name="LabelMusic" type="Label" parent="Menu/VBoxContainer2" unique_id=999999990]
 layout_mode = 2
@@ -454,9 +468,146 @@ custom_minimum_size = Vector2(180, 42)
 layout_mode = 2
 text = "Level Random "
 
+[node name="OptionsMenu" type="Control" parent="." unique_id=720684337]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="btn_back" type="Button" parent="OptionsMenu" unique_id=999999997]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 120.0
+offset_bottom = 60.0
+text = "Voltar"
+
+[node name="TitleLabel" type="Label" parent="OptionsMenu" unique_id=347704821]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 25.0
+offset_right = 250.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 28
+text = "Opções"
+horizontal_alignment = 1
+
+[node name="VBoxOptions" type="VBoxContainer" parent="OptionsMenu" unique_id=720684339]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -170.0
+offset_right = 270.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="lbl_vol_header" type="Label" parent="OptionsMenu/VBoxOptions" unique_id=720684340]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Volume Geral do Jogo:"
+
+[node name="HBoxVolume" type="HBoxContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684341]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VolumeSlider" type="HSlider" parent="OptionsMenu/VBoxOptions/HBoxVolume" unique_id=720684342]
+custom_minimum_size = Vector2(320, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+
+[node name="lbl_vol_value" type="Label" parent="OptionsMenu/VBoxOptions/HBoxVolume" unique_id=720684343]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="btn_test_sound" type="Button" parent="OptionsMenu/VBoxOptions/HBoxVolume" unique_id=720684344]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Testar Som"
+
+[node name="HSeparator" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684345]
+layout_mode = 2
+
+[node name="lbl_music_header" type="Label" parent="OptionsMenu/VBoxOptions" unique_id=720684346]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Músicas dos Elementos:"
+
+[node name="GridElements" type="GridContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684347]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="lbl_fire" type="Label" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684348]
+layout_mode = 2
+text = "Elemento Fogo:"
+
+[node name="opt_fire" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684349]
+custom_minimum_size = Vector2(320, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lbl_water" type="Label" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684350]
+layout_mode = 2
+text = "Elemento Água:"
+
+[node name="opt_water" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684351]
+custom_minimum_size = Vector2(320, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lbl_wind" type="Label" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684352]
+layout_mode = 2
+text = "Elemento Vento:"
+
+[node name="opt_wind" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684353]
+custom_minimum_size = Vector2(320, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lbl_electricity" type="Label" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684354]
+layout_mode = 2
+text = "Elemento Eletricidade:"
+
+[node name="opt_electricity" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684355]
+custom_minimum_size = Vector2(320, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684357]
+layout_mode = 2
+
+[node name="HBoxButtons" type="HBoxContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684358]
+layout_mode = 2
+alignment = 1
+
+[node name="btn_reset_defaults" type="Button" parent="OptionsMenu/VBoxOptions/HBoxButtons" unique_id=720684359]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+text = "Restaurar Padrões"
+
 [connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Play_oz" to="." method="_on_play_oz_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Play_options" to="." method="_on_play_options_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicFire" to="." method="_on_btn_music_fire_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWater" to="." method="_on_btn_music_water_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer2/HBoxMusic/BtnMusicWind" to="." method="_on_btn_music_wind_pressed"]
@@ -486,3 +637,11 @@ text = "Level Random "
 [connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse/btn_level_reverse_electricity" to="." method="_on_btn_level_reverse_electricity_pressed"]
 [connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All/btn_level_reverse_four_elements" to="." method="_on_btn_level_reverse_four_elements_pressed"]
 [connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All/btn_level_reverse_random" to="." method="_on_btn_level_reverse_random_pressed"]
+[connection signal="pressed" from="OptionsMenu/btn_back" to="." method="_on_btn_options_back_pressed"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/HBoxVolume/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxVolume/btn_test_sound" to="." method="_on_btn_test_sound_pressed"]
+[connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_fire" to="." method="_on_opt_fire_item_selected"]
+[connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_water" to="." method="_on_opt_water_item_selected"]
+[connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_wind" to="." method="_on_opt_wind_item_selected"]
+[connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_electricity" to="." method="_on_opt_electricity_item_selected"]
+[connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxButtons/btn_reset_defaults" to="." method="_on_btn_reset_defaults_pressed"]
