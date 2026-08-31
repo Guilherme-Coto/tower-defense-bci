@@ -1,0 +1,10 @@
+Log Start (Execution 2)
+[0.000s] Log system started successfully.
+[0.004s] Rest
+[2.880s] Start Listen
+[7.886s] End Listen
+[7.887s] Box start blinking
+[10.901s] Box stop blinking
+[10.902s] FIRE selected
+[10.902s] Imagine
+[14.420s] Rest

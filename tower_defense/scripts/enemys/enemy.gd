@@ -78,6 +78,7 @@ func _on_timer_attack_timeout() -> void:
 func shoot() -> void:
 	var new_shoot = bullet.instantiate()
 	get_tree().root.add_child(new_shoot)
+	new_shoot.change_element(element)
 	new_shoot.global_position = shoot_point.global_position
 	new_shoot.set_target(tower)
 
