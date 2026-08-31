@@ -1,0 +1,4 @@
+Log Start (Execution 13)
+[0.001s] Log system started successfully.
+[0.004s] Rest
+[2.900s] Start Listen

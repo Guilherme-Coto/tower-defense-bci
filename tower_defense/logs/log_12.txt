@@ -1,0 +1,10 @@
+Log Start (Execution 12)
+[0.001s] Log system started successfully.
+[0.004s] Rest
+[2.904s] Start Listen
+[7.910s] End Listen
+[7.911s] Box start blinking
+[10.926s] Box stop blinking
+[10.926s] WATER selected
+[10.927s] Imagine
+[14.347s] Rest

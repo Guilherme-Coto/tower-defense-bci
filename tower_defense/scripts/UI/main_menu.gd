@@ -19,13 +19,47 @@ var audio_player: AudioStreamPlayer
 @onready var opt_wind = $OptionsMenu/VBoxOptions/GridElements/opt_wind
 @onready var opt_electricity = $OptionsMenu/VBoxOptions/GridElements/opt_electricity
 
+@onready var camera_3d: Camera3D = get_node_or_null("SubViewportContainer/SubViewport/Camera3D")
+var cam_transform_menu: Transform3D
+# Posição e rotação exata da câmara de jogo (onde o jogador joga)
+var cam_transform_game: Transform3D = Transform3D(
+	Vector3(-1, 0, 0),
+	Vector3(0, 0.86506176, 0.50166535),
+	Vector3(0, 0.50166535, -0.86506176),
+	Vector3(1.0698649, 2.3351312, -8.175171)
+)
+var cam_tween: Tween
+
 var current_page = 0 # 0 = Recall, 1 = Inverse
 
 func _ready() -> void:
+	if camera_3d:
+		cam_transform_menu = camera_3d.transform
 	audio_player = AudioStreamPlayer.new()
 	add_child(audio_player)
 	_update_carousel_page(0)
 	_setup_options_ui()
+
+func _tween_camera(target_transform: Transform3D, duration: float = 1.3) -> void:
+	if not camera_3d:
+		return
+	if cam_tween and cam_tween.is_valid():
+		cam_tween.kill()
+	
+	cam_tween = create_tween().set_parallel(true)
+	cam_tween.set_trans(Tween.TRANS_CUBIC)
+	cam_tween.set_ease(Tween.EASE_IN_OUT)
+	
+	# Transição suave de posição
+	cam_tween.tween_property(camera_3d, "position", target_transform.origin, duration)
+	
+	# Transição suave de rotação (slerp com quaternions para evitar gimbal lock)
+	var start_quat = camera_3d.quaternion
+	var end_quat = target_transform.basis.get_rotation_quaternion()
+	cam_tween.tween_method(func(weight: float):
+		if is_instance_valid(camera_3d):
+			camera_3d.quaternion = start_quat.slerp(end_quat, weight)
+	, 0.0, 1.0, duration)
 
 func _setup_options_ui() -> void:
 	if not volume_slider or not opt_fire:
@@ -66,8 +100,10 @@ func _update_carousel_page(page_idx: int) -> void:
 			page_inverse.visible = false
 		if btn_tab_recall:
 			btn_tab_recall.disabled = true
+			btn_tab_recall.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		if btn_tab_inverse:
 			btn_tab_inverse.disabled = false
+			btn_tab_inverse.modulate = Color(0.75, 0.75, 0.8, 0.85)
 	else:
 		if page_recall:
 			page_recall.visible = false
@@ -75,8 +111,10 @@ func _update_carousel_page(page_idx: int) -> void:
 			page_inverse.visible = true
 		if btn_tab_recall:
 			btn_tab_recall.disabled = false
+			btn_tab_recall.modulate = Color(0.75, 0.75, 0.8, 0.85)
 		if btn_tab_inverse:
 			btn_tab_inverse.disabled = true
+			btn_tab_inverse.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _on_btn_tab_recall_pressed() -> void:
 	_update_carousel_page(0)
@@ -90,6 +128,7 @@ func _on_play_pressed() -> void:
 	if options_menu:
 		options_menu.visible = false
 	_update_carousel_page(0)
+	_tween_camera(cam_transform_game, 1.3)
 
 func _on_play_auto_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/cena_auto.tscn")
@@ -105,6 +144,7 @@ func _on_btn_options_back_pressed() -> void:
 		audio_player.stop()
 	options_menu.visible = false
 	menu.visible = true
+	_tween_camera(cam_transform_menu, 1.3)
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	AudioSettings.set_master_volume_percent(value)
@@ -161,6 +201,7 @@ func _on_btn_music_electricity_pressed() -> void:
 func _on_btn_back_pressed() -> void:
 	level_selector.visible = false
 	menu.visible = true
+	_tween_camera(cam_transform_menu, 1.3)
 
 #quatro elementos
 func _on_btn_level_fire_water_wind_electricity_pressed() -> void:

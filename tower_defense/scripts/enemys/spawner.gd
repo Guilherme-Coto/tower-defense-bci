@@ -129,7 +129,7 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 			UIManager.call_deferred("active_a_button", counter_idx)
 			UIManager.call_deferred("show_instruction", "Pensa na musica")
 			if logger:
-				logger.call_deferred("write_log", "Imagina")
+				logger.call_deferred("write_log", "Imagine")
 		
 	var new_enemy = enemies[current_enemy_type].instantiate()
 	spawner.add_child(new_enemy)

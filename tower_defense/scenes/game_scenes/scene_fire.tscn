@@ -20,8 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://u7kajwg37j05" path="res://assets/ui/Heart_Full.png" id="20_qbhfy"]
 [ext_resource type="Script" uid="uid://bpo546jjjo5q1" path="res://scripts/tree_wind_manager.gd" id="20_tree_wind"]
 [ext_resource type="PackedScene" uid="uid://b7dh8iogrvy7l" path="res://assets/models/trees/hardwood_tree_tomodachi_life_living_the_dream.glb" id="20_tt56j"]
-[ext_resource type="Texture2D" uid="uid://bee470xhp06bs" path="res://assets/ui/buttons/btn_green.png" id="21_dyqtb"]
-[ext_resource type="Texture2D" uid="uid://bmty2w5mhyn3a" path="res://assets/ui/buttons/btn_red.png" id="22_x7rst"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tussk"]
 sky_top_color = Color(0.35, 0.58, 0.88, 1)
@@ -120,6 +118,12 @@ point_count = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgflu"]
 bg_color = Color(0.23137255, 0.23137255, 0.23137255, 0.47058824)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tt56j"]
+load_path = "res://.godot/imported/btn_green.png-7a63f31d424f976357ad6f338c3cd0df.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wb0hq"]
+load_path = "res://.godot/imported/btn_red.png-9e09023954a2b40076566b0cf0bf0444.ctex"
 
 [node name="Level_Fire" type="Node3D" unique_id=1881958309]
 
@@ -446,7 +450,7 @@ alignment = 1
 
 [node name="btn_resume" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1626555023]
 layout_mode = 2
-icon = ExtResource("21_dyqtb")
+icon = SubResource("CompressedTexture2D_tt56j")
 flat = true
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer/btn_resume" unique_id=767653963]
@@ -467,7 +471,7 @@ text = "Resume"
 
 [node name="btn_quit" type="Button" parent="CanvasLayer/PauseMenu/VBoxContainer" unique_id=1632923118]
 layout_mode = 2
-icon = ExtResource("22_x7rst")
+icon = SubResource("CompressedTexture2D_wb0hq")
 flat = true
 
 [node name="Label" type="Label" parent="CanvasLayer/PauseMenu/VBoxContainer/btn_quit" unique_id=349496447]
