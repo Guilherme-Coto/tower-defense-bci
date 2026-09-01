@@ -316,8 +316,19 @@ func format_text(text):
 	var hour = Time.get_time_string_from_system()
 	return "[" + hour + "] " + text
 
+var lbl_wave: Label
+
 func change_next_element(text):
 	lbl_element.text = text
+
+func update_wave_info(current_wave: int, total_waves: int) -> void:
+	if lbl_wave == null and has_node("UI/VBox_element"):
+		lbl_wave = Label.new()
+		lbl_wave.name = "lbl_wave"
+		lbl_wave.add_theme_font_size_override("font_size", 16)
+		$UI/VBox_element.add_child(lbl_wave)
+	if lbl_wave:
+		lbl_wave.text = "Onda: " + str(current_wave) + " / " + str(total_waves)
 
 func _on_btn_quit_pressed() -> void:
 	logger.write_log("Game Finished")

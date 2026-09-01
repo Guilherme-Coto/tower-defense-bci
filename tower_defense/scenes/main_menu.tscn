@@ -523,6 +523,71 @@ theme_override_font_sizes/font_size = 28
 text = "Selecione um nível"
 horizontal_alignment = 1
 
+[node name="WaveSelectorHBox" type="HBoxContainer" parent="LevelSelector" unique_id=720684360]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 12.0
+offset_right = -25.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="lbl_wave_title" type="Label" parent="LevelSelector/WaveSelectorHBox" unique_id=720684361]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 18
+text = "Ondas:"
+vertical_alignment = 1
+
+[node name="btn_wave_minus" type="Button" parent="LevelSelector/WaveSelectorHBox" unique_id=720684362]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.35, 0.35, 0.35, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_default")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_default_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_default_hover")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn_default_hover")
+text = "-"
+
+[node name="lbl_wave_val" type="Label" parent="LevelSelector/WaveSelectorHBox" unique_id=720684363]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 22
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_wave_plus" type="Button" parent="LevelSelector/WaveSelectorHBox" unique_id=720684364]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.35, 0.35, 0.35, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_fonts/font = SubResource("SystemFont_l6cm7")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_default")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_default_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_default_hover")
+theme_override_styles/focus = SubResource("StyleBoxTexture_btn_default_hover")
+text = "+"
+
 [node name="PageNavHBox" type="HBoxContainer" parent="LevelSelector" unique_id=123984711]
 layout_mode = 1
 anchors_preset = 5
@@ -1091,9 +1156,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -270.0
-offset_top = -170.0
+offset_top = -210.0
 offset_right = 270.0
-offset_bottom = 210.0
+offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 14
@@ -1124,6 +1189,40 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
 text = "Testar Som"
+
+[node name="HSeparator_waves" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684365]
+layout_mode = 2
+
+[node name="lbl_waves_opt_header" type="Label" parent="OptionsMenu/VBoxOptions" unique_id=720684366]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Número de Ondas (Waves):"
+
+[node name="HBoxOptWaves" type="HBoxContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684367]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="lbl_opt_waves_desc" type="Label" parent="OptionsMenu/VBoxOptions/HBoxOptWaves" unique_id=720684368]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quantidade de ondas por nível:"
+
+[node name="btn_opt_wave_minus" type="Button" parent="OptionsMenu/VBoxOptions/HBoxOptWaves" unique_id=720684369]
+custom_minimum_size = Vector2(36, 32)
+layout_mode = 2
+text = "-"
+
+[node name="lbl_opt_wave_val" type="Label" parent="OptionsMenu/VBoxOptions/HBoxOptWaves" unique_id=720684370]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_opt_wave_plus" type="Button" parent="OptionsMenu/VBoxOptions/HBoxOptWaves" unique_id=720684371]
+custom_minimum_size = Vector2(36, 32)
+layout_mode = 2
+text = "+"
 
 [node name="HSeparator" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684345]
 layout_mode = 2
@@ -1220,6 +1319,10 @@ text = "Restaurar Padrões"
 [connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse/btn_level_reverse_electricity" to="." method="_on_btn_level_reverse_electricity_pressed"]
 [connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All/btn_level_reverse_four_elements" to="." method="_on_btn_level_reverse_four_elements_pressed"]
 [connection signal="pressed" from="LevelSelector/CarouselContainer/PageInverse/HBox_Reverse_All/btn_level_reverse_random" to="." method="_on_btn_level_reverse_random_pressed"]
+[connection signal="pressed" from="LevelSelector/WaveSelectorHBox/btn_wave_minus" to="." method="_on_btn_wave_minus_pressed"]
+[connection signal="pressed" from="LevelSelector/WaveSelectorHBox/btn_wave_plus" to="." method="_on_btn_wave_plus_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxOptWaves/btn_opt_wave_minus" to="." method="_on_btn_opt_wave_minus_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxOptWaves/btn_opt_wave_plus" to="." method="_on_btn_opt_wave_plus_pressed"]
 [connection signal="pressed" from="OptionsMenu/btn_back" to="." method="_on_btn_options_back_pressed"]
 [connection signal="value_changed" from="OptionsMenu/VBoxOptions/HBoxVolume/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxVolume/btn_test_sound" to="." method="_on_btn_test_sound_pressed"]
@@ -1228,3 +1331,4 @@ text = "Restaurar Padrões"
 [connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_wind" to="." method="_on_opt_wind_item_selected"]
 [connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_electricity" to="." method="_on_opt_electricity_item_selected"]
 [connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxButtons/btn_reset_defaults" to="." method="_on_btn_reset_defaults_pressed"]
+

@@ -26,6 +26,9 @@ const enemies = [enemy_fire, enemy_water, enemy_wind, enemy_electricity]
 var index = 0
 var is_first_spawn = true
 
+var total_waves = 1
+var current_wave = 1
+
 var last_counter_idx = -1
 var last_enemy_type = -1
 
@@ -38,14 +41,28 @@ func _ready() -> void:
 	add_child(audio_player)
 	logger = get_tree().get_first_node_in_group("logger")
 	
+	if Engine.has_singleton("GameSettings") or get_node_or_null("/root/GameSettings"):
+		var gs = get_node_or_null("/root/GameSettings")
+		if gs:
+			waves = gs.get_waves()
+	
+	total_waves = waves
+	current_wave = 1
+	
 	if random_spawn:
-		waves = 1
+		var count = waves * 4
+		if count <= 0:
+			count = random_spawn_count
 		spawn_sequence.clear()
-		for i in range(random_spawn_count):
+		for i in range(count):
 			spawn_sequence.append(randi() % 4 as SpawnElement)
+		waves = 1
+		total_waves = 1
 			
 	if spawn_sequence.size() > 0:
-		UIManager.call_deferred("change_next_element", str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
+		if UIManager:
+			UIManager.call_deferred("change_next_element", str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
+			UIManager.call_deferred("update_wave_info", current_wave, total_waves)
 		spawn_enemy()
 
 func spawn_enemy(force: bool = false, specific_element: int = -1):
@@ -139,12 +156,16 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 		last_enemy_type = current_enemy_type
 	if index == spawn_sequence.size() - 1:
 		waves -= 1
+		current_wave += 1
 		index = 0
 	else:
 		index += 1 #aumenta o index
 	
 	if spawn_sequence.size() > 0:
-		UIManager.change_next_element(str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
+		if UIManager:
+			UIManager.change_next_element(str("Próximo elemento: " + enemies_elements[spawn_sequence[index]]))
+			if waves > 0:
+				UIManager.update_wave_info(current_wave, total_waves)
 
 func play_music(element_index: int):
 	var stream = AudioSettings.get_track_for_element(element_index)

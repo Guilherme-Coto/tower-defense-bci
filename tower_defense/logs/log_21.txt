@@ -1,0 +1,7 @@
+Log Start (Execution 21)
+[0.000s] Log system started successfully.
+[0.018s] Rest
+[4.889s] Box start blinking
+[7.926s] Box stop blinking
+[7.927s] ELECTRICITY selected
+[7.927s] Imagine

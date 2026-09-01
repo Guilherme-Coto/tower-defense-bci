@@ -19,6 +19,10 @@ var audio_player: AudioStreamPlayer
 @onready var opt_wind = $OptionsMenu/VBoxOptions/GridElements/opt_wind
 @onready var opt_electricity = $OptionsMenu/VBoxOptions/GridElements/opt_electricity
 
+# Ondas (Waves)
+@onready var lbl_wave_val = get_node_or_null("LevelSelector/WaveSelectorHBox/lbl_wave_val")
+@onready var lbl_opt_wave_val = get_node_or_null("OptionsMenu/VBoxOptions/HBoxOptWaves/lbl_opt_wave_val")
+
 @onready var camera_3d: Camera3D = get_node_or_null("SubViewportContainer/SubViewport/Camera3D")
 var cam_transform_menu: Transform3D
 # Posição e rotação exata da câmara de jogo (onde o jogador joga)
@@ -39,6 +43,11 @@ func _ready() -> void:
 	add_child(audio_player)
 	_update_carousel_page(0)
 	_setup_options_ui()
+	_update_waves_ui()
+	if Engine.has_singleton("GameSettings") or get_node_or_null("/root/GameSettings"):
+		var gs = get_node_or_null("/root/GameSettings")
+		if gs and not gs.waves_changed.is_connected(_on_waves_changed):
+			gs.waves_changed.connect(_on_waves_changed)
 
 func _tween_camera(target_transform: Transform3D, duration: float = 1.3) -> void:
 	if not camera_3d:
@@ -62,6 +71,7 @@ func _tween_camera(target_transform: Transform3D, duration: float = 1.3) -> void
 	, 0.0, 1.0, duration)
 
 func _setup_options_ui() -> void:
+	_update_waves_ui()
 	if not volume_slider or not opt_fire:
 		return
 	
@@ -75,6 +85,40 @@ func _setup_options_ui() -> void:
 	_populate_element_dropdown(opt_water, 1)
 	_populate_element_dropdown(opt_wind, 2)
 	_populate_element_dropdown(opt_electricity, 3)
+
+func _update_waves_ui() -> void:
+	var cur_waves = 5
+	if Engine.has_singleton("GameSettings") or get_node_or_null("/root/GameSettings"):
+		var gs = get_node_or_null("/root/GameSettings")
+		if gs:
+			cur_waves = gs.get_waves()
+	if lbl_wave_val:
+		lbl_wave_val.text = str(cur_waves)
+	if lbl_opt_wave_val:
+		lbl_opt_wave_val.text = str(cur_waves)
+
+func _on_waves_changed(_new_waves: int) -> void:
+	_update_waves_ui()
+
+func _on_btn_wave_minus_pressed() -> void:
+	if Engine.has_singleton("GameSettings") or get_node_or_null("/root/GameSettings"):
+		var gs = get_node_or_null("/root/GameSettings")
+		if gs:
+			gs.decrease_waves(1)
+	_update_waves_ui()
+
+func _on_btn_wave_plus_pressed() -> void:
+	if Engine.has_singleton("GameSettings") or get_node_or_null("/root/GameSettings"):
+		var gs = get_node_or_null("/root/GameSettings")
+		if gs:
+			gs.increase_waves(1)
+	_update_waves_ui()
+
+func _on_btn_opt_wave_minus_pressed() -> void:
+	_on_btn_wave_minus_pressed()
+
+func _on_btn_opt_wave_plus_pressed() -> void:
+	_on_btn_wave_plus_pressed()
 
 func _populate_element_dropdown(opt_btn: OptionButton, element_idx: int) -> void:
 	opt_btn.clear()
@@ -127,11 +171,12 @@ func _on_play_pressed() -> void:
 	menu.visible = false
 	if options_menu:
 		options_menu.visible = false
+	_update_waves_ui()
 	_update_carousel_page(0)
 	_tween_camera(cam_transform_game, 1.3)
 
 func _on_play_auto_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/cena_auto.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/cena_auto.tscn")
 
 func _on_play_options_pressed() -> void:
 	options_menu.visible = true
@@ -176,7 +221,12 @@ func _on_opt_electricity_item_selected(index: int) -> void:
 
 func _on_btn_reset_defaults_pressed() -> void:
 	AudioSettings.reset_to_defaults()
+	if Engine.has_singleton("GameSettings") or get_node_or_null("/root/GameSettings"):
+		var gs = get_node_or_null("/root/GameSettings")
+		if gs:
+			gs.reset_to_defaults()
 	_setup_options_ui()
+	_update_waves_ui()
 
 func _play_track(index: int) -> void:
 	if audio_player.playing:

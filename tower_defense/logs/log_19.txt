@@ -1,0 +1,8 @@
+Log Start (Execution 19)
+[0.001s] Log system started successfully.
+[0.017s] Rest
+[4.901s] Box start blinking
+[7.938s] Box stop blinking
+[7.938s] WATER selected
+[7.938s] Imagine
+[12.179s] Start Listen
