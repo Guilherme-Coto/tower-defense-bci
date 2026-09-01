@@ -212,6 +212,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 script = ExtResource("5_2myk0")
 waves = 5
+spawn_sequence = Array[int]([1])
 
 [node name="EnemyPath" type="Path3D" parent="Ilha" unique_id=1560135437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
