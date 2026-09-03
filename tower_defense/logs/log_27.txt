@@ -1,0 +1,17 @@
+Log Start (Execution 27)
+[0.000s] Log system started successfully.
+[0.002s] Rest
+[2.931s] Start Listen
+[7.944s] End Listen
+[7.944s] Box start blinking
+[10.979s] Box stop blinking
+[10.979s] FIRE selected
+[10.979s] Imagine
+[14.322s] Rest
+[17.818s] Start Listen
+[22.831s] End Listen
+[22.831s] Box start blinking
+[25.845s] Box stop blinking
+[25.846s] FIRE selected
+[25.846s] Imagine
+[29.309s] Game Finished
