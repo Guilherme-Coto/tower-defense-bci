@@ -366,7 +366,7 @@ size_flags_horizontal = 0
 theme_override_constants/separation = 14
 alignment = 1
 
-[node name="Play" type="Button" parent="Menu/LeftSideMenu/VBoxContainer" unique_id=244032195]
+[node name="Train" type="Button" parent="Menu/LeftSideMenu/VBoxContainer" unique_id=244032195]
 custom_minimum_size = Vector2(280, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -379,22 +379,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_btn_default")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_default_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_btn_default_hover")
 theme_override_styles/focus = SubResource("StyleBoxTexture_btn_default_hover")
-text = "Jogar"
-
-[node name="Play_auto" type="Button" parent="Menu/LeftSideMenu/VBoxContainer" unique_id=810333125]
-custom_minimum_size = Vector2(280, 60)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.35, 0.35, 0.35, 1)
-theme_override_colors/font_hover_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_fonts/font = SubResource("SystemFont_l6cm7")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxTexture_btn_default")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_default_pressed")
-theme_override_styles/hover = SubResource("StyleBoxTexture_btn_default_hover")
-theme_override_styles/focus = SubResource("StyleBoxTexture_btn_default_hover")
-text = "Jogar Automático"
+text = "Treinar"
 
 [node name="Play_oz" type="Button" parent="Menu/LeftSideMenu/VBoxContainer" unique_id=2005177788]
 custom_minimum_size = Vector2(280, 60)
@@ -1241,7 +1226,6 @@ custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
 min_value = 1.0
 max_value = 10000.0
-step = 1.0
 value = 400.0
 suffix = "hp"
 
@@ -1259,7 +1243,6 @@ custom_minimum_size = Vector2(210, 24)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-min_value = 0.0
 max_value = 10.0
 step = 0.1
 value = 3.0
@@ -1267,7 +1250,6 @@ value = 3.0
 [node name="SpinBoxDelayBlink" type="SpinBox" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink" unique_id=720684375]
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
-min_value = 0.0
 max_value = 30.0
 step = 0.1
 value = 3.0
@@ -1285,8 +1267,7 @@ custom_minimum_size = Vector2(200, 36)
 layout_mode = 2
 text = "Restaurar Padrões"
 
-[connection signal="pressed" from="Menu/LeftSideMenu/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Menu/LeftSideMenu/VBoxContainer/Play_auto" to="." method="_on_play_auto_pressed"]
+[connection signal="pressed" from="Menu/LeftSideMenu/VBoxContainer/Train" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Menu/LeftSideMenu/VBoxContainer/Play_oz" to="." method="_on_play_oz_pressed"]
 [connection signal="pressed" from="Menu/LeftSideMenu/VBoxContainer/Play_options" to="." method="_on_play_options_pressed"]
 [connection signal="pressed" from="Menu/RightSideMusic/HBoxMusic/BtnMusicFire" to="." method="_on_btn_music_fire_pressed"]

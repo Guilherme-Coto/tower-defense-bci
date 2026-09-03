@@ -1,8 +1,0 @@
-Log Start (Execution 18)
-[0.000s] Log system started successfully.
-[0.015s] Rest
-[4.901s] Box start blinking
-[7.936s] Box stop blinking
-[7.936s] WIND selected
-[7.937s] Imagine
-[12.178s] Start Listen

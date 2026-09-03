@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://87n8w08caapn"]
+[gd_scene format=3 uid="uid://87n8w08caapn"]
 
 [ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/network/bci_marker_send.gd" id="2_hm6ur"]
 [ext_resource type="Shader" uid="uid://c1xf637dl0kjo" path="res://shaders/grass_wind.gdshader" id="3_3geg8"]

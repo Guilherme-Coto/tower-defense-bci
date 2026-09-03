@@ -46,7 +46,32 @@ const AVAILABLE_TRACKS = [
 		"name": "Waltz of the Flowers",
 		"file_name": "Track6_Waltz_of_the_flowers",
 		"path": "res://assets/musics/Track6_Waltz_of_the_flowers.wav"
+	},
+	{
+		"id": 6,
+		"name": "Thunderstruck",
+		"file_name": "AC_DC_Thunderstruck",
+		"path": "res://assets/musics/AC_DC_Thunderstruck.wav"
+	},
+	{
+		"id": 7,
+		"name": "Its Raining Men",
+		"file_name": "Its_Raining_Men",
+		"path": "res://assets/musics/Its_Raining_Men.wav"
+	},
+	{
+		"id": 8,
+		"name": "Kiss I Was Made For Lovin You",
+		"file_name": "Kiss_I_Was_Made_For_Lovin_You",
+		"path": "res://assets/musics/Kiss_I_Was_Made_For_Lovin_You.wav"
+	} ,
+	{
+		"id": 9,
+		"name": "Whats_Up",
+		"file_name": "Whats_Up",
+		"path": "res://assets/musics/Whats_Up.wav"
 	}
+	
 ]
 
 var track_streams: Dictionary = {}
