@@ -1,11 +1,11 @@
-﻿[gd_scene format=3 uid="uid://b318wgn1ithff"]
+[gd_scene format=3 uid="uid://b2vce6rag5gs0"]
 
 [ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/network/bci_marker_send.gd" id="2_hhefr"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="3_j8b2v"]
 [ext_resource type="Script" uid="uid://nb6v3ws80yqx" path="res://scripts/tower.gd" id="4_65u5i"]
 [ext_resource type="Script" uid="uid://bjqskskweyaib" path="res://scripts/enemys/spawner.gd" id="5_2myk0"]
-[ext_resource type="ArrayMesh" uid="uid://c8s0wlc2o4olh" path="res://assets/models/grass.res" id="14_wrctm"]
 [ext_resource type="Shader" uid="uid://c1xf637dl0kjo" path="res://shaders/grass_wind.gdshader" id="14_grass_shader"]
+[ext_resource type="ArrayMesh" uid="uid://c8s0wlc2o4olh" path="res://assets/models/grass.res" id="14_wrctm"]
 [ext_resource type="Script" uid="uid://bfgdp1lda7823" path="res://scripts/UI/UIManager.gd" id="15_2c3ra"]
 [ext_resource type="PackedScene" uid="uid://chyrperr5n1id" path="res://assets/models/rocks/cliffProps3.glb" id="15_6uhms"]
 [ext_resource type="PackedScene" uid="uid://drx8dmru8yx4v" path="res://assets/models/rocks/cliffProps2.glb" id="15_m0nnh"]
@@ -17,8 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://btmd56dif8y85" path="res://assets/models/rocks/cliffProps4.glb" id="18_wlt2n"]
 [ext_resource type="Texture2D" uid="uid://dvscuwteptai5" path="res://assets/icons/electric.png" id="19_3k5jp"]
 [ext_resource type="Texture2D" uid="uid://u7kajwg37j05" path="res://assets/ui/Heart_Full.png" id="20_qbhfy"]
-[ext_resource type="PackedScene" uid="uid://b7dh8iogrvy7l" path="res://assets/models/trees/hardwood_tree_tomodachi_life_living_the_dream.glb" id="20_tt56j"]
 [ext_resource type="Script" uid="uid://bpo546jjjo5q1" path="res://scripts/tree_wind_manager.gd" id="20_tree_wind"]
+[ext_resource type="PackedScene" uid="uid://b7dh8iogrvy7l" path="res://assets/models/trees/hardwood_tree_tomodachi_life_living_the_dream.glb" id="20_tt56j"]
 [ext_resource type="Texture2D" uid="uid://bxrm03xv4hlgo" path="res://assets/ui/buttons/btn_green.png" id="21_dyqtb"]
 [ext_resource type="Texture2D" uid="uid://bvkx55st5gpew" path="res://assets/ui/buttons/btn_red.png" id="22_x7rst"]
 
@@ -28,7 +28,7 @@ sky_horizon_color = Color(0.82, 0.76, 0.72, 1)
 sky_curve = 0.22
 sky_energy_multiplier = 1.05
 ground_bottom_color = Color(0.22, 0.28, 0.25, 1)
-ground_horizon_color = Color(0.80, 0.75, 0.71, 1)
+ground_horizon_color = Color(0.8, 0.75, 0.71, 1)
 ground_curve = 0.15
 sun_angle_max = 35.0
 sun_curve = 0.25
@@ -120,7 +120,7 @@ point_count = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgflu"]
 bg_color = Color(0.23137255, 0.23137255, 0.23137255, 0.47058824)
 
-[node name="Level_1" type="Node3D" unique_id=1881958309]
+[node name="Level_Water" type="Node3D" unique_id=1881958309]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=302068175]
 transform = Transform3D(0.7071067, 0.49999994, -0.49999997, 0, 0.7071067, 0.70710677, 0.7071067, -0.49999994, 0.49999997, 1.389256, 6.5485835, -12.4286)
@@ -206,9 +206,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
 
 [node name="Spawner" type="Node3D" parent="Ilha" unique_id=2094228835 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
-waves = 5
-spawn_sequence = Array[int]([0])
 script = ExtResource("5_2myk0")
+spawn_sequence = Array[int]([0, 3, 1])
 
 [node name="EnemyPath" type="Path3D" parent="Ilha" unique_id=1560135437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)

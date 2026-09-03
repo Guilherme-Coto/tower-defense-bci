@@ -18,9 +18,17 @@ var audio_player: AudioStreamPlayer
 @onready var opt_water = $OptionsMenu/VBoxOptions/GridElements/opt_water
 @onready var opt_wind = $OptionsMenu/VBoxOptions/GridElements/opt_wind
 @onready var opt_electricity = $OptionsMenu/VBoxOptions/GridElements/opt_electricity
+@onready var blink_time_slider = $OptionsMenu/VBoxOptions/GridGameplay/HBoxBlinkTime/BlinkTimeSlider
+@onready var blink_time_spin_box = $OptionsMenu/VBoxOptions/GridGameplay/HBoxBlinkTime/SpinBoxBlinkTime
+@onready var enemy_health_slider = $OptionsMenu/VBoxOptions/GridGameplay/HBoxEnemyHealth/EnemyHealthSlider
+@onready var enemy_health_spin_box = $OptionsMenu/VBoxOptions/GridGameplay/HBoxEnemyHealth/SpinBoxEnemyHealth
+@onready var delay_blink_slider = $OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink/DelayBlinkSlider
+@onready var delay_blink_spin_box = $OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink/SpinBoxDelayBlink
 
 @onready var camera_3d: Camera3D = get_node_or_null("SubViewportContainer/SubViewport/Camera3D")
+
 var cam_transform_menu: Transform3D
+
 # Posição e rotação exata da câmara de jogo (onde o jogador joga)
 var cam_transform_game: Transform3D = Transform3D(
 	Vector3(-1, 0, 0),
@@ -28,8 +36,8 @@ var cam_transform_game: Transform3D = Transform3D(
 	Vector3(0, 0.50166535, -0.86506176),
 	Vector3(1.0698649, 2.3351312, -8.175171)
 )
-var cam_tween: Tween
 
+var cam_tween: Tween
 var current_page = 0 # 0 = Recall, 1 = Inverse
 
 func _ready() -> void:
@@ -75,6 +83,22 @@ func _setup_options_ui() -> void:
 	_populate_element_dropdown(opt_water, 1)
 	_populate_element_dropdown(opt_wind, 2)
 	_populate_element_dropdown(opt_electricity, 3)
+	
+	# Inicializar configurações de jogabilidade / BCI
+	if blink_time_slider and blink_time_spin_box:
+		var cur_blink = AudioSettings.get_box_blink_time()
+		blink_time_slider.value = cur_blink
+		blink_time_spin_box.value = cur_blink
+		
+	if enemy_health_slider and enemy_health_spin_box:
+		var cur_hp = AudioSettings.get_enemy_health()
+		enemy_health_slider.value = cur_hp
+		enemy_health_spin_box.value = cur_hp
+		
+	if delay_blink_slider and delay_blink_spin_box:
+		var cur_delay = AudioSettings.get_delay_after_blink()
+		delay_blink_slider.value = cur_delay
+		delay_blink_spin_box.value = cur_delay
 
 func _populate_element_dropdown(opt_btn: OptionButton, element_idx: int) -> void:
 	opt_btn.clear()
@@ -174,6 +198,36 @@ func _on_opt_electricity_item_selected(index: int) -> void:
 	var track_id = opt_electricity.get_item_id(index)
 	AudioSettings.set_element_track(3, track_id)
 
+func _on_blink_time_slider_value_changed(value: float) -> void:
+	if blink_time_spin_box and blink_time_spin_box.value != value:
+		blink_time_spin_box.value = value
+	AudioSettings.set_box_blink_time(value)
+
+func _on_blink_time_spin_box_value_changed(value: float) -> void:
+	if blink_time_slider and blink_time_slider.value != value:
+		blink_time_slider.value = value
+	AudioSettings.set_box_blink_time(value)
+
+func _on_enemy_health_slider_value_changed(value: float) -> void:
+	if enemy_health_spin_box and enemy_health_spin_box.value != value:
+		enemy_health_spin_box.value = value
+	AudioSettings.set_enemy_health(value)
+
+func _on_enemy_health_spin_box_value_changed(value: float) -> void:
+	if enemy_health_slider and enemy_health_slider.value != value:
+		enemy_health_slider.value = value
+	AudioSettings.set_enemy_health(value)
+
+func _on_delay_blink_slider_value_changed(value: float) -> void:
+	if delay_blink_spin_box and delay_blink_spin_box.value != value:
+		delay_blink_spin_box.value = value
+	AudioSettings.set_delay_after_blink(value)
+
+func _on_delay_blink_spin_box_value_changed(value: float) -> void:
+	if delay_blink_slider and delay_blink_slider.value != value:
+		delay_blink_slider.value = value
+	AudioSettings.set_delay_after_blink(value)
+
 func _on_btn_reset_defaults_pressed() -> void:
 	AudioSettings.reset_to_defaults()
 	_setup_options_ui()
@@ -205,74 +259,64 @@ func _on_btn_back_pressed() -> void:
 
 #quatro elementos
 func _on_btn_level_fire_water_wind_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_four_elements.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/scene_four_elements.tscn")
 
+#funções de mudança de nível -> Imagine
 func _on_btn_level_reverse_fire_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_fire.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_imagine/one_element/scene_reverse_fire.tscn")
 func _on_btn_level_reverse_water_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_water.tscn")
-	
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_imagine/one_element/scene_reverse_water.tscn")
 func _on_btn_level_reverse_wind_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_wind.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_imagine/one_element/scene_reverse_wind.tscn")
 func _on_btn_level_reverse_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_electricity.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_imagine/one_element/scene_reverse_electricity.tscn")
 
 func _on_btn_level_random_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_random.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/scene_random.tscn")
 
 func _on_btn_level_reverse_four_elements_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_four_elements.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_imagine/scene_reverse_four_elements.tscn")
 func _on_btn_level_reverse_random_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_reverse_random.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_imagine/scene_reverse_random.tscn")
 
-#funções de mundança de nível
+#funções de mundança de nível -> recall
 #elemento único
 func _on_btn_level_fire_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/one_element/scene_fire.tscn")
 
 func _on_btn_level_water_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/one_element/scene_water.tscn")
 
 func _on_btn_level_wind_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_wind.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/one_element/scene_wind.tscn")
 
 func _on_btn_level_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_electricity.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/one_element/scene_electricity.tscn")
 
 #dois elementos
 func _on_btn_level_fire_water_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_water.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/two_elements/scene_fire_water.tscn")
 func _on_btn_level_fire_wind_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_wind.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/two_elements/scene_fire_wind.tscn")
 func _on_btn_level_fire_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_electricity.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/two_elements/scene_fire_electricity.tscn")
 func _on_btn_level_water_wind_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_wind.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/two_elements/scene_water_wind.tscn")
 
 func _on_btn_level_water_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_electricity.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/two_elements/scene_water_electricity.tscn")
 func _on_btn_level_wind_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_wind_electricity.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/two_elements/scene_wind_electricity.tscn")
 
 #três elementos
 func _on_btn_level_fire_water_wind_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_water_wind.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/three_elements/scene_fire_water_wind.tscn")
 func _on_btn_level_fire_water_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_water_electricity.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/three_elements/scene_fire_water_electricity.tscn")
 func _on_btn_level_fire_wind_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_fire_wind_electricity.tscn")
-	
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/three_elements/scene_fire_wind_electricity.tscn")	
 func _on_btn_level_water_wind_electricity_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_water_wind_electricity.tscn")
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scenes_recall/three_elements/scene_water_wind_electricity.tscn")
 
 #feiticeiro de oz
 func _on_play_oz_pressed() -> void:

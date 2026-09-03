@@ -65,6 +65,7 @@ func apply_element_theme() -> void:
 	
 	if core_mesh:
 		core_mesh.material_override = mat
+	
 	if glow_mesh:
 		var glow_mat = mat.duplicate()
 		glow_mat.set_shader_parameter("fresnel_power", 1.5)

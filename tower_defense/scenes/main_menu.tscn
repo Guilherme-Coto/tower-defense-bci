@@ -1090,13 +1090,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -270.0
-offset_top = -170.0
-offset_right = 270.0
-offset_bottom = 210.0
+offset_left = -290.0
+offset_top = -255.0
+offset_right = 290.0
+offset_bottom = 265.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 10
 
 [node name="lbl_vol_header" type="Label" parent="OptionsMenu/VBoxOptions" unique_id=720684340]
 layout_mode = 2
@@ -1136,7 +1136,7 @@ text = "Músicas dos Elementos:"
 [node name="GridElements" type="GridContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684347]
 layout_mode = 2
 theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 10
+theme_override_constants/v_separation = 8
 columns = 2
 
 [node name="lbl_fire" type="Label" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684348]
@@ -1144,7 +1144,7 @@ layout_mode = 2
 text = "Elemento Fogo:"
 
 [node name="opt_fire" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684349]
-custom_minimum_size = Vector2(320, 34)
+custom_minimum_size = Vector2(320, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -1153,7 +1153,7 @@ layout_mode = 2
 text = "Elemento Água:"
 
 [node name="opt_water" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684351]
-custom_minimum_size = Vector2(320, 34)
+custom_minimum_size = Vector2(320, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -1162,7 +1162,7 @@ layout_mode = 2
 text = "Elemento Vento:"
 
 [node name="opt_wind" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684353]
-custom_minimum_size = Vector2(320, 34)
+custom_minimum_size = Vector2(320, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -1171,11 +1171,109 @@ layout_mode = 2
 text = "Elemento Eletricidade:"
 
 [node name="opt_electricity" type="OptionButton" parent="OptionsMenu/VBoxOptions/GridElements" unique_id=720684355]
-custom_minimum_size = Vector2(320, 34)
+custom_minimum_size = Vector2(320, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator2" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684357]
+[node name="HSeparator2" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684356]
+layout_mode = 2
+
+[node name="lbl_gameplay_header" type="Label" parent="OptionsMenu/VBoxOptions" unique_id=720684360]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Configurações de Jogo / BCI:"
+
+[node name="GridGameplay" type="GridContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684361]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="lbl_blink_time" type="Label" parent="OptionsMenu/VBoxOptions/GridGameplay" unique_id=720684362]
+layout_mode = 2
+text = "Blink Time (segundos):"
+
+[node name="HBoxBlinkTime" type="HBoxContainer" parent="OptionsMenu/VBoxOptions/GridGameplay" unique_id=720684363]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="BlinkTimeSlider" type="HSlider" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxBlinkTime" unique_id=720684364]
+custom_minimum_size = Vector2(210, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.05
+max_value = 2.0
+step = 0.01
+value = 0.25
+
+[node name="SpinBoxBlinkTime" type="SpinBox" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxBlinkTime" unique_id=720684365]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+min_value = 0.01
+max_value = 10.0
+step = 0.01
+value = 0.25
+suffix = "s"
+
+[node name="lbl_enemy_health" type="Label" parent="OptionsMenu/VBoxOptions/GridGameplay" unique_id=720684366]
+layout_mode = 2
+text = "Vida do Inimigo (Health):"
+
+[node name="HBoxEnemyHealth" type="HBoxContainer" parent="OptionsMenu/VBoxOptions/GridGameplay" unique_id=720684367]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="EnemyHealthSlider" type="HSlider" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxEnemyHealth" unique_id=720684368]
+custom_minimum_size = Vector2(210, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 10.0
+max_value = 2000.0
+step = 10.0
+value = 400.0
+
+[node name="SpinBoxEnemyHealth" type="SpinBox" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxEnemyHealth" unique_id=720684369]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+min_value = 1.0
+max_value = 10000.0
+step = 1.0
+value = 400.0
+suffix = "hp"
+
+[node name="lbl_delay_blink" type="Label" parent="OptionsMenu/VBoxOptions/GridGameplay" unique_id=720684372]
+layout_mode = 2
+text = "Delay após Blink (s):"
+
+[node name="HBoxDelayBlink" type="HBoxContainer" parent="OptionsMenu/VBoxOptions/GridGameplay" unique_id=720684373]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="DelayBlinkSlider" type="HSlider" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink" unique_id=720684374]
+custom_minimum_size = Vector2(210, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.0
+max_value = 10.0
+step = 0.1
+value = 3.0
+
+[node name="SpinBoxDelayBlink" type="SpinBox" parent="OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink" unique_id=720684375]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+min_value = 0.0
+max_value = 30.0
+step = 0.1
+value = 3.0
+suffix = "s"
+
+[node name="HSeparator3" type="HSeparator" parent="OptionsMenu/VBoxOptions" unique_id=720684357]
 layout_mode = 2
 
 [node name="HBoxButtons" type="HBoxContainer" parent="OptionsMenu/VBoxOptions" unique_id=720684358]
@@ -1227,4 +1325,10 @@ text = "Restaurar Padrões"
 [connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_water" to="." method="_on_opt_water_item_selected"]
 [connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_wind" to="." method="_on_opt_wind_item_selected"]
 [connection signal="item_selected" from="OptionsMenu/VBoxOptions/GridElements/opt_electricity" to="." method="_on_opt_electricity_item_selected"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/GridGameplay/HBoxBlinkTime/BlinkTimeSlider" to="." method="_on_blink_time_slider_value_changed"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/GridGameplay/HBoxBlinkTime/SpinBoxBlinkTime" to="." method="_on_blink_time_spin_box_value_changed"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/GridGameplay/HBoxEnemyHealth/EnemyHealthSlider" to="." method="_on_enemy_health_slider_value_changed"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/GridGameplay/HBoxEnemyHealth/SpinBoxEnemyHealth" to="." method="_on_enemy_health_spin_box_value_changed"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink/DelayBlinkSlider" to="." method="_on_delay_blink_slider_value_changed"]
+[connection signal="value_changed" from="OptionsMenu/VBoxOptions/GridGameplay/HBoxDelayBlink/SpinBoxDelayBlink" to="." method="_on_delay_blink_spin_box_value_changed"]
 [connection signal="pressed" from="OptionsMenu/VBoxOptions/HBoxButtons/btn_reset_defaults" to="." method="_on_btn_reset_defaults_pressed"]

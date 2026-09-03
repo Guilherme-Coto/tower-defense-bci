@@ -72,6 +72,15 @@ var element_tracks: Dictionary = {
 
 var master_volume_percent: float = 100.0
 
+# Definições de Jogabilidade / BCI
+const DEFAULT_BOX_BLINK_TIME: float = 0.25
+const DEFAULT_ENEMY_HEALTH: float = 400.0
+const DEFAULT_DELAY_AFTER_BLINK: float = 3.0
+
+var box_blink_time: float = DEFAULT_BOX_BLINK_TIME
+var enemy_health: float = DEFAULT_ENEMY_HEALTH
+var delay_after_blink: float = DEFAULT_DELAY_AFTER_BLINK
+
 const SAVE_PATH = "user://audio_settings.cfg"
 
 func _ready() -> void:
@@ -122,6 +131,27 @@ func set_master_volume_percent(percent: float) -> void:
 func get_master_volume_percent() -> float:
 	return master_volume_percent
 
+func set_box_blink_time(time_sec: float) -> void:
+	box_blink_time = max(0.01, time_sec)
+	save_settings()
+
+func get_box_blink_time() -> float:
+	return box_blink_time
+
+func set_enemy_health(hp: float) -> void:
+	enemy_health = max(1.0, hp)
+	save_settings()
+
+func get_enemy_health() -> float:
+	return enemy_health
+
+func set_delay_after_blink(time_sec: float) -> void:
+	delay_after_blink = max(0.0, time_sec)
+	save_settings()
+
+func get_delay_after_blink() -> float:
+	return delay_after_blink
+
 func apply_master_volume() -> void:
 	var bus_idx = AudioServer.get_bus_index("Master")
 	if bus_idx != -1:
@@ -137,6 +167,9 @@ func apply_master_volume() -> void:
 func reset_to_defaults() -> void:
 	element_tracks = DEFAULT_ELEMENT_TRACKS.duplicate()
 	master_volume_percent = 100.0
+	box_blink_time = DEFAULT_BOX_BLINK_TIME
+	enemy_health = DEFAULT_ENEMY_HEALTH
+	delay_after_blink = DEFAULT_DELAY_AFTER_BLINK
 	apply_master_volume()
 	save_settings()
 
@@ -147,6 +180,9 @@ func save_settings() -> void:
 	config.set_value("elements", "water_track", element_tracks[1])
 	config.set_value("elements", "wind_track", element_tracks[2])
 	config.set_value("elements", "electricity_track", element_tracks[3])
+	config.set_value("gameplay", "box_blink_time", box_blink_time)
+	config.set_value("gameplay", "enemy_health", enemy_health)
+	config.set_value("gameplay", "delay_after_blink", delay_after_blink)
 	config.save(SAVE_PATH)
 
 func load_settings() -> void:
@@ -158,3 +194,6 @@ func load_settings() -> void:
 		element_tracks[1] = config.get_value("elements", "water_track", DEFAULT_ELEMENT_TRACKS[1])
 		element_tracks[2] = config.get_value("elements", "wind_track", DEFAULT_ELEMENT_TRACKS[2])
 		element_tracks[3] = config.get_value("elements", "electricity_track", DEFAULT_ELEMENT_TRACKS[3])
+		box_blink_time = config.get_value("gameplay", "box_blink_time", DEFAULT_BOX_BLINK_TIME)
+		enemy_health = config.get_value("gameplay", "enemy_health", DEFAULT_ENEMY_HEALTH)
+		delay_after_blink = config.get_value("gameplay", "delay_after_blink", DEFAULT_DELAY_AFTER_BLINK)

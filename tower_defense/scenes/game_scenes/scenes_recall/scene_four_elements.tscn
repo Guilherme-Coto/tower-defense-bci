@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://b318wgn1ithff"]
+﻿[gd_scene format=3 uid="uid://blgra26u6bp4l"]
 
 [ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/network/bci_marker_send.gd" id="2_hhefr"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="3_j8b2v"]
@@ -207,7 +207,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.51914597)
 [node name="Spawner" type="Node3D" parent="Ilha" unique_id=2094228835 groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 waves = 5
-spawn_sequence = Array[int]([0])
+spawn_sequence = Array[int]([2, 0, 3, 1])
 script = ExtResource("5_2myk0")
 
 [node name="EnemyPath" type="Path3D" parent="Ilha" unique_id=1560135437]

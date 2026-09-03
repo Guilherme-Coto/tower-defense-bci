@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://b318wgn1ithff"]
+﻿[gd_scene format=3 uid="uid://bbqnjtr4bfltt"]
 
 [ext_resource type="Script" uid="uid://d2ociyeg5kia4" path="res://scripts/network/bci_marker_send.gd" id="2_hhefr"]
 [ext_resource type="PackedScene" uid="uid://34wvhs1s8x8b" path="res://assets/models/tower/tower-round-build-f.glb" id="3_j8b2v"]

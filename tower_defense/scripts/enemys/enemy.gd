@@ -12,8 +12,8 @@ const bullet = preload("res://scenes/bullet.tscn")
 @export var element : Weak_System.ELEMENT = Weak_System.ELEMENT.Fire
 @export var attack_range: float = 3.0
 
-var max_health = 250.0
-var health = 250.0
+var max_health = 400.0
+var health = 400.0
 
 @onready var slime_mesh: MeshInstance3D = get_node_or_null("Body/SlimeMesh")
 @onready var health_bar_fill: MeshInstance3D = get_node_or_null("HealthBar/BarFill")
@@ -21,6 +21,10 @@ var hit_tween: Tween
 var original_mat: ShaderMaterial
 
 func _ready() -> void:
+	if AudioSettings:
+		max_health = AudioSettings.get_enemy_health()
+		health = max_health
+		
 	UIManager.add_text_to_log("Inimigo Spawnado")
 	timer_attack.timeout.connect(_on_timer_attack_timeout)
 	timer_attack.start()

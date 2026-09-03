@@ -3,7 +3,7 @@ extends CanvasLayer
 const label_prefab = preload("res://scenes/lbl_text_log.tscn") 
 
 @onready var tower = get_tree().get_first_node_in_group("tower")
-@onready var logger = get_tree().get_first_node_in_group("logger")
+@onready var bci = get_tree().get_first_node_in_group("BCI")
 
 @onready var lbl_element = $UI/VBox_element/lbl_element
 @onready var log_container = $UI/PanelContainer/LogScrollBar/VBCLogs
@@ -114,6 +114,9 @@ func _ready() -> void:
 	timer_alter.timeout.connect(_on_timer_alter_timeout)
 	add_child(timer_alter)
 
+	if AudioSettings:
+		box_blink_time = AudioSettings.get_box_blink_time()
+
 	#configura o timer do quadrado
 	timer_box_blink = Timer.new()
 	timer_box_blink.wait_time = box_blink_time
@@ -149,23 +152,23 @@ func _input(event: InputEvent) -> void:
 			buttons_blink = true
 	elif event.is_action_pressed("box_blink"):
 		if box_isblinking:
-			logger.write_log("Box stop to blink")
+			if bci: bci.write_log("Box stop to blink")
 			desactive_box_blink()
 		else:
-			logger.write_log("Box start to blink")
+			if bci: bci.write_log("Box start to blink")
 			active_box_blink()
 	
 	if event.is_action_pressed("pause"):	
-		logger.write_log("Game paused")
+		if bci: bci.write_log("Game paused")
 		toggle_pause()
 
 func active_box_blink():
-	logger.write_log("Box start blinking")
+	if bci: bci.write_log("Box start blinking")
 	timer_box_blink.start()
 	box_isblinking = true
 
 func desactive_box_blink():
-	logger.write_log("Box stop blinking")
+	if bci: bci.write_log("Box stop blinking")
 	timer_box_blink.stop()
 	box_isblinking = false
 	
@@ -250,16 +253,16 @@ func on_button_power_clicket(element : Weak_System.ELEMENT, send_log: bool = tru
 	if send_log:
 		if element == Weak_System.ELEMENT.Fire:
 			add_text_to_log("O jogador selecionou Fogo")
-			logger.write_log("FIRE selected")
+			if bci: bci.write_log("FIRE selected")
 		elif element == Weak_System.ELEMENT.Water:
 			add_text_to_log("O jogador selecionou Água")
-			logger.write_log("WATER selected")
+			if bci: bci.write_log("WATER selected")
 		elif element == Weak_System.ELEMENT.Wind:
 			add_text_to_log("O jogador selecionou Vento")
-			logger.write_log("WIND selected")
+			if bci: bci.write_log("WIND selected")
 		elif element == Weak_System.ELEMENT.Electricity:
 			add_text_to_log("O jogador selecionou Eletricidade")
-			logger.write_log("ELECTRICITY selected")
+			if bci: bci.write_log("ELECTRICITY selected")
 		
 	if tower: tower.change_element(element)
 
@@ -320,13 +323,13 @@ func change_next_element(text):
 	lbl_element.text = text
 
 func _on_btn_quit_pressed() -> void:
-	logger.write_log("Game Finished")
+	if bci: bci.write_log("Game Finished")
 	get_tree().paused = false 
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func _on_btn_resume_pressed() -> void:
-	logger.write_log("Game unpaused")
+	if bci: bci.write_log("Game unpaused")
 	toggle_pause()
 
 func toggle_pause() -> void:
@@ -345,7 +348,7 @@ func heal() -> void:
 	if current_hearth_index < 4:
 		current_hearth_index += 1
 		hearts[current_hearth_index].texture = hearth_full
-		logger.write_log("Player healed by Oz Server")
+		if bci: bci.write_log("Player healed by Oz Server")
 
 func show_instruction(text: String) -> void:
 	if lbl_instruction:
