@@ -1,9 +1,0 @@
-Log Start (Execution 2)
-[0.001s] Log system started successfully.
-[0.004s] Rest
-[2.889s] Start Listen
-[7.895s] End Listen
-[7.896s] Box start blinking
-[9.901s] Box stop blinking
-[10.911s] WATER selected
-[10.911s] Imagine

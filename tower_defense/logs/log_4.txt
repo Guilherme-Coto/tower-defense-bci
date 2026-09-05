@@ -1,8 +1,0 @@
-Log Start (Execution 4)
-[0.001s] Log system started successfully.
-[0.003s] Rest
-[2.891s] Start Listen
-[7.315s] Game paused
-[7.897s] End Listen
-[7.897s] Box start blinking
-[8.006s] Game Finished
