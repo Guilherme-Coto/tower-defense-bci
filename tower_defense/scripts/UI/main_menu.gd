@@ -371,3 +371,7 @@ func _on_btn_level_water_wind_electricity_pressed() -> void:
 #feiticeiro de oz
 func _on_play_oz_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_oz.tscn")
+
+# Modo BCI em tempo real
+func _on_play_bci_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game_scenes/scene_bci_gameplay.tscn")

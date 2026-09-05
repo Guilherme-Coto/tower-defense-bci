@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 AudioSettings="*res://scripts/audio/audio_settings.gd"
 GameSettings="*res://scripts/game_settings.gd"
+BciReceiver="*res://scripts/network/bci_receiver.gd"
 
 [display]
 
