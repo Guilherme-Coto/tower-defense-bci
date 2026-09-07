@@ -24,7 +24,15 @@ import os
 import sys
 import time
 import argparse
-import select
+if sys.platform == "win32":
+    import msvcrt
+    try:
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+else:
+    import select
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -53,16 +61,22 @@ def print_banner(source_type, mode, auto_send, threshold):
 def format_bar(val, max_val=1.0, width=20):
     val_clamped = max(0.0, min(max_val, val))
     filled = int(round((val_clamped / max_val) * width))
-    bar = "█" * filled + "░" * (width - filled)
+    bar = "#" * filled + "-" * (width - filled)
     return f"[{bar}] {val_clamped * 100:5.1f}%"
 
 
 def check_stdin_nonblocking():
-    """Checks if a character was pressed on stdin without blocking (Linux)."""
-    if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
-        line = sys.stdin.readline().strip().upper()
-        return line
-    return None
+    """Checks if a character was pressed on stdin without blocking."""
+    if sys.platform == "win32":
+        if msvcrt.kbhit():
+            ch = msvcrt.getwch().strip().upper()
+            return ch
+        return None
+    else:
+        if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
+            line = sys.stdin.readline().strip().upper()
+            return line
+        return None
 
 
 def run_pipeline(
