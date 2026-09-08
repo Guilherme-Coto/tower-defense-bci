@@ -368,3 +368,14 @@ func show_instruction(text: String) -> void:
 func hide_instruction() -> void:
 	if lbl_instruction:
 		lbl_instruction.text = ""
+
+func notify_music_feedback(is_correct: bool) -> void:
+	var msg = "Música CORRETA ✔" if is_correct else "Música INCORRETA ✖"
+	add_text_to_log("Feiticeiro: " + msg)
+	show_instruction("Validação: " + msg)
+	var t = get_tree().create_timer(3.0)
+	t.timeout.connect(func():
+		if lbl_instruction and lbl_instruction.text.begins_with("Validação:"):
+			hide_instruction()
+	)
+

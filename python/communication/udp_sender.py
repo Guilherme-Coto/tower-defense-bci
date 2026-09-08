@@ -99,8 +99,54 @@ class UDPSender:
         """Triggers an enemy kill in Godot."""
         return self.send_raw("kill_enemy")
 
+    def send_music(self, element):
+        """
+        Triggers music playback in Godot for a specific element (0=FIRE, 1=WATER, 2=WIND, 3=ELECTRICITY).
+        """
+        if isinstance(element, str):
+            elem_upper = element.upper()
+            if elem_upper in config.ELEMENT_TO_ID:
+                elem_id = config.ELEMENT_TO_ID[elem_upper]
+            else:
+                try:
+                    elem_id = int(element)
+                except ValueError:
+                    print(f"[UDPSender Warning] Unknown element name for music: {element}")
+                    return False
+        else:
+            elem_id = int(element)
+
+        if elem_id not in config.ELEMENTS:
+            print(f"[UDPSender Warning] Invalid element ID for music: {elem_id}")
+            return False
+
+        cmd = f"music:{elem_id}"
+        success = self.send_raw(cmd)
+        if success:
+            elem_name = config.ELEMENTS.get(elem_id, str(elem_id))
+            print(f"[UDPSender] >>> Triggered Music for Element: {elem_name} ({cmd})")
+        return success
+
+    def stop_music(self):
+        """Stops any currently playing music in Godot."""
+        return self.send_raw("stop_music")
+
+    def send_music_feedback(self, is_correct: bool):
+        """
+        Sends an evaluation event indicating whether the played/chosen music was correct or incorrect.
+        Parameters:
+            is_correct: bool (True for correct, False for incorrect)
+        """
+        cmd = "music_correct" if is_correct else "music_incorrect"
+        success = self.send_raw(cmd)
+        if success:
+            status_label = "CORRECT (Acerto)" if is_correct else "INCORRECT (Erro)"
+            print(f"[UDPSender] >>> Music Validation Event Triggered: {status_label} ({cmd})")
+        return success
+
     def close(self):
         try:
             self.sock.close()
         except Exception:
             pass
+

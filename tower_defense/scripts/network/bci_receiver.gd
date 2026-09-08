@@ -13,6 +13,8 @@ extends Node
 
 signal bci_command_received(command: String)
 signal bci_power_received(element_id: int)
+signal bci_music_received(element_id: int)
+signal bci_music_feedback_received(is_correct: bool)
 
 const UDP_PORT: int = 4242
 var udp_peer := PacketPeerUDP.new()
@@ -46,11 +48,11 @@ func process_bci_command(cmd: String) -> void:
 	bci_command_received.emit(cmd)
 	
 	var bci_marker = get_tree().get_first_node_in_group("BCI")
-	if bci_marker and bci_marker.has_method("write_log"):
-		bci_marker.write_log("BCI_UDP_Command: " + cmd)
-		
 	var ui = get_tree().get_first_node_in_group("UIManager")
 	var spawner = get_tree().get_first_node_in_group("spawner")
+	
+	if bci_marker and bci_marker.has_method("write_log"):
+		bci_marker.write_log("BCI_UDP_Command: " + cmd)
 	
 	if cmd.begins_with("power:"):
 		var parts = cmd.split(":")
@@ -85,3 +87,41 @@ func process_bci_command(cmd: String) -> void:
 				ui.desactive_box_blink()
 			else:
 				ui.active_box_blink()
+	elif cmd.begins_with("music:"):
+		var parts = cmd.split(":")
+		if parts.size() > 1:
+			if parts[1] == "stop":
+				if spawner and spawner.has_method("stop_music"):
+					spawner.stop_music()
+				if ui and ui.has_method("add_text_to_log"):
+					ui.add_text_to_log("Feiticeiro: Música parada")
+			else:
+				var elem_id = parts[1].to_int()
+				bci_music_received.emit(elem_id)
+				if spawner and spawner.has_method("play_music"):
+					spawner.play_music(elem_id)
+				if ui and ui.has_method("add_text_to_log"):
+					var elem_names = ["Fogo", "Água", "Vento", "Eletricidade"]
+					var el_name = elem_names[elem_id] if elem_id >= 0 and elem_id < elem_names.size() else str(elem_id)
+					ui.add_text_to_log("Feiticeiro ativou Música: " + el_name)
+	elif cmd == "stop_music":
+		if spawner and spawner.has_method("stop_music"):
+			spawner.stop_music()
+		if ui and ui.has_method("add_text_to_log"):
+			ui.add_text_to_log("Feiticeiro: Música parada")
+	elif cmd == "music_correct" or cmd == "music_feedback:correct" or cmd == "correct_music":
+		bci_music_feedback_received.emit(true)
+		if bci_marker and bci_marker.has_method("write_log"):
+			bci_marker.write_log("Music_Feedback: CORRECT")
+		if ui and ui.has_method("notify_music_feedback"):
+			ui.notify_music_feedback(true)
+		elif ui and ui.has_method("add_text_to_log"):
+			ui.add_text_to_log("Feiticeiro: Música avaliada como CORRETA ✔")
+	elif cmd == "music_incorrect" or cmd == "music_feedback:incorrect" or cmd == "incorrect_music":
+		bci_music_feedback_received.emit(false)
+		if bci_marker and bci_marker.has_method("write_log"):
+			bci_marker.write_log("Music_Feedback: INCORRECT")
+		if ui and ui.has_method("notify_music_feedback"):
+			ui.notify_music_feedback(false)
+		elif ui and ui.has_method("add_text_to_log"):
+			ui.add_text_to_log("Feiticeiro: Música avaliada como INCORRETA ✖")
