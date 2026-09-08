@@ -70,6 +70,12 @@ const AVAILABLE_TRACKS = [
 		"name": "Whats_Up",
 		"file_name": "Whats_Up",
 		"path": "res://assets/musics/Whats_Up.wav"
+	},
+	{
+		"id": 10,
+		"name": "TIC TAC",
+		"file_name": "TIC_TAC",
+		"path": "res://assets/musics/TIC_TAC.wav"
 	}
 	
 ]

@@ -378,4 +378,3 @@ func notify_music_feedback(is_correct: bool) -> void:
 		if lbl_instruction and lbl_instruction.text.begins_with("Validação:"):
 			hide_instruction()
 	)
-
