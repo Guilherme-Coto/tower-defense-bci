@@ -1,0 +1,73 @@
+{
+  "model_name": "FilterBankCSP_LogisticRegression_4Class",
+  "subject": "01",
+  "session": "02",
+  "classes": [
+    "FIRE",
+    "WATER",
+    "WIND",
+    "ELECTRICITY"
+  ],
+  "metrics": {
+    "transfer_accuracy": 0.5,
+    "transfer_f1": 0.35616344439873854,
+    "pooled_cv_accuracy": 0.4514705882352941,
+    "pooled_cv_std": 0.053348109256520754,
+    "pooled_cv_f1": 0.36159528723770207,
+    "self_accuracy": 0.7857142857142857
+  },
+  "confusion_matrices": {
+    "transfer_listen_to_imagine": [
+      [
+        0,
+        8,
+        0,
+        0
+      ],
+      [
+        1,
+        16,
+        0,
+        1
+      ],
+      [
+        0,
+        3,
+        4,
+        1
+      ],
+      [
+        0,
+        6,
+        1,
+        1
+      ]
+    ],
+    "pooled_cv": [
+      [
+        2,
+        9,
+        2,
+        3
+      ],
+      [
+        4,
+        24,
+        3,
+        5
+      ],
+      [
+        0,
+        6,
+        5,
+        5
+      ],
+      [
+        2,
+        6,
+        1,
+        7
+      ]
+    ]
+  }
+}

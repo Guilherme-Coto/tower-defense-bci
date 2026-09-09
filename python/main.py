@@ -45,14 +45,29 @@ from acquisition.lsl_receiver import LSLReceiver
 from acquisition.simulator_receiver import SimulatorReceiver
 
 
-def print_banner(source_type, mode, auto_send, threshold):
+def resolve_model_path(model_arg):
+    if model_arg is None:
+        return config.MODEL_PATH
+    m_lower = str(model_arg).lower()
+    if m_lower in ["water_new", "water_replaced", "ses02", "ses-02", "new"]:
+        return config.MODEL_PATH_WATER_NEW
+    elif m_lower in ["old", "ses01", "ses-01", "legacy", "pkl"]:
+        return config.MODEL_PATH_OLD_PKL if config.MODEL_PATH_OLD_PKL.exists() else config.MODEL_PATH_OLD_JOBLIB
+    cand = Path(model_arg)
+    if not cand.is_absolute():
+        if (config.MODELS_DIR / cand).exists():
+            return config.MODELS_DIR / cand
+    return cand
+
+
+def print_banner(source_type, mode, auto_send, threshold, model_path):
     print("\n" + "=" * 84)
     print(" BCI TOWER DEFENSE: REAL-TIME 4-CLASS RHYTHM DECODING PIPELINE ".center(84, "="))
     print("=" * 84)
     print(f" • Input Source     : {source_type.upper()} ({mode if source_type == 'simulator' else '250 Hz LSL'})")
     print(f" • Godot Bridge     : UDP -> {config.GODOT_IP}:{config.GODOT_PORT} (power:0..3)")
     print(f" • Marker Listener  : UDP <- {config.GODOT_IP}:{config.GAME_MARKER_PORT} (game state)")
-    print(f" • Model            : FilterBank CSP + Logistic Regression ({config.MODEL_PATH.name})")
+    print(f" • Active Model     : {Path(model_path).name}")
     print(f" • Auto-Send Godot  : {'ENABLED' if auto_send else 'DISABLED'}")
     print(f" • Active Threshold : {threshold * 100:.1f}% (Chance baseline: 25.0%)")
     print("=" * 84 + "\n")
@@ -85,13 +100,15 @@ def run_pipeline(
     auto_send=True,
     threshold=config.CONFIDENCE_THRESHOLD,
     interactive=False,
-    duration_step=config.WINDOW_STEP_SEC
+    duration_step=config.WINDOW_STEP_SEC,
+    model_path=None
 ):
-    print_banner(source, mode, auto_send, threshold)
+    active_model = resolve_model_path(model_path)
+    print_banner(source, mode, auto_send, threshold, active_model)
 
     # 1. Initialize Pipeline
     pipeline = BCIPipeline(
-        model_path=config.MODEL_PATH,
+        model_path=active_model,
         confidence_threshold=threshold,
         auto_send_godot=auto_send,
         sync_game_markers=True
@@ -217,6 +234,8 @@ def main():
                         help="Disable automatic triggering of Godot powers")
     parser.add_argument("--interactive", action="store_true", default=False,
                         help="Enable interactive keyboard rhythm switching in simulator mode")
+    parser.add_argument("--model", type=str, default=None,
+                        help="Path or alias for rhythm model: 'water_new' (ses-02), 'old' (ses-01 / pkl), or custom path")
 
     args = parser.parse_args()
     run_pipeline(
@@ -224,7 +243,8 @@ def main():
         mode=args.mode,
         auto_send=args.auto_send,
         threshold=args.threshold,
-        interactive=args.interactive
+        interactive=args.interactive,
+        model_path=args.model
     )
 
 

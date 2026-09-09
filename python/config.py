@@ -9,8 +9,25 @@ from pathlib import Path
 # Paths
 ROOT_DIR = Path(__file__).resolve().parent
 MODELS_DIR = ROOT_DIR / "models"
-BIDS_ROOT = Path("/home/guilhermecoto/Documentos/Lasige/nautilus_bci/scripts/bids/bids_tower_defense")
-MODEL_PATH = MODELS_DIR / "rhythm_model.joblib"
+
+# Automatic resolution of BIDS dataset directory across environments (Linux/Windows)
+_candidate_bids = [
+    ROOT_DIR.parent.parent / "nautilus_bci" / "scripts" / "bids" / "bids_tower_defense",
+    ROOT_DIR.parent / "nautilus_bci" / "scripts" / "bids" / "bids_tower_defense",
+    Path("/home/guilhermecoto/Documentos/Lasige/nautilus_bci/scripts/bids/bids_tower_defense"),
+]
+BIDS_ROOT = next((p for p in _candidate_bids if p.exists()), _candidate_bids[0])
+
+# Models
+MODEL_PATH_OLD_PKL = MODELS_DIR / "rhythm_model.pkl"
+MODEL_PATH_OLD_JOBLIB = MODELS_DIR / "rhythm_model.joblib"
+MODEL_PATH_WATER_NEW = MODELS_DIR / "rhythm_model_water_new.joblib"
+MODEL_PATH_WATER_NEW_PKL = MODELS_DIR / "rhythm_model_water_new.pkl"
+
+# Active Model: defaults to the new water music model if available, otherwise old model
+MODEL_PATH = MODEL_PATH_WATER_NEW if MODEL_PATH_WATER_NEW.exists() else (
+    MODEL_PATH_OLD_JOBLIB if MODEL_PATH_OLD_JOBLIB.exists() else MODEL_PATH_OLD_PKL
+)
 
 # Hardware / EEG Acquisition
 SAMPLING_RATE = 250.0

@@ -130,7 +130,7 @@ def train_and_export_rhythm_decoder(
     print(f"[*] Theoretical Chance Baseline             : 25.00% (4 classes)")
 
     # 4. Train Final Production Model on Pooled Auditory + Imagery Representations
-    print("\n[*] Training final production model on full pooled dataset (152 epochs)...")
+    print(f"\n[*] Training final production model on full pooled dataset ({len(y_pooled)} epochs)...")
     final_model = FilterBankCSPClassifier(sfreq=sfreq, n_components=4, clf_type="logreg", C=0.5)
     final_model.fit(X_pooled, y_pooled)
 
@@ -147,6 +147,7 @@ def train_and_export_rhythm_decoder(
         'sfreq': sfreq,
         'window_size_sec': config.WINDOW_SIZE_SEC,
         'train_samples': len(y_pooled),
+        'session_trained': ses_id,
         'metrics': {
             'transfer_accuracy': acc_transfer,
             'transfer_f1': f1_transfer,
@@ -158,7 +159,17 @@ def train_and_export_rhythm_decoder(
     }
 
     joblib.dump(export_dict, output_path)
-    print(f"[+] Successfully exported model artifact to: {output_path}")
+    print(f"[+] Successfully exported joblib model artifact to: {output_path}")
+
+    # Also export .pkl version for maximum interoperability
+    pkl_output_path = output_path.with_suffix(".pkl")
+    try:
+        import pickle
+        with open(pkl_output_path, "wb") as f:
+            pickle.dump(export_dict, f)
+        print(f"[+] Successfully exported pkl model artifact to: {pkl_output_path}")
+    except Exception as e:
+        print(f"[!] Warning: Could not export pickle artifact: {e}")
 
     # 6. Save JSON Report
     report = {
@@ -195,13 +206,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train 4-Class Rhythm Decoder for Tower Defense")
     parser.add_argument("--bids-root", type=str, default=None, help="Path to BIDS dataset")
     parser.add_argument("--sub", type=str, default="01", help="Subject ID")
-    parser.add_argument("--ses", type=str, default="01", help="Session ID")
+    parser.add_argument("--ses", type=str, default="02", help="Session ID (default: 02 for Water replaced session)")
     parser.add_argument("--output", type=str, default=None, help="Output joblib file path")
+    parser.add_argument("--report", type=str, default=None, help="Output JSON report path")
     args = parser.parse_args()
 
     train_and_export_rhythm_decoder(
         bids_root=args.bids_root,
         sub_id=args.sub,
         ses_id=args.ses,
-        output_path=args.output
+        output_path=args.output,
+        report_path=args.report
     )
