@@ -58,16 +58,25 @@ class EEGSimulator:
             self._load_bids_data()
 
     def _load_bids_data(self):
-        """Loads real raw Imagine epochs from the Tower Defense BIDS dataset."""
+        """Loads real preprocessed Imagine epochs from the Tower Defense BIDS dataset."""
         try:
             from analysis.analyze_tower_defense_rhythm_decoding import (
                 load_single_session_raw,
+                preprocess_continuous_eeg,
                 extract_session_epochs
             )
             raw_uv, df_events, sfreq, ch_names = load_single_session_raw(self.bids_root, self.sub_id, self.ses_id)
-            # Extract raw epochs directly so the real-time preprocessor filters them
-            X_im, X_lis, _, y, _, class_names = extract_session_epochs(
+            clean_eeg = preprocess_continuous_eeg(
                 raw_uv,
+                sfreq=sfreq,
+                l_freq=config.LOWCUT,
+                h_freq=config.HIGHCUT,
+                notch_freq=config.NOTCH,
+                spatial_mode=config.SPATIAL_FILTER,
+                ch_names=ch_names
+            )
+            X_im, X_lis, _, y, _, class_names = extract_session_epochs(
+                clean_eeg,
                 df_events,
                 self.ses_id,
                 sfreq=sfreq,
@@ -80,7 +89,7 @@ class EEGSimulator:
                 im_trials = [X_im[k].T for k in range(len(X_im)) if mask[k]]
                 self.real_epochs[name] = im_trials
 
-            print(f"[EEGSimulator] Loaded {sum(len(v) for v in self.real_epochs.values())} real raw BIDS trials across 4 elements.")
+            print(f"[EEGSimulator] Loaded {sum(len(v) for v in self.real_epochs.values())} real clean BIDS trials across 4 elements.")
         except Exception as e:
             print(f"[EEGSimulator Warning] Could not load real BIDS trials ({e}). Falling back to synthetic mode.")
             self.mode = "synthetic"

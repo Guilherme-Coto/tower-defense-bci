@@ -115,12 +115,14 @@ def run_pipeline(
     print_banner(source, mode, auto_send, threshold, smoothing_alpha, active_model)
 
     # 1. Initialize Pipeline
+    is_bids_replay = (source.lower() == "simulator" and mode == "bids_replay")
     pipeline = BCIPipeline(
         model_path=active_model,
         confidence_threshold=threshold,
         smoothing_alpha=smoothing_alpha,
         auto_send_godot=auto_send,
-        sync_game_markers=True
+        sync_game_markers=True,
+        skip_preprocessing=is_bids_replay
     )
 
     # 2. Initialize EEG Receiver
@@ -160,15 +162,19 @@ def run_pipeline(
                         break
                     elif user_cmd in ["1", "F", "FIRE"]:
                         receiver.set_rhythm("FIRE")
+                        pipeline.reset_accumulator()
                         print("\n>>> Simulated Mental Rhythm Switched to: [FIRE]\n")
                     elif user_cmd in ["2", "W", "WATER"]:
                         receiver.set_rhythm("WATER")
+                        pipeline.reset_accumulator()
                         print("\n>>> Simulated Mental Rhythm Switched to: [WATER]\n")
                     elif user_cmd in ["3", "N", "WIND"]:
                         receiver.set_rhythm("WIND")
+                        pipeline.reset_accumulator()
                         print("\n>>> Simulated Mental Rhythm Switched to: [WIND]\n")
                     elif user_cmd in ["4", "E", "ELECTRICITY"]:
                         receiver.set_rhythm("ELECTRICITY")
+                        pipeline.reset_accumulator()
                         print("\n>>> Simulated Mental Rhythm Switched to: [ELECTRICITY]\n")
 
             # Fetch EEG chunk

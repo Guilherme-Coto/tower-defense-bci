@@ -1,0 +1,26 @@
+Log Start (Execution 2)
+[0.000s] Log system started successfully.
+[6.265s] BCI_UDP_Command: power:2
+[6.266s] WIND selected
+[7.464s] BCI_UDP_Command: power:1
+[7.465s] WATER selected
+[8.675s] BCI_UDP_Command: power:1
+[8.676s] WATER selected
+[9.891s] BCI_UDP_Command: power:2
+[9.892s] WIND selected
+[11.091s] BCI_UDP_Command: power:2
+[11.092s] WIND selected
+[12.308s] BCI_UDP_Command: power:2
+[12.309s] WIND selected
+[13.508s] BCI_UDP_Command: power:2
+[13.509s] WIND selected
+[14.724s] BCI_UDP_Command: power:2
+[14.724s] WIND selected
+[15.924s] BCI_UDP_Command: power:2
+[15.924s] WIND selected
+[17.139s] BCI_UDP_Command: power:2
+[17.140s] WIND selected
+[18.338s] BCI_UDP_Command: power:2
+[18.339s] WIND selected
+[19.554s] BCI_UDP_Command: power:2
+[19.554s] WIND selected

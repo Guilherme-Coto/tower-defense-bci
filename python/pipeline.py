@@ -38,12 +38,14 @@ class BCIPipeline:
         smoothing_alpha=getattr(config, "SMOOTHING_ALPHA", 0.35),
         cooldown_sec=getattr(config, "MIN_COOLDOWN_SEC", 1.2),
         auto_send_godot=False,
-        sync_game_markers=True
+        sync_game_markers=True,
+        skip_preprocessing=False
     ):
         self.confidence_threshold = float(confidence_threshold)
         self.smoothing_alpha = float(smoothing_alpha)
         self.cooldown_sec = float(cooldown_sec)
         self.auto_send_godot = auto_send_godot
+        self.skip_preprocessing = skip_preprocessing
 
         # Windowing and preprocessing
         self.window = SlidingWindow(
@@ -116,7 +118,10 @@ class BCIPipeline:
         raw_window = self.window.get_window()
 
         # 2. Filter & Robust CAR reference -> (32 channels, 750 samples)
-        clean_window = self.preprocessor.process(raw_window)
+        if self.skip_preprocessing:
+            clean_window = raw_window.T
+        else:
+            clean_window = self.preprocessor.process(raw_window)
 
         # 3. Decode rhythm instant probabilities
         raw_result = self.predictor.predict(
