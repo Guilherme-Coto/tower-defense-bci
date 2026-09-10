@@ -198,6 +198,7 @@ class RiemannianTangentSpaceClassifier(BaseEstimator, ClassifierMixin):
         self.classifier_ = LogisticRegression(
             C=self.C,
             max_iter=self.max_iter,
+            fit_intercept=False,
             random_state=self.random_state,
             solver='lbfgs'
         )

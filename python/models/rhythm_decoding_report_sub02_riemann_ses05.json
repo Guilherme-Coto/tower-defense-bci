@@ -7,10 +7,10 @@
   ],
   "n_total_trials": 69,
   "metrics": {
-    "cv_accuracy_mean": 0.5065934065934067,
-    "cv_accuracy_std": 0.08599559361104991,
-    "cv_f1_macro": 0.48596681096681094,
-    "cv_cohen_kappa": 0.3438002652904573,
+    "cv_accuracy_mean": 0.5351648351648353,
+    "cv_accuracy_std": 0.13581990818004724,
+    "cv_f1_macro": 0.5107683982683981,
+    "cv_cohen_kappa": 0.3825478191065043,
     "self_accuracy": 1.0
   },
   "confusion_matrix": [
@@ -28,15 +28,15 @@
     ],
     [
       1,
-      5,
-      11,
+      4,
+      12,
       0
     ],
     [
       3,
+      0,
       1,
-      1,
-      13
+      14
     ]
   ]
 }
