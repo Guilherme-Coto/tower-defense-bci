@@ -35,10 +35,14 @@ class BCIPipeline:
         self,
         model_path=config.MODEL_PATH,
         confidence_threshold=config.CONFIDENCE_THRESHOLD,
+        smoothing_alpha=getattr(config, "SMOOTHING_ALPHA", 0.35),
+        cooldown_sec=getattr(config, "MIN_COOLDOWN_SEC", 1.2),
         auto_send_godot=False,
         sync_game_markers=True
     ):
         self.confidence_threshold = float(confidence_threshold)
+        self.smoothing_alpha = float(smoothing_alpha)
+        self.cooldown_sec = float(cooldown_sec)
         self.auto_send_godot = auto_send_godot
 
         # Windowing and preprocessing
@@ -65,8 +69,20 @@ class BCIPipeline:
         if self.game_listener:
             self.game_listener.start()
 
+        # Evidence accumulation & state tracking
+        self.smoothed_probs = None
+        self.last_game_state = None
+        self.last_sent_time = 0.0
         self.last_prediction = None
         self.total_windows_processed = 0
+
+    def reset_accumulator(self):
+        """Resets accumulated probability distribution (e.g. at the start of Imagine phase)."""
+        self.smoothed_probs = None
+
+    def recalibrate(self, X_calib):
+        """Adapts the underlying spatial model reference to current session EEG."""
+        return self.predictor.recalibrate(X_calib)
 
     def process_chunk(self, eeg_chunk):
         """
@@ -80,12 +96,17 @@ class BCIPipeline:
             or dict containing:
               - 'element': str ("FIRE", "WATER", "WIND", "ELECTRICITY")
               - 'element_id': int (0..3)
-              - 'confidence': float
-              - 'probabilities': dict
+              - 'confidence': float (smoothed)
+              - 'probabilities': dict (smoothed)
+              - 'raw_element': str
+              - 'raw_confidence': float
+              - 'raw_probabilities': dict
               - 'is_rhythm_active': bool
               - 'game_state': str
               - 'command_sent': bool
         """
+        import time
+
         self.window.add_samples(eeg_chunk)
 
         if not self.window.is_ready():
@@ -97,23 +118,63 @@ class BCIPipeline:
         # 2. Filter & Robust CAR reference -> (32 channels, 750 samples)
         clean_window = self.preprocessor.process(raw_window)
 
-        # 3. Decode rhythm & class probabilities
-        result = self.predictor.predict(
+        # 3. Decode rhythm instant probabilities
+        raw_result = self.predictor.predict(
             clean_window,
             confidence_threshold=self.confidence_threshold
         )
 
-        # 4. Attach game state information
+        # 4. State transition handling: reset evidence when entering IMAGINE
         game_state = self.game_listener.current_state if self.game_listener else "N/A"
-        result['game_state'] = game_state
-        result['command_sent'] = False
+        if game_state == "IMAGINE" and self.last_game_state != "IMAGINE":
+            self.reset_accumulator()
+        self.last_game_state = game_state
 
-        # 5. Optionally trigger Godot power
-        if self.auto_send_godot and result['is_rhythm_active']:
-            # If game state sync is active, trigger when in IMAGINE or FREE play
+        # 5. Temporal Evidence Accumulation (Exponential Moving Average)
+        ordered_elements = ["FIRE", "WATER", "WIND", "ELECTRICITY"]
+        curr_vec = np.array([raw_result['probabilities'].get(el, 0.25) for el in ordered_elements], dtype=np.float64)
+
+        if self.smoothed_probs is None:
+            self.smoothed_probs = curr_vec.copy()
+        else:
+            self.smoothed_probs = (
+                self.smoothing_alpha * curr_vec + (1.0 - self.smoothing_alpha) * self.smoothed_probs
+            )
+        self.smoothed_probs = self.smoothed_probs / (np.sum(self.smoothed_probs) + 1e-12)
+
+        # Smoothed decision
+        smoothed_pred_id = int(np.argmax(self.smoothed_probs))
+        smoothed_conf = float(self.smoothed_probs[smoothed_pred_id])
+        smoothed_elem = config.ELEMENTS.get(smoothed_pred_id, "UNKNOWN")
+        smoothed_prob_dict = {
+            config.ELEMENTS[i]: float(self.smoothed_probs[i])
+            for i in range(len(ordered_elements))
+        }
+
+        is_active = smoothed_conf >= self.confidence_threshold
+
+        result = {
+            'element': smoothed_elem,
+            'element_id': smoothed_pred_id,
+            'confidence': smoothed_conf,
+            'probabilities': smoothed_prob_dict,
+            'raw_element': raw_result['element'],
+            'raw_confidence': raw_result['confidence'],
+            'raw_probabilities': raw_result['probabilities'],
+            'is_rhythm_active': is_active,
+            'game_state': game_state,
+            'command_sent': False
+        }
+
+        # 6. Optionally trigger Godot power with cooldown check
+        now = time.time()
+        if self.auto_send_godot and is_active:
             if game_state in ["IMAGINE", "IDLE", "N/A"]:
-                sent = self.udp_sender.send_power(result['element_id'])
-                result['command_sent'] = sent
+                if (now - self.last_sent_time) >= self.cooldown_sec:
+                    sent = self.udp_sender.send_power(smoothed_pred_id)
+                    result['command_sent'] = sent
+                    if sent:
+                        self.last_sent_time = now
 
         self.last_prediction = result
         self.total_windows_processed += 1

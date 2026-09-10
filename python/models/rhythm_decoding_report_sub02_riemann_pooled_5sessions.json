@@ -1,0 +1,46 @@
+{
+  "model_name": "RIEMANN_4Class_TowerDefense",
+  "model_type": "riemann",
+  "subject": "sub-02",
+  "sessions_trained": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "n_total_trials": 282,
+  "metrics": {
+    "cv_accuracy_mean": 0.4219298245614035,
+    "cv_accuracy_std": 0.04056426012362223,
+    "cv_f1_macro": 0.409596040162781,
+    "cv_cohen_kappa": 0.22941319849333236,
+    "self_accuracy": 0.9893617021276596
+  },
+  "confusion_matrix": [
+    [
+      28,
+      15,
+      14,
+      13
+    ],
+    [
+      17,
+      19,
+      18,
+      16
+    ],
+    [
+      15,
+      16,
+      37,
+      6
+    ],
+    [
+      16,
+      12,
+      5,
+      35
+    ]
+  ]
+}

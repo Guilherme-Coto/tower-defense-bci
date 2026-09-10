@@ -14,12 +14,14 @@ class SimulatorReceiver:
     Standard receiver interface wrapping EEGSimulator.
     """
 
-    def __init__(self, initial_rhythm="FIRE", mode="bids_replay"):
+    def __init__(self, initial_rhythm="FIRE", mode="bids_replay", sub_id="02", ses_id="05"):
         self.simulator = EEGSimulator(
             sampling_rate=config.SAMPLING_RATE,
             channels=config.N_CHANNELS,
             mode=mode,
-            bids_root=config.BIDS_ROOT
+            bids_root=config.BIDS_ROOT,
+            sub_id=sub_id,
+            ses_id=ses_id
         )
         self.rhythm = initial_rhythm
         self.connected = False

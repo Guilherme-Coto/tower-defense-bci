@@ -14,6 +14,27 @@ resolution-markers = [
 ]
 
 [[package]]
+name = "array-api-compat"
+version = "1.15.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/86/12/65d297d3e425cb7fe5247b7ec14b4ed83539e9b5e89b65c15ea7ee274182/array_api_compat-1.15.0.tar.gz", hash = "sha256:53c5f922491bf15f62847afafc4e39eedfae57d218988fefb8cce39c2a9b3dea", size = 129305, upload-time = "2026-06-07T20:53:24.964Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/86/16/1a8fd2b19544b84575cf84ef7aa3ad4c173b756d5f087c91f85d1b295777/array_api_compat-1.15.0-py3-none-any.whl", hash = "sha256:7b1b9c53269061403fd5f45a8de349f16e7887653328bfa0c5f2d45299ff0a8e", size = 79113, upload-time = "2026-06-07T20:53:23.621Z" },
+]
+
+[[package]]
+name = "array-api-extra"
+version = "0.11.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "array-api-compat" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c4/63/eb18bc7d039c954da3cfb11293c7e461b03eb9682bb0b22733be43f75501/array_api_extra-0.11.4.tar.gz", hash = "sha256:66236f72aaa4cdf97a3c5581696e3a9c89513714612a9bc6010e19fad1a22012", size = 112368, upload-time = "2026-09-07T18:50:34.068Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c7/b3/fcf70b2ed935f26fc15dfd81f72f781d395b09e302af5c86ec285d63524e/array_api_extra-0.11.4-py3-none-any.whl", hash = "sha256:b2d5bd31b3072249fd3f90a2b1f7b398c78e3ccb7575e04e9e3348ae894da60f", size = 120196, upload-time = "2026-09-07T18:50:32.88Z" },
+]
+
+[[package]]
 name = "blinker"
 version = "1.9.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1072,6 +1093,26 @@ wheels = [
 ]
 
 [[package]]
+name = "pyriemann"
+version = "0.12"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "array-api-compat" },
+    { name = "array-api-extra" },
+    { name = "joblib" },
+    { name = "matplotlib" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "numpy", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "scikit-learn" },
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ab/a9/849d09dae8b9746958ffe65ca9609b7f16e45ea69b16057a1929b16c8726/pyriemann-0.12.tar.gz", hash = "sha256:a1450307bf3360fafe4e2e11a5db81889245f34b0042094bf8b59b7fe2bdeb9f", size = 173434, upload-time = "2026-07-01T20:03:07.79Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/57/5c/e788ad2f904c633520d9f283785e6177a66096b2efa356b46b4647a3240f/pyriemann-0.12-py2.py3-none-any.whl", hash = "sha256:74a90b2ef0938c94fe9bf90b6506991fc19da55850aae5fdf992026b3845d43a", size = 153585, upload-time = "2026-07-01T20:03:06.55Z" },
+]
+
+[[package]]
 name = "python"
 version = "0.1.0"
 source = { virtual = "." }
@@ -1084,6 +1125,7 @@ dependencies = [
     { name = "numpy", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "pandas" },
     { name = "pylsl" },
+    { name = "pyriemann" },
     { name = "scikit-learn" },
     { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "scipy", version = "1.18.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
@@ -1098,6 +1140,7 @@ requires-dist = [
     { name = "numpy", specifier = ">=1.24" },
     { name = "pandas", specifier = ">=2.0" },
     { name = "pylsl", specifier = ">=1.16" },
+    { name = "pyriemann", specifier = ">=0.12" },
     { name = "scikit-learn", specifier = ">=1.3" },
     { name = "scipy", specifier = ">=1.10" },
 ]

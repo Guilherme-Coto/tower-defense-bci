@@ -29,12 +29,16 @@ class EEGSimulator:
         sampling_rate=config.SAMPLING_RATE,
         channels=config.N_CHANNELS,
         mode="bids_replay",
-        bids_root=config.BIDS_ROOT
+        bids_root=config.BIDS_ROOT,
+        sub_id="02",
+        ses_id="05"
     ):
         self.fs = float(sampling_rate)
         self.channels = int(channels)
         self.mode = mode
         self.bids_root = Path(bids_root)
+        self.sub_id = str(sub_id).replace("sub-", "")
+        self.ses_id = str(ses_id).replace("ses-", "")
 
         # Real BIDS epochs dictionary: { "FIRE": [...], "WATER": [...], ... }
         self.real_epochs = {}
@@ -60,12 +64,12 @@ class EEGSimulator:
                 load_single_session_raw,
                 extract_session_epochs
             )
-            raw_uv, df_events, sfreq, ch_names = load_single_session_raw(self.bids_root, "01", "01")
+            raw_uv, df_events, sfreq, ch_names = load_single_session_raw(self.bids_root, self.sub_id, self.ses_id)
             # Extract raw epochs directly so the real-time preprocessor filters them
             X_im, X_lis, _, y, _, class_names = extract_session_epochs(
                 raw_uv,
                 df_events,
-                "01",
+                self.ses_id,
                 sfreq=sfreq,
                 win_len_s=config.WINDOW_SIZE_SEC
             )

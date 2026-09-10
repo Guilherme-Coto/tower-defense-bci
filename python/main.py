@@ -49,7 +49,11 @@ def resolve_model_path(model_arg):
     if model_arg is None:
         return config.MODEL_PATH
     m_lower = str(model_arg).lower()
-    if m_lower in ["water_new", "water_replaced", "ses02", "ses-02", "new"]:
+    if m_lower in ["riemann", "sub02", "sub-02", "pooled", "5sessions", "default"]:
+        return config.MODEL_PATH_SUB02_RIEMANN
+    elif m_lower in ["ses05", "ses-05", "sub02_ses05"]:
+        return config.MODEL_PATH_SUB02_SES05
+    elif m_lower in ["water_new", "water_replaced", "ses02", "ses-02", "new"]:
         return config.MODEL_PATH_WATER_NEW
     elif m_lower in ["old", "ses01", "ses-01", "legacy", "pkl"]:
         return config.MODEL_PATH_OLD_PKL if config.MODEL_PATH_OLD_PKL.exists() else config.MODEL_PATH_OLD_JOBLIB
@@ -60,7 +64,7 @@ def resolve_model_path(model_arg):
     return cand
 
 
-def print_banner(source_type, mode, auto_send, threshold, model_path):
+def print_banner(source_type, mode, auto_send, threshold, smoothing_alpha, model_path):
     print("\n" + "=" * 84)
     print(" BCI TOWER DEFENSE: REAL-TIME 4-CLASS RHYTHM DECODING PIPELINE ".center(84, "="))
     print("=" * 84)
@@ -70,6 +74,7 @@ def print_banner(source_type, mode, auto_send, threshold, model_path):
     print(f" • Active Model     : {Path(model_path).name}")
     print(f" • Auto-Send Godot  : {'ENABLED' if auto_send else 'DISABLED'}")
     print(f" • Active Threshold : {threshold * 100:.1f}% (Chance baseline: 25.0%)")
+    print(f" • Evidence Smooth  : EMA alpha={smoothing_alpha:.2f}")
     print("=" * 84 + "\n")
 
 
@@ -99,17 +104,21 @@ def run_pipeline(
     mode="bids_replay",
     auto_send=True,
     threshold=config.CONFIDENCE_THRESHOLD,
+    smoothing_alpha=config.SMOOTHING_ALPHA,
     interactive=False,
     duration_step=config.WINDOW_STEP_SEC,
-    model_path=None
+    model_path=None,
+    sub="02",
+    ses="05"
 ):
     active_model = resolve_model_path(model_path)
-    print_banner(source, mode, auto_send, threshold, active_model)
+    print_banner(source, mode, auto_send, threshold, smoothing_alpha, active_model)
 
     # 1. Initialize Pipeline
     pipeline = BCIPipeline(
         model_path=active_model,
         confidence_threshold=threshold,
+        smoothing_alpha=smoothing_alpha,
         auto_send_godot=auto_send,
         sync_game_markers=True
     )
@@ -122,7 +131,7 @@ def run_pipeline(
             expected_channels=config.N_CHANNELS
         )
     else:
-        receiver = SimulatorReceiver(initial_rhythm="FIRE", mode=mode)
+        receiver = SimulatorReceiver(initial_rhythm="FIRE", mode=mode, sub_id=sub, ses_id=ses)
 
     try:
         receiver.connect()
@@ -228,14 +237,20 @@ def main():
                         help="Simulator mode: 'bids_replay' (real BIDS trials) or 'synthetic'")
     parser.add_argument("--threshold", type=float, default=config.CONFIDENCE_THRESHOLD,
                         help=f"Confidence threshold to trigger rhythm (default: {config.CONFIDENCE_THRESHOLD})")
+    parser.add_argument("--smooth-alpha", type=float, default=config.SMOOTHING_ALPHA,
+                        help=f"Exponential smoothing alpha (default: {config.SMOOTHING_ALPHA})")
     parser.add_argument("--auto-send", action="store_true", default=True,
                         help="Automatically trigger Godot element power when confidence > threshold")
     parser.add_argument("--no-auto-send", dest="auto_send", action="store_false",
                         help="Disable automatic triggering of Godot powers")
     parser.add_argument("--interactive", action="store_true", default=False,
                         help="Enable interactive keyboard rhythm switching in simulator mode")
+    parser.add_argument("--sub", type=str, default="02",
+                        help="Subject ID for BIDS replay (default: 02)")
+    parser.add_argument("--ses", type=str, default="05",
+                        help="Session ID for BIDS replay (default: 05)")
     parser.add_argument("--model", type=str, default=None,
-                        help="Path or alias for rhythm model: 'water_new' (ses-02), 'old' (ses-01 / pkl), or custom path")
+                        help="Path or alias for rhythm model: 'riemann' (sub02 pooled), 'ses05' (sub02 ses05), 'water_new', or custom path")
 
     args = parser.parse_args()
     run_pipeline(
@@ -243,8 +258,11 @@ def main():
         mode=args.mode,
         auto_send=args.auto_send,
         threshold=args.threshold,
+        smoothing_alpha=args.smooth_alpha,
         interactive=args.interactive,
-        model_path=args.model
+        model_path=args.model,
+        sub=args.sub,
+        ses=args.ses
     )
 
 

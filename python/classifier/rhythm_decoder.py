@@ -86,6 +86,151 @@ def project_csp_features(X, W):
     return feats
 
 
+def compute_covariance_matrices(X):
+    """
+    Computes regularized trace-normalized covariance matrices.
+    X: shape (n_epochs, n_channels, n_samples)
+    Returns: (n_epochs, n_channels, n_channels)
+    """
+    n_epochs, n_ch, _ = X.shape
+    covs = np.zeros((n_epochs, n_ch, n_ch), dtype=np.float64)
+    for i in range(n_epochs):
+        c = np.cov(X[i])
+        c = c / (np.trace(c) + 1e-12)
+        c += 1e-5 * np.eye(n_ch)
+        covs[i] = c
+    return covs
+
+
+def compute_riemannian_mean(covmats, max_iter=25, tol=1e-6):
+    """
+    Fréchet geometric mean on the SPD manifold under the affine-invariant Riemannian metric.
+    covmats: shape (n_epochs, n_channels, n_channels)
+    """
+    C_mean = np.mean(covmats, axis=0)
+    for _ in range(max_iter):
+        vals, vecs = eigh(C_mean)
+        vals = np.maximum(vals, 1e-8)
+        sqrt_C = vecs @ np.diag(np.sqrt(vals)) @ vecs.T
+        inv_sqrt_C = vecs @ np.diag(1.0 / np.sqrt(vals)) @ vecs.T
+
+        tangents = []
+        for i in range(len(covmats)):
+            m = inv_sqrt_C @ covmats[i] @ inv_sqrt_C
+            v, w = eigh(m)
+            v = np.maximum(v, 1e-8)
+            log_m = w @ np.diag(np.log(v)) @ w.T
+            tangents.append(log_m)
+
+        mean_t = np.mean(tangents, axis=0)
+        if np.linalg.norm(mean_t, ord='fro') < tol:
+            break
+        v, w = eigh(mean_t)
+        exp_t = w @ np.diag(np.exp(v)) @ w.T
+        C_mean = sqrt_C @ exp_t @ sqrt_C
+
+    return C_mean
+
+
+def project_to_riemannian_tangent_space(covmats, C_ref=None):
+    """
+    Projects covariance matrices onto Euclidean Tangent Space at reference point C_ref.
+    covmats: shape (n_epochs, n_channels, n_channels)
+    Returns:
+        ts_vectors: shape (n_epochs, n_channels * (n_channels + 1) // 2)
+        C_ref: reference Riemannian mean covariance
+    """
+    if C_ref is None:
+        C_ref = compute_riemannian_mean(covmats)
+
+    vals, vecs = eigh(C_ref)
+    vals = np.maximum(vals, 1e-8)
+    inv_sqrt_C = vecs @ np.diag(1.0 / np.sqrt(vals)) @ vecs.T
+
+    n_epochs, n_ch, _ = covmats.shape
+    triu_idx = np.triu_indices(n_ch)
+    diag_mask = (triu_idx[0] == triu_idx[1])
+
+    ts_vectors = []
+    for i in range(n_epochs):
+        m = inv_sqrt_C @ covmats[i] @ inv_sqrt_C
+        v, w = eigh(m)
+        v = np.maximum(v, 1e-8)
+        log_m = w @ np.diag(np.log(v)) @ w.T
+        vec = log_m[triu_idx].copy()
+        vec[~diag_mask] *= np.sqrt(2.0)
+        ts_vectors.append(vec)
+
+    return np.array(ts_vectors, dtype=np.float64), C_ref
+
+
+class RiemannianTangentSpaceClassifier(BaseEstimator, ClassifierMixin):
+    """
+    Riemannian Tangent Space Classifier for 4-Class Mental Rhythm BCI.
+    Projects regularized covariance matrices onto Riemannian tangent space,
+    followed by standard scaling and regularized multi-class Logistic Regression.
+    """
+
+    def __init__(self, C=0.1, max_iter=500, random_state=42):
+        self.C = float(C)
+        self.max_iter = int(max_iter)
+        self.random_state = random_state
+
+        self.C_ref_ = None
+        self.scaler_ = None
+        self.classifier_ = None
+        self.classes_ = None
+
+    def fit(self, X, y):
+        X = np.asarray(X, dtype=np.float64)
+        y = np.asarray(y, dtype=np.int32)
+
+        if X.ndim != 3:
+            raise ValueError(f"Expected 3D array (n_epochs, n_channels, n_samples), got {X.shape}")
+
+        self.classes_ = np.unique(y)
+        covs = compute_covariance_matrices(X)
+        ts_vecs, self.C_ref_ = project_to_riemannian_tangent_space(covs)
+
+        self.scaler_ = StandardScaler()
+        ts_scaled = self.scaler_.fit_transform(ts_vecs)
+
+        self.classifier_ = LogisticRegression(
+            C=self.C,
+            max_iter=self.max_iter,
+            random_state=self.random_state,
+            solver='lbfgs'
+        )
+        self.classifier_.fit(ts_scaled, y)
+        return self
+
+    def transform(self, X):
+        X = np.asarray(X, dtype=np.float64)
+        if X.ndim == 2:
+            X = X[np.newaxis, ...]
+
+        covs = compute_covariance_matrices(X)
+        ts_vecs, _ = project_to_riemannian_tangent_space(covs, C_ref=self.C_ref_)
+        return self.scaler_.transform(ts_vecs)
+
+    def predict_proba(self, X):
+        feats = self.transform(X)
+        return self.classifier_.predict_proba(feats)
+
+    def predict(self, X):
+        feats = self.transform(X)
+        return self.classifier_.predict(feats)
+
+    def recalibrate_reference(self, X_calib):
+        """Adapts the reference point C_ref_ using new calibration data."""
+        X_calib = np.asarray(X_calib, dtype=np.float64)
+        if X_calib.ndim == 2:
+            X_calib = X_calib[np.newaxis, ...]
+        covs_calib = compute_covariance_matrices(X_calib)
+        self.C_ref_ = compute_riemannian_mean(covs_calib)
+        print("[RiemannianTangentSpaceClassifier] Reference covariance adapted to new calibration session.")
+
+
 class FilterBankCSPClassifier(BaseEstimator, ClassifierMixin):
     """
     Filter Bank Common Spatial Pattern (FBCSP) Classifier.
@@ -282,3 +427,10 @@ class RhythmPredictor:
             'probabilities': prob_dict,
             'is_rhythm_active': is_active
         }
+
+    def recalibrate(self, X_calib):
+        """Adapts the underlying model with online calibration data if supported."""
+        if self.model is not None and hasattr(self.model, "recalibrate_reference"):
+            self.model.recalibrate_reference(X_calib)
+            return True
+        return False

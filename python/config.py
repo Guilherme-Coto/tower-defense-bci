@@ -19,14 +19,18 @@ _candidate_bids = [
 BIDS_ROOT = next((p for p in _candidate_bids if p.exists()), _candidate_bids[0])
 
 # Models
+MODEL_PATH_SUB02_RIEMANN = MODELS_DIR / "rhythm_model_sub02_riemann.joblib"
+MODEL_PATH_SUB02_SES05 = MODELS_DIR / "rhythm_model_sub02_riemann_ses05.joblib"
 MODEL_PATH_OLD_PKL = MODELS_DIR / "rhythm_model.pkl"
 MODEL_PATH_OLD_JOBLIB = MODELS_DIR / "rhythm_model.joblib"
 MODEL_PATH_WATER_NEW = MODELS_DIR / "rhythm_model_water_new.joblib"
 MODEL_PATH_WATER_NEW_PKL = MODELS_DIR / "rhythm_model_water_new.pkl"
 
-# Active Model: defaults to the new water music model if available, otherwise old model
-MODEL_PATH = MODEL_PATH_WATER_NEW if MODEL_PATH_WATER_NEW.exists() else (
-    MODEL_PATH_OLD_JOBLIB if MODEL_PATH_OLD_JOBLIB.exists() else MODEL_PATH_OLD_PKL
+# Active Model: defaults to the sub02 Riemannian model if available, else water_new, else old
+MODEL_PATH = MODEL_PATH_SUB02_RIEMANN if MODEL_PATH_SUB02_RIEMANN.exists() else (
+    MODEL_PATH_WATER_NEW if MODEL_PATH_WATER_NEW.exists() else (
+        MODEL_PATH_OLD_JOBLIB if MODEL_PATH_OLD_JOBLIB.exists() else MODEL_PATH_OLD_PKL
+    )
 )
 
 # Hardware / EEG Acquisition
@@ -72,5 +76,6 @@ GODOT_PORT = 4242       # Port where Godot oz_receiver.gd listens for power:X co
 GAME_MARKER_PORT = 9000 # Port where Godot bci_marker_send.gd broadcasts event JSONs
 
 # Inference & Decision Thresholds
-CONFIDENCE_THRESHOLD = 0.35  # Minimal probability to trigger an element switch (chance is 0.25)
-MIN_COOLDOWN_SEC = 1.0       # Minimum seconds between successive automated power triggers
+CONFIDENCE_THRESHOLD = 0.40  # Minimal probability to trigger an element switch (chance is 0.25)
+SMOOTHING_ALPHA = 0.35       # Exponential moving average weight: 0.35 * new + 0.65 * history
+MIN_COOLDOWN_SEC = 1.2       # Minimum seconds between successive automated power triggers
