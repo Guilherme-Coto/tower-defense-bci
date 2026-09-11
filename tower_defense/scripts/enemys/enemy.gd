@@ -38,7 +38,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	progress += speed * delta
 	
-	# Slight cute slime bounce along path
+	#shader
 	if has_node("Body"):
 		var hop = abs(sin(progress * 4.0)) * 0.08
 		$Body.position.y = hop
@@ -70,7 +70,6 @@ func _update_health_bar() -> void:
 		return
 	var pct = clamp(health / max_health, 0.0, 1.0)
 	health_bar_fill.scale.x = pct
-	# Center alignment adjustment
 	health_bar_fill.position.x = -0.5 * (1.0 - pct)
 
 func _on_timer_attack_timeout() -> void:

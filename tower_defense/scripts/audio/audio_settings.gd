@@ -82,11 +82,12 @@ const AVAILABLE_TRACKS = [
 
 var track_streams: Dictionary = {}
 
-# Mapeamento padrão dos elementos
-# 0: Fogo -> Für Elise (ID 0)
-# 1: Água -> Prelude in C Major (ID 2)
-# 2: Vento -> The Four Seasons (ID 4)
-# 3: Eletricidade -> Waltz of the Flowers (ID 5)
+#Mapeamento padrão dos elementos
+#0: Fogo -> Für Elise 
+#1: Água -> Prelude in C Major 
+#2: Vento -> The Four Seasons 
+#3: Eletricidade -> Waltz of the Flowers
+
 const DEFAULT_ELEMENT_TRACKS = {
 	0: 0,
 	1: 2,
@@ -94,6 +95,7 @@ const DEFAULT_ELEMENT_TRACKS = {
 	3: 5
 }
 
+#músicas atualmente selecionadas
 var element_tracks: Dictionary = {
 	0: 0,
 	1: 2,
@@ -103,7 +105,7 @@ var element_tracks: Dictionary = {
 
 var master_volume_percent: float = 100.0
 
-# Definições de Jogabilidade / BCI
+#Variáveis das definições de jogabilidade 
 const DEFAULT_BOX_BLINK_TIME: float = 0.25
 const DEFAULT_ENEMY_HEALTH: float = 400.0
 const DEFAULT_DELAY_AFTER_BLINK: float = 3.0
@@ -115,10 +117,11 @@ var delay_after_blink: float = DEFAULT_DELAY_AFTER_BLINK
 const SAVE_PATH = "user://audio_settings.cfg"
 
 func _ready() -> void:
-	# Carregar streams de áudio
+	#carrega as streams de áudio
 	for track in AVAILABLE_TRACKS:
 		var stream = load(track["path"])
 		track_streams[track["id"]] = stream
+		
 	load_settings()
 	apply_master_volume()
 

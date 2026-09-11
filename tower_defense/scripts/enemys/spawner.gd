@@ -116,17 +116,17 @@ func spawn_enemy(force: bool = false, specific_element: int = -1):
 			
 			UIManager.call_deferred("show_instruction", "Presta atenção (" + enemies_elements[counter_idx] + ")")
 			
-			# Toca 5 segundos
+			#toca 5 segundos
 			await get_tree().create_timer(5.0).timeout
 			audio_player.stop()
 			if bci:
 				bci.call_deferred("write_log", "End Listen")
 			
-			# Pisca a caixa
+			#pisca a caixa
 			UIManager.call_deferred("show_instruction", "Olha para o quadrado")
 			UIManager.call_deferred("active_box_blink")
 			
-			# Espera blink_time segundos
+			#espera blink_time segundos
 			await get_tree().create_timer(blink_time).timeout
 			
 			UIManager.call_deferred("desactive_box_blink")
